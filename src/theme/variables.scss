@@ -38,8 +38,20 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+
 );
+$color-primary: #D84040;
+
+$color-secondary: #583318;
+$color-secondary-light: #D5A86C;
+
+$color-background: #FFFFDD;
+
+$color-success: #83DD7F;
+
+$color-facebook: #4F5AAD;
+
 
 
 // App iOS Variables
@@ -86,3 +98,19 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+.font-bold {
+    font-family: 'Montserrat';
+    font-weight: 700;
+}
+
+.font-regular {
+    font-family: 'Montserrat';
+    font-weight: 400;
+}

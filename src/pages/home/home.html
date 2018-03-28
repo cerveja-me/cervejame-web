@@ -1,14 +1,38 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+<ion-header (click)="showTip=false" class="header-home">
+  <ion-title>
+    <button class="btn-schedule" ion-button secondary *ngIf="products && products.length > 0 && location.zone.open" (click)="openSchedule()">
+      <span class="icon-opened"></span>
+      <label>Estamos atendendo</label>
+      <span class="icon-dropdown"></span>
+    </button>
+    <button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products.length >0 && !location.zone.open">
+      <label>Ver Horários</label>
+      <span class="icon-dropdown"></span>
+    </button>
+  </ion-title>
+  <button class="btn-login" (click)="openProfile()"></button>
+  <button class="btn-user" (click)="openProfile()"></button>
+  <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openModalVoucher()">
+    <span class="icon-voucher"></span>
+  </button>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content no-bounce class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
+    <ion-slide>
+      <p class="msg-empty location-error">
+
+        <span class="msg-empty__title">Onde você está?</span>
+
+        Ative o uso da Localização nas configurações do seu aparelho.
+        <button class="btn-white" (click)="tryAgain()">Já ativei</button>
+
+        <p class="choose__bottom">
+          <figure class="choose__picture" style="bottom: 5%;">
+
+            <img style="margin-top: 45%" src="assets/imgs/empty.png">
+          </figure>
+        </p>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

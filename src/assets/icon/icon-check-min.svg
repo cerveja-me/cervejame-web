@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3616.824 1370.824 23.352 23.352">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #83dd7f;
+      }
+
+      .cls-2 {
+        fill: #583318;
+        stroke: #583318;
+      }
+    </style>
+  </defs>
+  <g id="Group_339" data-name="Group 339" transform="translate(3606.824 745.824)">
+    <circle id="ellipse-3" class="cls-1" cx="11.676" cy="11.676" r="11.676" transform="translate(10 625)"/>
+    <g id="Group_338" data-name="Group 338" transform="translate(14.804 631.487)">
+      <g id="Group_1301" data-name="Group 1301">
+        <g id="Group_336" data-name="Group 336" transform="translate(0 0)">
+          <path id="Path_259" data-name="Path 259" class="cls-2" d="M-337.68-.134a.414.414,0,0,0-.239.129c-2.225,2.328-4.374,4.853-6.572,7.173l-3.218-2.462a.415.415,0,0,0-.582.078.415.415,0,0,0,.078.582h0l3.515,2.688a.414.414,0,0,0,.549-.045c2.31-2.417,4.538-5.053,6.824-7.444a.414.414,0,0,0-.008-.585.414.414,0,0,0-.348-.113" transform="translate(349.589 1.037)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
