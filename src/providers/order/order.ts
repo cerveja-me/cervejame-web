@@ -21,7 +21,8 @@ export class OrderProvider {
 
   async getZone() {
     try {
-      return await this.location.getPosition()
+      const pos = await this.location.getPosition()
+      console.log('pos -> ', pos)
     } catch (error) {
       throw error;
     }

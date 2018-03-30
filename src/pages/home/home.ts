@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
+import { AnalyticsProvider } from '../../providers/analytics/analytics';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +15,8 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private order: OrderProvider
+    private order: OrderProvider,
+    private analitycs: AnalyticsProvider
 
   ) {
 
@@ -34,6 +36,11 @@ export class HomePage {
     }
     this.loadedcompleted = true;
 
+  }
+
+  tryAgain() {
+    this.navCtrl.setRoot(HomePage);
+    this.analitycs.registerEvent('try_again', {})
   }
 
 }

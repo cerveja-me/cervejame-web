@@ -15,6 +15,8 @@ import { AnalyticsProvider } from '../providers/analytics/analytics';
 import { ConstantsProvider } from '../providers/constants/constants';
 import { OrderProvider } from '../providers/order/order';
 import { LocationProvider } from '../providers/location/location';
+import { DeviceProvider } from '../providers/device/device';
+import { StorageProvider } from '../providers/storage/storage';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { LocationProvider } from '../providers/location/location';
     AnalyticsProvider,
     ConstantsProvider,
     OrderProvider,
-    LocationProvider
+    LocationProvider,
+    DeviceProvider,
+    StorageProvider
   ]
 })
 export class AppModule { }
