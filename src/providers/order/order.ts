@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LocationProvider } from '../location/location';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
+import { DeviceProvider } from '../device/device';
 
 /*
   Generated class for the OrderProvider provider.
@@ -15,14 +16,16 @@ export class OrderProvider {
 
   constructor(
     private location: LocationProvider,
-    private network: NetworkProvider,
-    private c: ConstantsProvider
+    private net: NetworkProvider,
+    private c: ConstantsProvider,
+    private device: DeviceProvider
   ) { }
 
   async getZone() {
     try {
       const pos = await this.location.getPosition()
-      console.log('pos -> ', pos)
+      const dev = await this.device.getDevice();
+      console.log('pos -> ', pos, dev);
     } catch (error) {
       throw error;
     }

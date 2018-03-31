@@ -13,9 +13,13 @@ export class StorageProvider {
   async get(label) {
     try {
       const obj = await this.storage.get(label)
-      console.log('o -> ', obj)
+      if (obj) {
+        return obj
+      } else {
+        throw 'NOT_FOUND'
+      }
     } catch (error) {
-
+      throw error
     }
   }
 }

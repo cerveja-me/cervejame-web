@@ -15,4 +15,6 @@ export class ConstantsProvider {
   public RATE: string = 'rate/';
   public USER: string = 'costumer/';
   public REMOTE_ASSETS: string = 'https://s3-sa-east-1.amazonaws.com/assests.cerveja.me';
+  public INSTALL_UUID: string = 'install_uuid';
+  public APP_VERSION: string = '1.0.0';
 }
