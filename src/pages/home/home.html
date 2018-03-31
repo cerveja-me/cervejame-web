@@ -18,6 +18,118 @@
 </ion-header>
 
 <ion-content no-bounce class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
+  <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="loadedcompleted && this.openSale && !err">
+
+    <span class="order-status-bar__label" *ngIf="!actions.review && !actions.accepted && !actions.finishedAt && !actions.onWay">
+      <span class="icon-loading"></span>
+      <label>Aguardando confirmação</label>
+    </span>
+
+    <span class="order-status-bar__label active" *ngIf="!actions.review && !actions.onWay && actions.accepted">
+      <span class="icon-check"></span>
+      <label>Pedido confirmado</label>
+    </span>
+
+    <!-- <span class="order-status-bar__label delivery active" *ngIf="!actions.review && actions.onWay && !actions.finishedAt">
+      <figure class="order-status-bar__image">
+        <img src="https://cerveja.me/img/mobile/driver/{{actions.onWay.photo}}"></img>
+      </figure>
+      <label> {{actions.onWay.name}} saiu para entrega</label>
+    </span> -->
+
+    <span class="order-status-bar__label active" *ngIf="actions.review">
+      <span class="icon-check"></span>
+      <label>Pedido entregue - Avalie</label>
+    </span>
+  </button>
+
+  <div class="table" [ngClass]="loadedcompleted && (err==='USER_DENIED_GEOLOCATION' || err==='NO_ZONE_AVAILABLE' || err=='GEOLOCATION_TIMEOUT') ? 'table-bottom': ''"></div>
+
+  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=2 pager class="choose-slider" (ionSlideDidChange)="slideChanged()"
+    [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
+    <ion-slide *ngFor="let prod of products">
+      <div *ngIf="prod.cold">
+        <p class="product__bottom">
+          <span class="product__labels">
+            <span class="product__cold" *ngIf="prod.cold">
+              <span class="icon-cold"></span>Gelada!</span>
+            <span class="product__size">{{prod.volume}}ml</span>
+          </span>
+          <figure class="product__picture">
+            <img src="https://cerveja.me/img/mobile/{{prod.img}}" alt="">
+          </figure>
+        </p>
+      </div>
+      <div *ngIf="!prod.cold">
+
+        <p class="product__bottom">
+          <span class="product__labels">
+            <span class="product__natura" *ngIf="!prod.cold">
+              <span class="icon-termo"></span>Natural</span>
+            <span class="product__size">{{prod.name}}</span>
+          </span>
+          <figure class="product__picture">
+            <img src="https://cerveja.me/img/mobile/{{prod.img}}" alt="">
+          </figure>
+        </p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
+    <ion-slide>
+      <p class="msg-empty">
+
+        <span class="msg-empty__title">Não atendemos sua região.</span>
+
+        Quer levar para sua cidade?
+        <br/> Saiba como:
+        <strong>
+          <a (click)="openPartner()" href="https://cerveja.me">Cerveja.me</a>
+        </strong>
+      </p>
+      <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 45%" src="assets/imgs/empty.png">
+        </figure>
+      </p>
+    </ion-slide>
+  </ion-slides>
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
+    <ion-slide>
+      <p class="msg-empty location-error">
+
+        <span class="msg-empty__title">Oops!</span>
+
+        Não conseguimos identificar sua localização automaticamente.
+        <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+
+        <p class="choose__bottom">
+          <figure class="choose__picture" style="bottom: 5%;">
+
+            <img style="margin-top: 45%" src="assets/imgs/empty.png">
+          </figure>
+        </p>
+    </ion-slide>
+  </ion-slides>
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
+    <ion-slide>
+      <p class="msg-empty location-error">
+
+        <span class="msg-empty__title">Alta demanda!</span>
+
+        Por causa da alta demanda, não estamos recebendo pedidos por agora.
+        <button class="btn-white" (click)="tryAgain()">Verificar novamente</button>
+
+        <p class="choose__bottom">
+          <figure class="choose__picture" style="bottom: 5%;">
+
+            <img style="margin-top: 45%" src="assets/imgs/empty.png">
+          </figure>
+        </p>
+    </ion-slide>
+  </ion-slides>
   <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
     <ion-slide>
       <p class="msg-empty location-error">
@@ -35,4 +147,63 @@
         </p>
     </ion-slide>
   </ion-slides>
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
+    <ion-slide>
+      <p class="msg-empty location-error">
+
+        <span class="msg-empty__title">Internet?</span>
+
+        Tivemos algum problema com a conexão.
+        <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+
+        <p class="choose__bottom">
+          <figure class="choose__picture" style="bottom: 5%;">
+
+            <img style="margin-top: 45%" src="assets/imgs/empty.png">
+          </figure>
+        </p>
+    </ion-slide>
+  </ion-slides>
+
 </ion-content>
+
+<ion-footer *ngIf="products && products.length " align-title="left" (click)="showTip=false">
+
+  <div class="receipt">
+    <div class="receipt__padding" *ngIf="products[current] ">
+      <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
+
+      <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': selectedBeer.cold?'switch':''">
+        <h2 class="receipt__amount">{{amount}} {{selectedBeer.beer.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}} com {{selectedBeer.beer.amount}}</h2>
+        <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%
+          <small>OFF</small>
+        </span>
+        <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount | number:'1.0-0'}}%
+          <small>OFF</small>
+        </span>
+        <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}} •
+          <small>R$ {{selectedBeer.unitValue |number:'1.2-2'}}</small>
+        </span>
+
+        <div class="shipping free switch-first" *ngIf="location.zone.free_shipping">
+          <span class="icon-shipping"></span>
+          <label>Entrega grátis</label>
+        </div>
+        <div [ngClass]="location.zone.free_shipping ? 'shipping switch-second' : 'shipping'">
+          <span class="icon-shipping"></span>
+          <label>25min - 45min</label>
+        </div>
+      </div>
+      <button class="btn-plus tip" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' ">
+        <span class="tip__balloon tip-up" *ngIf="showTip">Quanto mais você compra, mais desconto você ganha.</span>
+      </button>
+    </div>
+
+    <div class="message" *ngIf="!location.zone.open">
+      <label class="message__text">Não estamos entregando agora.</label>
+    </div>
+
+    <button ion-button secondary class="btn-primary" (click)="selectProduct(selectedBeer)" *ngIf="location.zone.open">Escolher</button>
+  </div>
+
+</ion-footer>

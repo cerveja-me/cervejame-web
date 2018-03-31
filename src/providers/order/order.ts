@@ -47,7 +47,5 @@ export class OrderProvider {
     } catch (error) {
       throw error;
     }
-
   }
-
 }
