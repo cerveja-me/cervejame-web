@@ -14,7 +14,7 @@ export class LocationProvider {
     try {
       // throw new Error('USER_DENIED_GEOLOCATION')
       // return await this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 });
-      return { latitude: -23.529338, longitude: -46.679942 }
+      return { latitude: 0, longitude: 0 }
     } catch (error) {
       throw new Error('USER_DENIED_GEOLOCATION')
     }

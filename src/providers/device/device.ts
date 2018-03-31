@@ -53,7 +53,7 @@ export class DeviceProvider {
         await this.storage.set(uuid, this.c.INSTALL_UUID);
         return this.getInstallUUID();
       } else {
-        console.log('ERRRORUUUU -> ', e);
+        throw e
       }
     }
   }

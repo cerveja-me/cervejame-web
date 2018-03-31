@@ -21,11 +21,29 @@ export class OrderProvider {
     private device: DeviceProvider
   ) { }
 
+  locale;
+
   async getZone() {
     try {
       const pos = await this.location.getPosition()
       const dev = await this.device.getDevice();
-      console.log('pos -> ', pos, dev);
+      const day = new Date();
+      const p = {
+        id_device: dev['id'],
+        position_gps: pos['latitude'] + ',' + pos['longitude'],
+        time: day
+      }
+      const locality = await this.net.post(this.c.LOCATION, p)
+      if (locality['zone']) {
+        if (locality['zone']['products']) {
+          this.locale = locality;
+          return this.locale
+        } else {
+          throw 'NO_PRODUCTS'
+        }
+      } else {
+        throw 'NO_ZONE_AVAILABLE'
+      }
     } catch (error) {
       throw error;
     }
