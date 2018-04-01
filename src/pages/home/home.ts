@@ -52,6 +52,8 @@ export class HomePage {
       this.location = l;
       this.products = l['zone']['products'];
       console.log('prd', this.products)
+      this.slideChanged();
+
     } catch (error) {
       this.err = error.message;
       console.log(error.message)
@@ -64,6 +66,7 @@ export class HomePage {
     this.navCtrl.setRoot(HomePage);
     this.analitycs.registerEvent('try_again', {})
   }
+
 
   slideChanged() {
     let current = this.slides.getActiveIndex();

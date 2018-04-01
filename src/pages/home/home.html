@@ -30,12 +30,12 @@
       <label>Pedido confirmado</label>
     </span>
 
-    <!-- <span class="order-status-bar__label delivery active" *ngIf="!actions.review && actions.onWay && !actions.finishedAt">
+    <span class="order-status-bar__label delivery active" *ngIf="!actions.review && actions.onWay && !actions.finishedAt">
       <figure class="order-status-bar__image">
-        <img src="https://cerveja.me/img/mobile/driver/{{actions.onWay.photo}}"></img>
+        <img src="https://cerveja.me/img/mobile/driver/{{actions.onWay.photo}}" alt="">
       </figure>
       <label> {{actions.onWay.name}} saiu para entrega</label>
-    </span> -->
+    </span>
 
     <span class="order-status-bar__label active" *ngIf="actions.review">
       <span class="icon-check"></span>
@@ -48,7 +48,7 @@
   <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=2 pager class="choose-slider" (ionSlideDidChange)="slideChanged()"
     [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
     <ion-slide *ngFor="let prod of products">
-      <div *ngIf="prod.cold">
+      <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
           <span class="product__labels">
             <span class="product__cold" *ngIf="prod.cold">
