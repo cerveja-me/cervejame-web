@@ -11,7 +11,6 @@ export class NetworkProvider {
     public c: ConstantsProvider,
     private storage: StorageProvider
   ) {
-    console.log('Hello NetworkProvider Provider');
   }
 
   async post(endpoint, d) {
@@ -33,9 +32,18 @@ export class NetworkProvider {
           reject(err)
         })
     })
-
   }
 
+  async externalGet(endpoint) {
+    return new Promise((resolve, reject) => {
+      this.http.get(endpoint)
+        .subscribe(r => {
+          resolve(r)
+        }, err => {
+          reject(err)
+        })
+    })
+  }
 
 
 }

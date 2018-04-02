@@ -57,4 +57,13 @@ export class DeviceProvider {
       }
     }
   }
+
+  async firstTime() {
+    try {
+      return await this.storage.get(this.c.FIRST_TIME)
+    } catch (e) {
+      // await this.storage.set(false, this.c.FIRST_TIME)
+      return true
+    }
+  }
 }

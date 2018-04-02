@@ -2,6 +2,7 @@ import { Component, ViewChild, NgZone } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
+import { LocationProvider } from '../../providers/location/location';
 
 @Component({
   selector: 'page-home',
@@ -18,8 +19,8 @@ export class HomePage {
   // ASSETS: string = this.order.c.REMOTE_ASSETS;
   showTip = false;
   current = 0;
-  loadedcompleted;
-  err;
+  loadedcompleted = true;
+  err = 'PROVIDE_ADDRESS';
   discount = 0;
   updatingAmount;
   loader;
@@ -30,20 +31,42 @@ export class HomePage {
     review: null
   }
   openSale: any;
+  fulladdress = '';
+  addressOptions = [];
   constructor(
     public navCtrl: NavController,
     private order: OrderProvider,
     private analitycs: AnalyticsProvider,
     private zone: NgZone,
+    private loc: LocationProvider,
+
 
   ) {
 
   }
 
+
+
   ionViewDidLoad() {
+    // this.verifyFirstTime();
+
+  }
+
+  // async verifyFirstTime(){
+  //   const firsttime =this.
+  // }
+
+  closeAddressEdit() {
+    console.log()
+  }
+  async setAddress(a) {
+    await this.loc.setAddress(a)
     this.getZone();
   }
 
+  async addressChange() {
+    this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
+  }
 
   async getZone() {
     try {
@@ -58,7 +81,9 @@ export class HomePage {
       this.err = error.message;
       console.log(error.message)
     }
+    this.err = null;
     this.loadedcompleted = true;
+
 
   }
 

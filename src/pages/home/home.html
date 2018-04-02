@@ -96,6 +96,33 @@
       </p>
     </ion-slide>
   </ion-slides>
+
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
+    <ion-slide>
+      <p class="msg-empty location-error">
+
+        <span class="msg-empty__title">Endereço!</span>
+
+        informe seu endereço para produtos disponiveis
+        <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
+        <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
+          style="background:beige; color:#583318">
+        </ion-input>
+
+        <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
+          <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
+            <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
+        </ul>
+
+        <p class="choose__bottom">
+          <figure class="choose__picture" style="bottom: 5%;">
+
+            <img style="margin-top: 45%" src="assets/imgs/empty.png">
+          </figure>
+        </p>
+    </ion-slide>
+  </ion-slides>
+
   <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
     <ion-slide>
       <p class="msg-empty location-error">
@@ -113,6 +140,7 @@
         </p>
     </ion-slide>
   </ion-slides>
+
   <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
     <ion-slide>
       <p class="msg-empty location-error">

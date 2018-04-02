@@ -10,6 +10,176 @@ page-home {
     display: inline-block;
   }
 }
+.map {
+
+        &__btn {
+            @include border-radius(0);
+            @extend .font-bold;
+
+            background: $color-primary;
+            border-top: 2px solid $color-secondary;
+            font-size: 24px;
+            padding: 20px;
+            height: auto;
+            width: 100%;
+            margin: 0;
+            text-transform: uppercase;
+
+            &.disabled {
+              opacity: 0.5;
+            }
+        }
+
+        &__navigation {
+            background: #ccc;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        &__address {
+
+            padding: 0 10px;
+            width: 100%;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            z-index: 3;
+
+            &__icon {
+                position: absolute;
+                left: 25px;
+                top: 15px;
+            }
+
+            &__plus {
+                position: absolute;
+                left: 30px;
+                BOTTOM: 21px;
+            }
+
+            &__number {
+                @extend .font-bold;
+
+                border-radius: 0;
+                color: $color-secondary;
+                position: absolute;
+                right: 12px;
+                top: 11px;
+                height: 25px;
+                background: white;
+                padding: 15px;
+                width: 100px;
+                border-color: $color-secondary;
+                box-shadow: -22px 0 20px 0 white;
+                border-width: 0 0 0 1px;
+                text-align: center;
+            }
+
+            &__input {
+                @extend .font-regular;
+
+                display: block;
+                background: white;
+                color: $color-secondary;
+                border: 2px solid $color-secondary;
+                width: 100%;
+                padding: 15px 15px 15px 50px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                .text-input {
+                    margin: 0;
+                }
+
+                &:first-child {
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+
+                &:last-child {
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    border-top: none;
+                    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+                }
+            }
+
+            &__autocomplete {
+                @include border-radius(10px);
+
+                background: white;
+                position: absolute;
+                top: 150px;
+                width: 100%;
+                left: 0;
+                z-index: 5;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+
+                &__item {
+                    @extend .font-regular;
+
+                    color: $color-secondary;
+                    font-size: 14px;
+                    padding: 15px 15px 15px 50px;
+                    border: solid $color-secondary;
+                    border-width: 0 2px 1px;
+                    margin: 0;
+                    background: #D5A86C;
+                    position: relative;
+
+                    &:last-child {
+                        border-width: 0 2px 2px;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+                    }
+                }
+            }
+        }
+    }
+
+.address__autocomplete {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+                top: 150px;
+
+    padding: 0 10px;
+    list-style: none;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    margin: 0 0 0;
+    width: 100%;
+
+    &__item {
+        @extend .font-regular;
+
+        color: $color-secondary;
+        font-size: 14px;
+        padding: 15px 15px 15px 45px;
+        border-bottom: 1px solid $color-secondary;
+        margin: 0;
+        text-align: left;
+        position: relative;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}
     @keyframes pop-discount {
       0% { transform: scale(0) }
       20% { transform: scale(1.4)}
