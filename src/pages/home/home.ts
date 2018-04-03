@@ -24,6 +24,7 @@ export class HomePage {
   discount = 0;
   updatingAmount;
   loader;
+  
   actions: any = {
     accepted: null,
     onWay: null,
