@@ -256,13 +256,18 @@ h2 {
     }
 
     .product {
+        position: relative;
+
+        .btn-minus {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
 
         &__info {
             position: absolute;
             right: 20px;
-            top: 45%;
-            margin-top: -25%;
-            width: 140px;
+            top: 20px;
         }
 
         &__amount {
@@ -380,6 +385,8 @@ h2 {
             height: 100%;
             margin: 0;
         }
+
+       
     }
 
 }
@@ -472,7 +479,16 @@ h2 {
     }
 }
 
-
+.icon-plus {
+    background-image: url('../assets/icon/icon-plus-b.svg');
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+}
 
 .icon-cold {
     background-image: url(../assets/icon/cold.svg);
@@ -954,36 +970,6 @@ h2 {
           animation-fill-mode: both;
       }
     }
-
-    .btn-minus {
-        background-image: url('../assets/icon/minus.svg');
-        background-size: cover;
-        width: 36px;
-        height: 36px;
-        display: inline-block;
-        vertical-align: middle;
-        background-color: transparent;
-        transition: opacity 0.2s;
-
-        &.dragging {
-          opacity: 0.2;
-        }
-    }
-
-    .btn-plus {
-        background-image: url('../assets/icon/plus.svg');
-        background-size: cover;
-        width: 36px;
-        height: 36px;
-        display: inline-block;
-        vertical-align: middle;
-        background-color: transparent;
-        transition: opacity 0.2s;
-
-        &.dragging {
-          opacity: 0.2;
-        }
-    }
 }
 
 .btn-primary {
@@ -1001,6 +987,39 @@ h2 {
 
     &.button-md {
       font-weight: 900 !important;
+    }
+}
+
+.btn-minus {
+    background-image: url('../assets/icon/minus.svg');
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    transition: opacity 0.2s;
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+
+    &.dragging {
+      opacity: 0.2;
+    }
+}
+
+.btn-plus {
+    background-image: url('../assets/icon/plus.svg');
+    background-size: cover;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    transition: opacity 0.2s;
+
+    &.dragging {
+      opacity: 0.2;
     }
 }
 
@@ -1036,6 +1055,7 @@ h2 {
     &__item {
         @include border-radius(20px);
 
+        position: relative;
         width: 47%;
         height: 150px;
         margin: 0 5% 5% 0;
@@ -1044,6 +1064,16 @@ h2 {
 
         &:nth-child(even) {
             margin-right: 0;
+        }
+
+        .btn-plus {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .btn-minus {
+            bottom: 20px;
         }
     }
 }
@@ -1065,6 +1095,14 @@ h2 {
     margin: 0;
     text-transform: uppercase;
     z-index: 3;
+
+    &.dragging {
+        opacity: 0.2;
+    }
+
+    label {
+        vertical-align: middle;
+    }
 
     &.button-md {
       font-weight: 900 !important;

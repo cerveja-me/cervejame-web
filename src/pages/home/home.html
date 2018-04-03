@@ -80,10 +80,13 @@
         <span class="product__price">R$ <strong>38</strong><small>,99</small></span>
         <span class="product__price-each">{{prod.volume}}ml • R$ 5,99</span>
       </div>
-      <button class="btn-add">
+
+      <button class="btn-add" [ngClass]="changingSlide ? 'dragging': '' ">
+        <label>Adicionar </label>
         <span class="icon-plus"></span>
-        <label>Adicionar</label>
       </button>
+
+      <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
     </ion-slide>
   </ion-slides>
 
@@ -207,9 +210,18 @@
   <h2>Outros Produtos</h2>
 
   <ul padding class="other-products">
-    <li class="other-products__item"></li>
-    <li class="other-products__item"></li>
-    <li class="other-products__item"></li>
+    <li class="other-products__item">
+        <button class="btn-plus"></button>
+        <button class="btn-minus"></button>
+    </li>
+    <li class="other-products__item">
+        <button class="btn-plus"></button>
+        <button class="btn-minus"></button>
+    </li>
+    <li class="other-products__item">
+        <button class="btn-plus"></button>
+        <button class="btn-minus"></button>
+    </li>
   </ul>
 
 </ion-content>
