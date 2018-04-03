@@ -3,6 +3,7 @@ import { NavController, Slides } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { LocationProvider } from '../../providers/location/location';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-home',
@@ -169,5 +170,32 @@ export class HomePage {
     setTimeout(() => {
       this.updatingAmount = false;
     }, 100);
+  }
+
+  openProfile() {
+    this.user.isAuth()
+      .then(u => {
+        this.device.registerEvent('open_profile_voucher', {});
+        this.navCtrl.push(ProfilePage);
+      })
+      .catch(e => {
+        this.openLogin();
+      })
+
+  }
+
+  openPartner() {
+    this.inApp.create('https://cvja.me/2y10JuH')
+  }
+
+  openLogin() {
+    let loginModal = this.modalCtrl.create(ModalLoginPage)
+    loginModal.onDidDismiss((data) => {
+      this.device.camPage("home");
+      if (data === 'success') {
+        this.openProfile();
+      }
+    })
+    loginModal.present();
   }
 }
