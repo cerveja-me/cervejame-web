@@ -14,3 +14,4 @@ aws s3 sync . s3://m.cerveja.me
 cd ..
 
 aws cloudfront create-invalidation --distribution-id E30RTAAN91SOC6  --paths '/*'
+#
