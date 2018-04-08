@@ -10,6 +10,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ModalSchedulePage } from "../pages/modal-schedule/modal-schedule";
 import { NetworkProvider } from '../providers/network/network';
 import { AnalyticsProvider } from '../providers/analytics/analytics';
 import { ConstantsProvider } from '../providers/constants/constants';
@@ -17,12 +18,21 @@ import { OrderProvider } from '../providers/order/order';
 import { LocationProvider } from '../providers/location/location';
 import { DeviceProvider } from '../providers/device/device';
 import { StorageProvider } from '../providers/storage/storage';
+import { UserProvider } from '../providers/user/user';
+import { VoucherProvider } from '../providers/voucher/voucher';
+import { ModalLoginPage } from '../pages/modal-login/modal-login';
+import { ModalVoucherPage } from '../pages/modal-voucher/modal-voucher';
+import { ProfilePage } from '../pages/profile/profile';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ModalSchedulePage,
+    ModalLoginPage,
+    ModalVoucherPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +43,12 @@ import { StorageProvider } from '../providers/storage/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ProfilePage,
+    ModalSchedulePage,
+    ModalLoginPage,
+    ModalVoucherPage
+
   ],
   providers: [
     StatusBar,
@@ -46,7 +61,9 @@ import { StorageProvider } from '../providers/storage/storage';
     OrderProvider,
     LocationProvider,
     DeviceProvider,
-    StorageProvider
+    StorageProvider,
+    UserProvider,
+    VoucherProvider
   ]
 })
 export class AppModule { }

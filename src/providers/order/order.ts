@@ -22,6 +22,12 @@ export class OrderProvider {
   ) { }
 
   locale;
+  voucher;
+  sale = {
+    id: '',
+    product: {},
+    amount: 0
+  }
 
   async getZone() {
     try {
@@ -47,5 +53,15 @@ export class OrderProvider {
     } catch (error) {
       throw error;
     }
+  }
+
+  setVoucher(voucher) {
+    this.voucher = voucher;
+  }
+  getVoucher() {
+    return this.voucher;
+  }
+  removeVoucher() {
+    this.voucher = null;
   }
 }

@@ -1,0 +1,13 @@
+<ion-content class="voucher" padding>
+  <div class="modal-overlay" [ngClass]="closing ? 'on-close': '' " (click)="dismiss()"></div>
+  <div class="voucher__ticket" [ngClass]="voucher_active?'active':error_active?'fail':''">
+    <p class="voucher__text" *ngIf="!error_active">Parece que você encontrou um de nossos cupons.</p>
+    <p class="voucher__text" *ngIf="error_active">Este cupom já foi utilizado ou é inválido.</p>
+    <span class="voucher__value">
+      <small>R$</small>
+      <label *ngIf="voucher_active">{{vouch.value | number:'1.2-2'}}</label>
+      <label *ngIf="!voucher_active">{{0 | number:'1.2-2'}}</label>
+    </span>
+    <ion-input class="voucher__input" placeholder="Insira o cupom" maxlength=9 [(ngModel)]="code" (ngModelChange)="changecod()"></ion-input>
+  </div>
+</ion-content>

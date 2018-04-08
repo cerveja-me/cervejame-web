@@ -1,9 +1,13 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, ModalController } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { LocationProvider } from '../../providers/location/location';
 import { ProfilePage } from '../profile/profile';
+import { UserProvider } from '../../providers/user/user';
+import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
+import { ModalLoginPage } from '../modal-login/modal-login';
+import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 
 @Component({
   selector: 'page-home',
@@ -40,8 +44,8 @@ export class HomePage {
     private analitycs: AnalyticsProvider,
     private zone: NgZone,
     private loc: LocationProvider,
-
-
+    private user: UserProvider,
+    private modal: ModalController
   ) {
 
   }
@@ -79,13 +83,16 @@ export class HomePage {
       this.slideChanged();
 
     } catch (error) {
-      this.err = error.message;
-      console.log(error.message)
+      if (typeof error === 'string') {
+        this.err = error;
+      } else {
+        this.err = error;
+      }
+
+      console.log(error)
     }
     this.err = null;
     this.loadedcompleted = true;
-
-
   }
 
   tryAgain() {
@@ -175,7 +182,7 @@ export class HomePage {
   openProfile() {
     this.user.isAuth()
       .then(u => {
-        this.device.registerEvent('open_profile_voucher', {});
+        // this.device.registerEvent('open_profile_voucher', {});
         this.navCtrl.push(ProfilePage);
       })
       .catch(e => {
@@ -185,17 +192,35 @@ export class HomePage {
   }
 
   openPartner() {
-    this.inApp.create('https://cvja.me/2y10JuH')
+    // this.inApp.create('https://cvja.me/2y10JuH')
   }
 
   openLogin() {
-    let loginModal = this.modalCtrl.create(ModalLoginPage)
+    let loginModal = this.modal.create(ModalLoginPage)
     loginModal.onDidDismiss((data) => {
-      this.device.camPage("home");
+      // this.analitycs.registerEvent('home', {});
+      // this.analitycs.
+
       if (data === 'success') {
         this.openProfile();
       }
     })
     loginModal.present();
+  }
+
+  openSchedule() {
+    // this.device.registerEvent('open_schedule', {});
+    let scheduleModal = this.modal.create(ModalSchedulePage, { hours: this['location']['zone']['schedule'] })
+    scheduleModal.present().then(r => {
+      // this.device.camPage("home");
+    })
+  }
+
+  openModalVoucher() {
+    // this.device.registerEvent('open_voucher', {});
+    let voucherModal = this.modal.create(ModalVoucherPage);//,{}, {});
+    voucherModal.present().then(r => {
+      // this.device.camPage("home");
+    })
   }
 }

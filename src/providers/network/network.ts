@@ -34,6 +34,28 @@ export class NetworkProvider {
     })
   }
 
+  async get(endpoint) {
+    let h: HttpHeaders;
+    try {
+      const token = await this.storage.get('token')
+      h = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Authorization', 'Bearer ' + token)
+    } catch (error) {
+      h = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+    }
+    return new Promise((resolve, reject) => {
+      this.http.get(this.c.API + endpoint, { headers: h })
+        .subscribe(r => {
+          resolve(r)
+        }, err => {
+          reject(err)
+        })
+    })
+  }
+
+
   async externalGet(endpoint) {
     return new Promise((resolve, reject) => {
       this.http.get(endpoint)
