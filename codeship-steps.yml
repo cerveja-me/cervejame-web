@@ -13,4 +13,8 @@
       -
         name: "build"
         service: "cervejame-web"
-        command: "pwd"
+        command: "ionic build web --prod --release --aot --minifyjs --minifycss --optimizejs"
+      -
+        name: "list"
+        service: "cervejame-web"
+        command: "ls"
