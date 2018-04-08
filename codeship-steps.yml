@@ -10,10 +10,10 @@
         name: "install dependencies"
         service: "cervejame-web"
         command: "npm install"
-      -
-        name: "build"
-        service: "cervejame-web"
-        command: "ionic build web --prod --release --aot --minifyjs --minifycss --optimizejs"
+      # -
+      #   name: "build"
+      #   service: "cervejame-web"
+      #   command: "ionic build web --prod --release --aot --minifyjs --minifycss --optimizejs"
       -
         name: "list"
         service: "cervejame-web"
