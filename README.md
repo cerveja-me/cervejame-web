@@ -1,6 +1,7 @@
 # Cerveja.me WEB
 
 ## developing
+[ ![Codeship Status for cervejame/cervejame-web](https://app.codeship.com/projects/2b0d8eb0-176b-0136-33eb-66968b85f8a3/status?branch=develop)](https://app.codeship.com/projects/283822)
 
 clone the project
 ```
