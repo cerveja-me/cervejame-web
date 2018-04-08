@@ -1,0 +1,3 @@
+---
+  cervejame-web:
+    image: "ubuntu:latest"
