@@ -37,5 +37,8 @@
     "@ionic/app-scripts": "3.1.8",
     "typescript": "~2.6.2"
   },
+  "engines": {
+    "node": ">=8.10"
+  },
   "description": "An Ionic project"
 }
