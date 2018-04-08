@@ -38,7 +38,7 @@
     "typescript": "~2.6.2"
   },
   "engines": {
-    "node": ">=8.10"
+    "node": "~8.10"
   },
   "description": "An Ionic project"
 }
