@@ -1,15 +1,16 @@
 ---
   -
-    name: "install ionic"
-    service: "cervejame-web"
-    command: "npm install -g ionic"
-    tag: "develop"
-  -
-    name: "install dependencies"
-    service: "cervejame-web"
-    command: "npm install"
-    tag: "develop"
-  -
-    name: "build"
-    service: "cervejame-web"
-    command: "./build.sh"
+    type: "serial"
+    steps:
+      -
+        name: "install ionic"
+        service: "cervejame-web"
+        command: "npm install -g ionic"
+      -
+        name: "install dependencies"
+        service: "cervejame-web"
+        command: "npm install"
+      -
+        name: "build"
+        service: "cervejame-web"
+        command: "pwd"
