@@ -16,7 +16,7 @@ export class NetworkProvider {
   async post(endpoint, d) {
     let h: HttpHeaders;
     try {
-      const token = await this.storage.get('token')
+      const token = await this.storage.get(this.c.AUTH)
       h = new HttpHeaders()
         .append('Content-Type', 'application/json')
         .append('Authorization', 'Bearer ' + token)
@@ -35,15 +35,13 @@ export class NetworkProvider {
   }
 
   async get(endpoint) {
-    let h: HttpHeaders;
+    let h: HttpHeaders = new HttpHeaders();
     try {
-      const token = await this.storage.get('token')
+      const token = await this.storage.get(this.c.AUTH)
       h = new HttpHeaders()
-        .append('Content-Type', 'application/json')
         .append('Authorization', 'Bearer ' + token)
     } catch (error) {
-      h = new HttpHeaders()
-        .append('Content-Type', 'application/json')
+      h = new HttpHeaders();
     }
     return new Promise((resolve, reject) => {
       this.http.get(this.c.API + endpoint, { headers: h })

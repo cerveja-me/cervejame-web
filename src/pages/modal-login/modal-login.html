@@ -1,18 +1,35 @@
-<!--
-  Generated template for the ModalLoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
+<ion-header class="header-dark">
   <ion-navbar>
-    <ion-title>modal-login</ion-title>
+    <h1 class="logo-white"></h1>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content padding class="background-dark">
+  <div class="msg">
+    <button ion-button secondary class="btn-facebook" (click)="doFacebookRegister()">CONECTAR COM FACEBOOK</button>
 
-<ion-content padding>
+    <!--<span class="msg__icon icone-login"></span>-->
+    <span class="msg__text">Acesse sua conta</span>
+
+    <div>
+      <div class="login__box">
+        <span class="icon-user login__box__icon"></span>
+        <input name="login" class="login__box__input" placeholder="E-mail" type="email" required="true" [(ngModel)]="profile.login"
+        />
+      </div>
+      <div class="login__box">
+        <span class="icon-pass login__box__icon"></span>
+        <input name="senha" class="login__box__input" placeholder="Senha" type="password" required="true" [(ngModel)]="profile.password"
+        />
+      </div>
+      <input type="button" class="btn-submit" (click)="doLoginForm()" value="Acessar" />
+    </div>
+    <button class="btn-signup" (click)="openModalRegister()">Criar conta</button>
+
+  </div>
 
 </ion-content>
+
+<ion-footer>
+
+</ion-footer>

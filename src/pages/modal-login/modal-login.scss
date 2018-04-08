@@ -1,3 +1,136 @@
 page-modal-login {
+  .icone-login {
+    background-image: url(../assets/icon/login.svg);
+    background-size: cover;
+    width: 210px;
+    height: 147px;
+    display: inline-block;
+  }
+}
+.login {
+  &__box {
+    padding: 0 10px;
+    width: 100%;
+    position: relative;
 
+    &:first-child &__input{
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border: solid $color-secondary;
+      border-width: 2px 2px 2px;
+
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-of-type &__input {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;border: solid $color-secondary;
+      border-width: 0 2px 2px;
+    }
+
+    &.space {
+      margin-top: 40px;
+    }
+
+    &__icon {
+      position: absolute;
+      left: 29px;
+      top: 17px;
+    }
+
+    &__input {
+      @extend .font-regular;
+
+      border-radius: 0;
+
+      display: block;
+      background: white;
+      color: $color-secondary;
+      border: solid $color-secondary;
+      border-width: 0 2px 2px;
+      height: 60px;
+      width: 100%;
+      padding: 18px 15px 18px 50px;
+      box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+    }
+  }
+}
+
+.btn-facebook {
+  @include border-radius(50px);
+  @extend .font-bold;
+
+  background: $color-facebook;
+  border: 2px solid $color-secondary;
+  font-size: 17px;
+  padding: 15px 30px;
+  height: auto;
+  width: 290px;
+  transition: all .5s;
+  box-shadow: none;
+}
+
+.btn-submit {
+  @include border-radius(50px);
+  @extend .font-bold;
+
+  background: $color-secondary;
+  border: 2px solid white;
+  font-size: 14px;
+  padding: 10px 30px;
+  height: auto;
+  width: 160px;
+  transition: all .5s;
+  text-transform: uppercase;
+  color: white;
+  margin-top: 20px;
+}
+
+.btn-signup {
+  @extend .font-bold;
+
+  font-size: 16px;
+  height: auto;
+  transition: all .5s;
+  color: white;
+  background: transparent;
+  padding: 15px 0 5px;
+  margin-top: 20px;
+  border-bottom: 2px solid white;
+}
+
+.icon-user {
+  background-image: url(../assets/icon/user.svg);
+  background-size: cover;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 2px;
+}
+
+.icon-email {
+  background-image: url(../assets/icon/email.svg);
+  background-size: cover;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 2px;
+}
+
+.icon-pass {
+  background-image: url(../assets/icon/pass.svg);
+  background-size: cover;
+  width: 18px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
 }

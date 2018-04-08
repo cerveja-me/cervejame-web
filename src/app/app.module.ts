@@ -23,16 +23,18 @@ import { VoucherProvider } from '../providers/voucher/voucher';
 import { ModalLoginPage } from '../pages/modal-login/modal-login';
 import { ModalVoucherPage } from '../pages/modal-voucher/modal-voucher';
 import { ProfilePage } from '../pages/profile/profile';
+import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    ProfilePage,
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
-    ProfilePage
+    ModalRegisterPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { ProfilePage } from '../pages/profile/profile';
     ProfilePage,
     ModalSchedulePage,
     ModalLoginPage,
-    ModalVoucherPage
+    ModalVoucherPage,
+    ModalRegisterPage
 
   ],
   providers: [

@@ -18,6 +18,6 @@ ionic serve
 ```
 
 every commit in develop will be automaticaly deployed to:
-[dev](m.cerveja.me)
+[dev](https://m.cerveja.me)
 
 

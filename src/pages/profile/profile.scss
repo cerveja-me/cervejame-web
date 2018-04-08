@@ -1,3 +1,150 @@
 page-profile {
 
+  .profile {
+
+    &__balance {
+      @include border-radius(20px);
+
+      background: $color-secondary;
+      padding: 20px;
+      margin: 20px;
+      color: $color-background;
+      text-align: center;
+
+      h2 {
+        @extend .font-regular;
+
+        font-size: 13px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      &__value {
+        @extend .font-bold;
+
+        font-size: 26px;
+        margin: 5px 0;
+      }
+
+      small {
+        @extend .font-regular;
+
+        font-size: 12px;
+      }
+    }
+
+    &__voucher {
+      background-color: $color-success;
+      padding: 20px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
+      &__background {
+        background-image: url(../assets/icon/icon-galera-w.svg);
+        background-size: cover;
+        width: 213px;
+        height: 192px;
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        margin-left: -106.5px;
+        z-index: 1;
+        display: inline-block;
+        opacity: 0.3;
+      }
+
+      h1 {
+        @extend .font-regular;
+
+        font-size: 22px;
+        color: $color-secondary;
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+
+        strong {
+          @extend .font-bold;
+        }
+      }
+
+      h2 {
+        @extend .font-regular;
+
+        font-size: 13px;
+        text-transform: uppercase;
+        margin: 0 0 25px;
+        color: $color-secondary;
+      }
+
+      &__input {
+        @include border-radius(10px);
+        @extend .font-regular;
+
+        font-size: 26px;
+        color: $color-secondary;
+        background: $color-background;
+        border: 2px dashed $color-secondary;
+        margin: 40px auto;
+        width: 265px;
+        position: relative;
+        z-index: 2;
+
+        input {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .icon-galera-w {
+    background-image: url(../assets/icon/icon-galera-w.svg);
+    background-size: cover;
+    width: 22px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  .btn-share {
+    @include border-radius(10px);
+
+    border: 2px solid $color-secondary;
+    padding: 10px 20px;
+    background: none;
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin: 0;
+    }
+
+    &__whats {
+      background-image: url(../assets/icon/icon-whats.svg);
+      background-size: cover;
+      width: 34px;
+      height: 34px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__facebook {
+      background-image: url(../assets/icon/icon-facebook.svg);
+      background-size: cover;
+      width: 34px;
+      height: 34px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__other {
+      background-image: url(../assets/icon/icon-share.svg);
+      background-size: cover;
+      width: 34px;
+      height: 8px;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 13px 0;
+    }
+  }
 }

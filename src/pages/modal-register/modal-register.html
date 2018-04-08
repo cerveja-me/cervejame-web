@@ -1,0 +1,33 @@
+<ion-header class="header-dark">
+  <ion-navbar>
+    <h1 class="logo-white"></h1>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background-dark">
+
+  <div class="msg register">
+    <button ion-button secondary class="btn-facebook" (click)="doFacebookRegister()">CONECTAR COM FACEBOOK</button>
+
+    <span class="msg__text">Crie sua conta</span>
+
+    <div>
+      <div class="login__box">
+        <span class="icon-user login__box__icon"></span>
+        <input name="nome" class="login__box__input" placeholder="Seu Nome" required="true" type="text" [(ngModel)]="profile.name"
+        />
+      </div>
+      <div class="login__box">
+        <span class="icon-email login__box__icon"></span>
+        <input name="login" class="login__box__input" placeholder="E-mail" required="true" type="email" [(ngModel)]="profile.login"
+        />
+      </div>
+      <div class="login__box">
+        <span class="icon-pass login__box__icon"></span>
+        <input name="senha" class="login__box__input" placeholder="Senha" required="true" type="password" [(ngModel)]="profile.password"
+        />
+      </div>
+      <input type="button" class="btn-submit" value="Criar conta" (click)="createUser()" />
+    </div>
+  </div>
+</ion-content>

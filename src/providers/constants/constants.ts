@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConstantsProvider {
   public API: string = 'https://api2.cerveja.me/api/';
+  // public API: string = 'http://localhost:9001/api/';
   // public API: string = 'http://ec2-54-207-94-27.sa-east-1.compute.amazonaws.com/api/';
 
   //  public API:string='http://localhost:1337/ec2-54-207-94-27.sa-east-1.compute.amazonaws.com/api/';

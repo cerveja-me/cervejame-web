@@ -2,44 +2,37 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NetworkProvider } from '../network/network';
 import { DeviceProvider } from '../device/device';
-import { Storage } from '@ionic/storage';
+import { StorageProvider } from '../storage/storage';
 
 @Injectable()
 export class UserProvider {
 
-  constructor(private network: NetworkProvider,
+  constructor(
+    private network: NetworkProvider,
     public device: DeviceProvider,
-    private storage: Storage) {
+    private storage: StorageProvider) {
 
   }
 
-  profileLogin(p) {
-    return new Promise((resolve, reject) => {
-      this.device.getDevice()
-        .then(d => {
-          p.device_id = d['id'];
-          this.network.post(this.network.c.AUTH, p)
-            .then(t => {
-              // this.device.oneSignal.syncHashedEmail(p.login);
-              this.storage.set(this.network.c.AUTH, t['token']);
-              resolve(t);
-            })
-            .catch(reject)
-        })
-        .catch(reject)
-    })
+  async profileLogin(p) {
+    try {
+      let d = await this.device.getDevice()
+      p.device_id = d['id'];
+      const t = await this.network.post(this.network.c.AUTH, p)
+      this.storage.set(t['token'], this.network.c.AUTH);
+      return t;          // this.device.oneSignal.syncHashedEmail(p.login);
+    } catch (error) {
+      throw error;
+    }
   }
 
-  profileSignUp(p) {
-    return new Promise((resolve, reject) => {
-      this.network.post(this.network.c.PROFILE, p)
-        .then(res => {
-          // this.device.oneSignal.syncHashedEmail(p.login);
-          resolve(this.profileLogin(p));
-          // this.device.oneSignalTag('name', p.name)
-        })
-        .catch(reject)
-    })
+  async profileSignUp(p) {
+    try {
+      await this.network.post(this.network.c.PROFILE, p)
+      return this.profileLogin(p);
+    } catch (error) {
+      throw error
+    }
   }
 
   facebookData() {
@@ -98,17 +91,13 @@ export class UserProvider {
     });
   }
 
-  isAuth() {
-    return new Promise((resolve, reject) => {
-      this.storage.get(this.network.c.AUTH)
-        .then(t => {
-          if (t) {
-            resolve(true)
-          } else {
-            reject(false)
-          }
-        })
-    })
+  async isAuth() {
+    try {
+      await this.storage.get(this.network.c.AUTH)
+      return true
+    } catch (error) {
+      throw error
+    }
   }
 
   costumerUpdate(phone) {
@@ -127,29 +116,27 @@ export class UserProvider {
     })
   }
 
-  getCostumerData(fromcache) {
-    return new Promise((resolve, reject) => {
-      this.storage.get(this.network.c.USER)
-        .then(c => {
-          if (c && c['code'] && c['time'] && fromcache) {
-            resolve(c);
-            // this.device.oneSignalTag('name', c.name)
-            // this.device.oneSignalTag('sales', c['sales'])
-          } else {
-            // this.network.get(this.network.c.USER)
-            //   .then(co => {
-            //     co['time'] = new Date();
-            //     this.storage.set(this.network.c.USER, co);
-            //     resolve(co);
-            // this.device.oneSignalTag('name', co['name'])
-            // this.device.oneSignalTag('sales', co['sales'])
-            // })
-            // .catch(e => {
-            //   reject(e);
-            // })
-          }
-        })
-    })
+  async retrieveCostumerData() {
+    try {
+      let co = await this.network.get(this.network.c.USER);
+      co['time'] = new Date();
+      this.storage.set(co, this.network.c.USER);
+      return co
+    } catch (e) {
+      throw e
+    }
+  }
+  async getCostumerData(fromcache) {
+    try {
+      const c = await this.storage.get(this.network.c.USER)
+      if (c && c['code'] && c['time'] && fromcache) {
+        return c;
+      } else {
+        return this.retrieveCostumerData();
+      }
+    } catch (error) {
+      return this.retrieveCostumerData();
+    }
   }
 
   updateCostumerData() {

@@ -8,9 +8,19 @@ export class AnalyticsProvider {
     console.log('Hello AnalyticsProvider Provider');
   }
 
+  registerPage(page) {
+    console.log('page -> ', page);
+    //TODO:
+    // google analitycs
+    // facebook pixel
+    // hotjar
+
+  }
+
   registerEvent(event, o) {
 
   }
+
 
 
 }
