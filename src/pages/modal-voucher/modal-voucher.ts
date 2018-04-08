@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { OrderProvider } from '../../providers/order/order';
+import { VoucherProvider } from '../../providers/voucher/voucher';
 
 
 @Component({
@@ -9,28 +10,50 @@ import { OrderProvider } from '../../providers/order/order';
   templateUrl: 'modal-voucher.html',
 })
 export class ModalVoucherPage {
-  voucher: string = '';
+  code: string;
+  voucher_active: boolean = false;
+  error_active: boolean = false
+  vouch: any;
+  closing: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
     private network: NetworkProvider,
-    private order: OrderProvider) {
+    private order: OrderProvider,
+    private voucher: VoucherProvider) {
   }
 
-  getVoucher(voucher: string) {
-    return new Promise((resolve, reject) => {
-      this.network.get(this.network.c.VOUCHER + voucher)
-        .then((res) => {
-          this.order.setVoucher(res);
-          resolve(res);
-        })
-        .catch(reject);
-    });
+  ionViewDidLoad() {
+    this.code = this.navParams.get('voucher');
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.closing = true;
+    setTimeout(() => {
+      this.viewCtrl.dismiss();
+    }, 300);
   }
+
+  async changecod() {
+    this.error_active = false;
+    if (this.code.length == 9) {
+      try {
+        const v = await this.voucher.getVoucher(this.code.replace('#', '$'))
+        this.vouch = v
+        this.voucher_active = true;
+        setTimeout(a => {
+          this.dismiss()
+        }, 750);
+      } catch (error) {
+        this.error_active = true
+        this.voucher_active = false;
+      }
+    } else {
+      this.voucher_active = false;
+    }
+  }
+
 
 }
