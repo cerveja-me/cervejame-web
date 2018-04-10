@@ -3,16 +3,19 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 
+declare var google;
+
+
 @Injectable()
 export class LocationProvider {
+
   address: any;
+
   constructor(
     private geolocation: Geolocation,
     private net: NetworkProvider,
     private c: ConstantsProvider
-  ) {
-    console.log('Hello LocationProvider Provider');
-  }
+  ) { }
 
   async getPosition() {
     try {
@@ -40,8 +43,18 @@ export class LocationProvider {
   async getAddress() {
 
   }
-  async getLocationsFromAddress(address, location) {
+  async getAddressFromLocation(location) {
+    try {
+      let url = this.c.GOOGLE_ADDRESS.replace('#', location[0] + ',' + location[1]);
+      const r = await this.net.externalGet(url)
+      let add = r['results']
+      return add[0];
+    } catch (error) {
+      throw error
+    }
+  }
 
+  async getLocationsFromAddress(address, location) {
     let url = this.c.GOOGLE_GEOCODE.replace('#', address);
     url = url.replace('LAT', location ? location.lat() : '-23.543254');
     url = url.replace('LNG', location ? location.lng() : '-46.688769');

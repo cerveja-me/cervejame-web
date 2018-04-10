@@ -100,20 +100,17 @@ export class UserProvider {
     }
   }
 
-  costumerUpdate(phone) {
-    return new Promise((resolve, reject) => {
-      let u = {
-        phone: phone
-      }
-      this.network.post(this.network.c.USER, u)
-        .then(data => {
-          this.updateCostumerData();
-          resolve(data);
-        })
-        .catch(e => {
-          reject(e);
-        })
-    })
+  async  costumerUpdate(phone) {
+    let u = {
+      phone: phone
+    }
+    try {
+      let data = await this.network.post(this.network.c.USER, u)
+      this.updateCostumerData();
+      return data;
+    } catch (error) {
+      throw error
+    }
   }
 
   async retrieveCostumerData() {
@@ -139,16 +136,13 @@ export class UserProvider {
     }
   }
 
-  updateCostumerData() {
-    this.network.get(this.network.c.USER)
-      .then(co => {
-        this.storage.set(this.network.c.USER, co);
-        // this.device.oneSignalTag('name', co['name'])
-        // this.device.oneSignalTag('sales', co['sales'])
-      })
-      .catch(e => {
-        console.log(e);
-      })
-
+  async updateCostumerData() {
+    try {
+      const co = await this.network.get(this.network.c.USER)
+      this.storage.set(this.network.c.USER, co);
+      return
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
