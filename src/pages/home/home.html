@@ -52,7 +52,7 @@
         <p class="product__bottom">
           <span class="product__labels">
             <span class="product__cold" *ngIf="prod.cold">
-              <span class="icon-cold"></span></span>
+              <span class="icon-cold"></span>Gelada!</span>
           </span>
           <figure class="product__picture">
             <img src="https://cerveja.me/img/mobile/{{prod.img}}" alt="">
@@ -86,7 +86,7 @@
         <span class="icon-plus"></span>
       </button>
 
-      <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
+      <!-- <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button> -->
     </ion-slide>
   </ion-slides>
 
@@ -211,16 +211,28 @@
 
   <ul padding class="other-products">
     <li class="other-products__item">
+        <div class="other-products__info">
+          <span class="other-products__name">Carvão</span>
+          <span class="other-products__price">R$ <strong>50</strong>,00</span>
+        </div>
         <button class="btn-plus"></button>
         <button class="btn-minus"></button>
     </li>
     <li class="other-products__item">
+        <div class="other-products__info">
+            <span class="other-products__name">Cigarro</span>
+            <span class="other-products__price">R$ <strong>10</strong>,00</span>
+          </div>
         <button class="btn-plus"></button>
-        <button class="btn-minus"></button>
+        <!-- <button class="btn-minus"></button> -->
     </li>
     <li class="other-products__item">
+        <div class="other-products__info">
+          <span class="other-products__name">Gelo</span>
+          <span class="other-products__price">R$ <strong>12</strong>,00</span>
+        </div>
         <button class="btn-plus"></button>
-        <button class="btn-minus"></button>
+        <!-- <button class="btn-minus"></button> -->
     </li>
   </ul>
 
@@ -264,5 +276,11 @@
 
     <button ion-button secondary class="btn-primary" (click)="selectProduct(selectedBeer)" *ngIf="location.zone.open">Escolher</button>
   </div> -->
+
+  <div padding class="baldinho">
+    <span class="baldinho__itens">1 Caixa de Brahma</span>
+    <span class="baldinho__value"><strong>R$ 50,00</strong></span>
+    <button ion-button class="btn-next">Prosseguir</button>
+  </div>
 
 </ion-footer>
