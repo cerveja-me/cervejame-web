@@ -1,0 +1,123 @@
+<ion-header (click)="showTip=false" class="header-home">
+  <ion-title>
+    Endereço
+  </ion-title>
+  <button class="btn-login" (click)="openProfile()"></button>
+  <button class="btn-user" (click)="openProfile()"></button>
+  <button class="btn-voucher" ion-button secondary (click)="openModalVoucher()">
+    <span class="icon-voucher"></span>
+  </button>
+</ion-header>
+
+<ion-content class="background-light center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
+
+
+  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
+
+    <p class="msg-empty location-error">
+
+      <span class="msg-empty__title">Endereço!</span>
+
+      informe seu endereço para produtos disponiveis
+      <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
+      <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
+        style="background:beige; color:#583318">
+      </ion-input>
+
+      <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
+        <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
+          <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
+      </ul>
+
+      <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 45%" src="assets/imgs/empty.png">
+        </figure>
+      </p>
+  </div>
+  <!-- nao atendido -->
+  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
+    <p class="msg-empty">
+
+      <span class="msg-empty__title">Não atendemos sua região.</span>
+
+      Quer levar para sua cidade?
+      <br/> Saiba como:
+      <strong>
+        <a (click)="openPartner()" href="https://cerveja.me">Cerveja.me</a>
+      </strong>
+    </p>
+    <p class="choose__bottom">
+      <figure class="choose__picture" style="bottom: 5%;">
+
+        <img style="margin-top: 45%" src="assets/imgs/empty.png">
+      </figure>
+    </p>
+  </div>
+
+  <!-- erro na localização automatica -->
+  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
+    <p class="msg-empty location-error">
+
+      <span class="msg-empty__title">Oops!</span>
+
+      Não conseguimos identificar sua localização automaticamente.
+      <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+
+      <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 45%" src="assets/imgs/empty.png">
+        </figure>
+      </p>
+  </div>
+
+  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
+    <p class="msg-empty location-error">
+
+      <span class="msg-empty__title">Alta demanda!</span>
+
+      Por causa da alta demanda, não estamos recebendo pedidos por agora.
+      <button class="btn-white" (click)="tryAgain()">Verificar novamente</button>
+
+      <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 45%" src="assets/imgs/empty.png">
+        </figure>
+      </p>
+  </div>
+  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
+    <p class="msg-empty location-error">
+
+      <span class="msg-empty__title">Onde você está?</span>
+
+      Ative o uso da Localização nas configurações do seu aparelho.
+      <button class="btn-white" (click)="tryAgain()">Já ativei</button>
+
+      <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 45%" src="assets/imgs/empty.png">
+        </figure>
+      </p>
+  </div>
+  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
+    <p class="msg-empty location-error">
+
+      <span class="msg-empty__title">Internet?</span>
+
+      Tivemos algum problema com a conexão.
+      <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+
+      <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 45%" src="assets/imgs/empty.png">
+        </figure>
+      </p>
+  </div>
+
+
+</ion-content>

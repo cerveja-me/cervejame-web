@@ -26,11 +26,13 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { MapPage } from '../pages/map/map';
 import { CheckoutPage } from '../pages/checkout/checkout';
+import { AddressPage } from '../pages/address/address';
 
 
 @NgModule({
   declarations: [
     MyApp,
+    AddressPage,
     HomePage,
     ProfilePage,
     MapPage,
@@ -49,6 +51,7 @@ import { CheckoutPage } from '../pages/checkout/checkout';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AddressPage,
     HomePage,
     ProfilePage,
     MapPage,

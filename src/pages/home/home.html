@@ -93,122 +93,6 @@
     </ion-slide>
   </ion-slides>
 
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
-    <ion-slide>
-      <p class="msg-empty">
-
-        <span class="msg-empty__title">Não atendemos sua região.</span>
-
-        Quer levar para sua cidade?
-        <br/> Saiba como:
-        <strong>
-          <a (click)="openPartner()" href="https://cerveja.me">Cerveja.me</a>
-        </strong>
-      </p>
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
-    </ion-slide>
-  </ion-slides>
-
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
-    <ion-slide>
-      <p class="msg-empty location-error">
-
-        <span class="msg-empty__title">Endereço!</span>
-
-        informe seu endereço para produtos disponiveis
-        <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
-        <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
-          style="background:beige; color:#583318">
-        </ion-input>
-
-        <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
-          <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
-            <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
-        </ul>
-
-        <p class="choose__bottom">
-          <figure class="choose__picture" style="bottom: 5%;">
-
-            <img style="margin-top: 45%" src="assets/imgs/empty.png">
-          </figure>
-        </p>
-    </ion-slide>
-  </ion-slides>
-
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
-    <ion-slide>
-      <p class="msg-empty location-error">
-
-        <span class="msg-empty__title">Oops!</span>
-
-        Não conseguimos identificar sua localização automaticamente.
-        <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
-
-        <p class="choose__bottom">
-          <figure class="choose__picture" style="bottom: 5%;">
-
-            <img style="margin-top: 45%" src="assets/imgs/empty.png">
-          </figure>
-        </p>
-    </ion-slide>
-  </ion-slides>
-
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
-    <ion-slide>
-      <p class="msg-empty location-error">
-
-        <span class="msg-empty__title">Alta demanda!</span>
-
-        Por causa da alta demanda, não estamos recebendo pedidos por agora.
-        <button class="btn-white" (click)="tryAgain()">Verificar novamente</button>
-
-        <p class="choose__bottom">
-          <figure class="choose__picture" style="bottom: 5%;">
-
-            <img style="margin-top: 45%" src="assets/imgs/empty.png">
-          </figure>
-        </p>
-    </ion-slide>
-  </ion-slides>
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
-    <ion-slide>
-      <p class="msg-empty location-error">
-
-        <span class="msg-empty__title">Onde você está?</span>
-
-        Ative o uso da Localização nas configurações do seu aparelho.
-        <button class="btn-white" (click)="tryAgain()">Já ativei</button>
-
-        <p class="choose__bottom">
-          <figure class="choose__picture" style="bottom: 5%;">
-
-            <img style="margin-top: 45%" src="assets/imgs/empty.png">
-          </figure>
-        </p>
-    </ion-slide>
-  </ion-slides>
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
-    <ion-slide>
-      <p class="msg-empty location-error">
-
-        <span class="msg-empty__title">Internet?</span>
-
-        Tivemos algum problema com a conexão.
-        <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
-
-        <p class="choose__bottom">
-          <figure class="choose__picture" style="bottom: 5%;">
-
-            <img style="margin-top: 45%" src="assets/imgs/empty.png">
-          </figure>
-        </p>
-    </ion-slide>
-  </ion-slides>
 
   <h2>Outros Produtos</h2>
 
@@ -245,44 +129,6 @@
 </ion-content>
 
 <ion-footer *ngIf="products && products.length " align-title="left" (click)="showTip=false">
-  <!--
-  <div class="receipt">
-    <div class="receipt__padding" *ngIf="products[current] ">
-      <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
-
-      <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': selectedBeer.cold?'switch':''">
-        <h2 class="receipt__amount">{{amount}} {{selectedBeer.beer.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}} com {{selectedBeer.beer.amount}}</h2>
-        <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%
-          <small>OFF</small>
-        </span>
-        <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount | number:'1.0-0'}}%
-          <small>OFF</small>
-        </span>
-        <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}} •
-          <small>R$ {{selectedBeer.unitValue |number:'1.2-2'}}</small>
-        </span>
-
-        <div class="shipping free switch-first" *ngIf="location.zone.free_shipping">
-          <span class="icon-shipping"></span>
-          <label>Entrega grátis</label>
-        </div>
-        <div [ngClass]="location.zone.free_shipping ? 'shipping switch-second' : 'shipping'">
-          <span class="icon-shipping"></span>
-          <label>25min - 45min</label>
-        </div>
-      </div>
-      <button class="btn-plus tip" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' ">
-        <span class="tip__balloon tip-up" *ngIf="showTip">Quanto mais você compra, mais desconto você ganha.</span>
-      </button>
-    </div>
-
-    <div class="message" *ngIf="!location.zone.open">
-      <label class="message__text">Não estamos entregando agora.</label>
-    </div>
-
-    <button ion-button secondary class="btn-primary" (click)="selectProduct(selectedBeer)" *ngIf="location.zone.open">Escolher</button>
-  </div> -->
-
   <div padding class="baldinho">
     <span class="baldinho__itens">1 Caixa de Brahma</span>
     <span class="baldinho__value">
@@ -290,5 +136,4 @@
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">Prosseguir</button>
   </div>
-
 </ion-footer>

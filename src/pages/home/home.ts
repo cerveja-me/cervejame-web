@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { NavController, Slides, ModalController } from 'ionic-angular';
+import { NavController, Slides, ModalController, NavParams } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { LocationProvider } from '../../providers/location/location';
@@ -42,6 +42,7 @@ export class HomePage {
   addressOptions = [];
   constructor(
     public navCtrl: NavController,
+    private navParams: NavParams,
     private order: OrderProvider,
     private analitycs: AnalyticsProvider,
     private zone: NgZone,
@@ -55,8 +56,7 @@ export class HomePage {
 
 
   ionViewDidLoad() {
-    // this.verifyFirstTime();
-
+    this.getZone();
   }
 
   // async verifyFirstTime(){
@@ -71,13 +71,11 @@ export class HomePage {
     this.getZone();
   }
 
-  async addressChange() {
-    this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
-  }
 
   async getZone() {
     try {
-      const l = await this.order.getZone();
+      const l = this.navParams.get('zone');
+      // const l = await this.order.getZone();
       console.log('l->', l);
       this.location = l;
       this.products = l['zone']['products'];
