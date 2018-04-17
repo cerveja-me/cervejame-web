@@ -6,15 +6,15 @@
   </button>
 </ion-header>
 
-<ion-content class="background-light" *ngIf="or">
+<ion-content class="background-light">
 
   <div class="order">
     <figure class="order__image">
-      <!-- <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+or.product.product.beer.img"></img-loader> -->
+      <img src="http://cerveja.me/img/mobile/brahma.png" alt="">
     </figure>
     <span class="order__price">
-      <label class="order__label">{{or.product.amount}} {{or.product.product.beer.cold?'Caixa':'Garrafa'}}{{or.product.amount>1?'s':''}} DE {{or.product.product.beer.name}}</label>
-      R$ {{or.product.product.price |number:'1.2-2'}}
+      <label class="order__label">3 Caixas de Braham</label>
+      R$ 33,00
     </span>
   </div>
 
@@ -46,11 +46,11 @@
   </div>
 
   <div class="checkout__total">
-    <div [ngClass]="or.location.zone.free_shipping ? 'checkout__total__shipping free' : 'checkout__total__shipping '">
-      <span class="checkout__total__title" *ngIf="!or.location.zone.free_shipping">Entrega</span>
-      <span class="checkout__total__title" *ngIf="or.location.zone.free_shipping">Entrega grátis</span>
+    <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
+      <span class="checkout__total__title" *ngIf="!false">Entrega</span>
+      <span class="checkout__total__title" *ngIf="false">Entrega grátis</span>
       <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ {{or.location.zone.freight_value |number:'1.2-2'}}</span>
+        <span class="checkout__total__price">R$ {{5 |number:'1.2-2'}}</span>
       </span>
     </div>
     <div class="checkout__total__shipping" *ngIf="voucher">
@@ -59,22 +59,21 @@
         <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
       </span>
     </div>
-    <div class="checkout__total__shipping" *ngIf="friend_ref && friend_ref.available_value >0">
+    <div class="checkout__total__shipping" *ngIf="friend_ref && false">
       <span class="checkout__total__title">DA GALERA </span>
       <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ -{{friend_ref.available_value |number:'1.2-2'}}</span>
+        <span class="checkout__total__price">R$ -{{0 |number:'1.2-2'}}</span>
       </span>
     </div>
 
     <span class="checkout__total__title">Total a pagar</span>
     <span class="checkout__total__pricebox">
-      <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{or.product.product.price |number:'1.2-2'}}</span>
-      <small class="checkout__total__pricebox--currency">R$</small>{{or.product.product.price-(friend_ref.available_value?friend_ref.available_value:0) -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0)>0?or.product.product.price-(friend_ref.available_value?friend_ref.available_value:0)
-      -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0):0 |number:'1.2-2'}}
+      <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{30 |number:'1.2-2'}}</span>
+      <small class="checkout__total__pricebox--currency">R$</small>{{30 |number:'1.2-2'}}
     </span>
   </div>
 
-  <div class="receipt__address">{{address}}
+  <div class="receipt__address">{{'Rua Venancio Aires 204'}}
     <span class="icon-arrow-fw"></span>
     <span class="icon-pin-min receipt__address__icon" (click)="close()"></span>
   </div>

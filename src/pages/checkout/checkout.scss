@@ -1,3 +1,513 @@
 page-checkout {
+  .checkout {
+    background: none;
 
+    &__box {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      bottom: 0;
+      text-align: left;
+
+      &__quantidade {
+        width: 49%;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 15px 0 15px 15px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      &__total {
+        display: block;
+        vertical-align: middle;
+        padding: 20px 0;
+        box-sizing: border-box;
+        border-top: 2px solid $color-secondary;
+        margin: 0 15px;
+
+        h2 {
+          width: 49%;
+          display: inline-block;
+          vertical-align: middle;
+          text-align: left;
+          margin: 0;
+        }
+      }
+
+      &__title {
+        @extend .font-regular;
+
+        text-transform: uppercase;
+        font-size: 12px;
+        text-align: center;
+        color: $color-secondary;
+        margin: 0 0 10px 0;
+      }
+
+      .quantidade-number {
+        @include border-radius(10px);
+        @extend .font-bold;
+
+        font-size: 26px;
+        text-align: center;
+        color: $color-secondary;
+        position: relative;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 10px;
+        padding-left: 2px;
+        border: 2px solid $color-secondary;
+        margin: 0 7px 0;
+        padding: 3px 0;
+        width: 46px;
+      }
+
+      &__btn {
+        @include border-radius(0);
+        @extend .font-bold;
+
+        background: $color-primary;
+        border-top: 2px solid $color-secondary;
+        font-size: 24px;
+        padding: 20px;
+        height: auto;
+        width: 100%;
+        margin: 0;
+        text-transform: uppercase;
+      }
+    }
+
+
+    .icon-card {
+      background-image: url('../assets/icon/card.svg');
+      background-size: cover;
+      width: 31px;
+      height: 22px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0;
+    }
+
+    .receipt .scroll-content {
+      margin-top: 0 !important;
+    }
+
+  }
+  .quantidade-pedido {
+    @extend .font-bold;
+
+    font-size: 12px;
+    color: $color-secondary;
+    text-align: left;
+    width: 56%;
+    text-align: left;
+    display: inline-block;
+    margin-top: 8px;
+    text-transform: uppercase;
+    margin-left: 10px;
+  }
+
+  .receipt__address {
+    @extend .font-regular;
+
+    position: relative;
+    font-size: 12px;
+    color: $color-secondary;
+    margin: 0;
+    margin: 0 15px;
+    padding: 25px 0 25px 70px;
+    border-top: 1px solid $color-secondary;
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      margin-top: -15px;
+      width: 31px;
+      height: 31px;
+    }
+  }
+
+  .icon-card {
+    background-image: url('../assets/icon/card.svg');
+    background-size: cover;
+    width: 25px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-maquina {
+    background-image: url('../assets/icon/icon-maquina.svg');
+    background-size: cover;
+    width: 35.5px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-money {
+    background-image: url('../assets/icon/icon-money.svg');
+    background-size: cover;
+    width: 37px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-beercoin {
+    background-image: url('../assets/icon/icon-beercoin.svg');
+    background-size: cover;
+    width: 28px;
+    height: 31px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-beercoin-min {
+    background-image: url('../assets/icon/icon-beercoin-min.svg');
+    background-size: cover;
+    width: 15px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-arrow-fw {
+    background-image: url('../assets/icon/icon-back-dark.svg');
+    background-size: cover;
+    width: 13px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -11px;
+  }
+  .payment {
+    padding-top: 15px;
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 0;
+    // width: 1000%;
+    padding: 25px 15px;
+
+    &__add-beercoin {
+      @include border-radius(100px);
+
+      border: 1px solid $color-secondary;
+      background: $color-background;
+      display: inline-block;
+      padding: 1px 5px 1px 2px;
+      position: absolute;
+      bottom: -11px;
+      left: 0;
+
+      label {
+        @extend .font-bold;
+
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 11px;
+        color: $color-secondary;
+      }
+    }
+
+    &__option {
+      @include border-radius(10px);
+
+      border: 2px solid $color-secondary;
+      background: none;
+      padding: 10px;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      width: 31%;
+      height: 85px;
+      margin-right: 3%;
+      transition: all 0.3s;
+      position: relative;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &__label {
+        @extend .font-bold;
+
+        color: $color-secondary;
+        text-transform: uppercase;
+        display: block;
+        font-size: 11px;
+        margin-top: 7px;
+
+        small {
+            @extend .font-regular;
+
+            font-size: 11px;
+            display: block;
+        }
+      }
+
+      &.active {
+        background: $color-secondary-light;
+        box-shadow: inset 0px 0px 0px 2px $color-background;
+      }
+
+      &.soon {
+        position: relative;
+        border-color: rgba(88,51,24,0.4);
+        overflow: hidden;
+
+        span, label {opacity: 0.4;}
+
+        &:after {
+          @extend .font-bold;
+
+          content: 'EM BREVE';
+          color: $color-background;
+          background: $color-secondary;
+          text-align: center;
+          font-size: 10px;
+          position: absolute;
+          bottom: 0;
+          padding: 4px 0;
+          width: 70px;
+          left: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+.checkout {
+
+  &__box {
+    font-size: 0;
+  }
+
+  &__picture {
+    @include border-radius(10px);
+
+    background: $color-secondary;
+    float: left;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    overflow: hidden;
+    margin-right: 10px;
+    position: relative;
+
+    img-loader {
+      display: block;
+      width: 100%;
+      height: auto;
+      background-size: cover !important;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -25px;
+      transform: scale(1.1);
+      margin-top: 5px;
+    }
+  }
+
+  &__voucher {
+    width: 33%;
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 15px;
+    box-sizing: border-box;
+    text-align: right;
+
+    &__btn {
+      background: none;
+      border: 2px dotted $color-secondary;
+      border-radius: 10px;
+      padding: 10px 0;
+      width: 100%;
+
+      &.active {
+        background: $color-success;
+      }
+
+      &.active .checkout__voucher__icon {
+        display: none;
+      }
+
+      label {
+        @extend .font-regular;
+
+        text-transform: uppercase;
+        font-size: 14px;
+        color: $color-secondary;
+        vertical-align: middle;
+        display: inline-block;
+      }
+    }
+
+    &__icon {
+      background-image: url('../assets/icon/icon-voucher-single.svg');
+      width: 27px;
+      height: 14px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+  }
+
+  &__total {
+    padding: 20px 0;
+    margin: 0 15px;
+    border-top: 1px solid $color-secondary;
+    font-size: 0;
+
+    &__shipping {
+      margin-bottom: 10px;
+    }
+
+    &__shipping.free &__title {
+      @extend .font-bold;
+
+      color: $color-primary;
+    }
+
+    &__shipping.free &__price {
+      @extend .font-bold;
+
+      color: $color-primary;
+      text-decoration: line-through;
+    }
+
+    &__title {
+      @extend .font-regular;
+      box-sizing: border-box;
+
+      color: $color-secondary;
+      text-transform: uppercase;
+      font-size: 12px;
+      width: 40%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+
+    &__pricebox {
+      @extend .font-bold;
+      @include border-radius(10px);
+      box-sizing: border-box;
+      font-size: 26px;
+      color: $color-secondary;
+      display: inline-block;
+      width: 60%;
+      text-align: right;
+      vertical-align: middle;
+
+      &--currency {
+        font-size: 16px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+    }
+
+    &__price {
+      @extend .font-regular;
+
+      font-size: 16px;
+      color: $color-secondary;
+      text-align: right;
+      display: block;
+      margin-bottom: 0;
+
+      &.discount {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+.order {
+    background: #573317;
+    padding: 20px;
+    position: relative;
+
+    &__image {
+        @include border-radius(10px);
+
+        border: 2px solid $color-background;
+        display: inline-block;
+        vertical-align: middle;
+        width: 58px;
+        height: 58px;
+        margin: 0 15px 0 0;
+        text-align: center;
+        overflow: hidden;
+        z-index: 2;
+        position: relative;
+
+        &__img {
+            position: relative;
+            display: block;
+            height: 120% !important;
+            width: auto;
+            background-size: cover !important;
+            text-align: center;
+            margin: 0 auto;
+            z-index: 1;
+        }
+    }
+
+    &__price {
+      @extend .font-regular;
+
+      color: $color-background;
+      font-size: 20px;
+      text-transform: uppercase;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__address {
+      @extend .font-regular;
+
+      color: $color-background;
+      font-size: 12px;
+      display: inline-block;
+      vertical-align: middle;
+      width: 70%;
+      max-height: 50px;
+      overflow: hidden;
+    }
+
+    &__label {
+        @extend .font-bold;
+
+        color: $color-background;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow:    ellipsis;
+    }
+}
+
+.icon-shipping-light {
+    width: 21px;
+    height: 14px;
+    background-image: url(../assets/icon/icon-shipping-light.svg);
+    display: inline-block;
+    margin-right: 5px;
+    background-size: cover;
+    vertical-align: middle;
 }
