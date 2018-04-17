@@ -1,0 +1,86 @@
+<ion-header class="header-light">
+  <ion-navbar></ion-navbar>
+  <h1 class="logo-dark"></h1>
+  <button class="btn-voucher" ion-button secondary (click)="openModalVoucher()">
+    <span class="icon-voucher"></span>
+  </button>
+</ion-header>
+
+<ion-content class="background-light" *ngIf="or">
+
+  <div class="order">
+    <figure class="order__image">
+      <!-- <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+or.product.product.beer.img"></img-loader> -->
+    </figure>
+    <span class="order__price">
+      <label class="order__label">{{or.product.amount}} {{or.product.product.beer.cold?'Caixa':'Garrafa'}}{{or.product.amount>1?'s':''}} DE {{or.product.product.beer.name}}</label>
+      R$ {{or.product.product.price |number:'1.2-2'}}
+    </span>
+  </div>
+
+  <div class="payment">
+    <button class="payment__option" [ngClass]="payment=='2'?'active':''" (click)="setPayment('2')">
+      <span class="icon-maquina"></span>
+      <label class="payment__option__label">Máquina</label>
+      <!-- <span class="payment__add-beercoin">
+          <span class="icon-beercoin-min"></span>
+          <label>+ 50</label>
+        </span> -->
+    </button>
+    <button class="payment__option" [ngClass]="payment=='1'?'active':''" (click)="setPayment('1')">
+      <span class="icon-money"></span>
+      <label class="payment__option__label">Dinheiro</label>
+      <!-- <span class="payment__add-beercoin">
+          <span class="icon-beercoin-min"></span>
+          <label>+ 50</label>
+        </span> -->
+    </button>
+    <!-- <button class="payment__option">
+        <span class="icon-beercoin"></span>
+        <label class="payment__option__label"><small>1500</small>Beercoins</label>
+      </button> -->
+    <button class="payment__option" [ngClass]="payment=='3'?'active':''" (click)="openCard()">
+      <span class="icon-card"></span>
+      <label class="payment__option__label">Via app</label>
+    </button>
+  </div>
+
+  <div class="checkout__total">
+    <div [ngClass]="or.location.zone.free_shipping ? 'checkout__total__shipping free' : 'checkout__total__shipping '">
+      <span class="checkout__total__title" *ngIf="!or.location.zone.free_shipping">Entrega</span>
+      <span class="checkout__total__title" *ngIf="or.location.zone.free_shipping">Entrega grátis</span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ {{or.location.zone.freight_value |number:'1.2-2'}}</span>
+      </span>
+    </div>
+    <div class="checkout__total__shipping" *ngIf="voucher">
+      <span class="checkout__total__title">Cupom ({{voucher.code}}) </span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
+      </span>
+    </div>
+    <div class="checkout__total__shipping" *ngIf="friend_ref && friend_ref.available_value >0">
+      <span class="checkout__total__title">DA GALERA </span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ -{{friend_ref.available_value |number:'1.2-2'}}</span>
+      </span>
+    </div>
+
+    <span class="checkout__total__title">Total a pagar</span>
+    <span class="checkout__total__pricebox">
+      <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{or.product.product.price |number:'1.2-2'}}</span>
+      <small class="checkout__total__pricebox--currency">R$</small>{{or.product.product.price-(friend_ref.available_value?friend_ref.available_value:0) -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0)>0?or.product.product.price-(friend_ref.available_value?friend_ref.available_value:0)
+      -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0):0 |number:'1.2-2'}}
+    </span>
+  </div>
+
+  <div class="receipt__address">{{address}}
+    <span class="icon-arrow-fw"></span>
+    <span class="icon-pin-min receipt__address__icon" (click)="close()"></span>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button secondary class="btn-primary" (click)="finishOrder()">CONCLUIR PEDIDO</button>
+</ion-footer>

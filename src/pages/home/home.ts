@@ -8,6 +8,7 @@ import { UserProvider } from '../../providers/user/user';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
+import { MapPage } from '../map/map';
 
 @Component({
   selector: 'page-home',
@@ -29,7 +30,7 @@ export class HomePage {
   discount = 0;
   updatingAmount;
   loader;
-  
+
   actions: any = {
     accepted: null,
     onWay: null,
@@ -223,5 +224,9 @@ export class HomePage {
     voucherModal.present().then(r => {
       // this.device.camPage("home");
     })
+  }
+
+  confirmSale() {
+    this.navCtrl.push(MapPage)
   }
 }

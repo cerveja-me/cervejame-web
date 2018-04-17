@@ -24,6 +24,8 @@ import { ModalLoginPage } from '../pages/modal-login/modal-login';
 import { ModalVoucherPage } from '../pages/modal-voucher/modal-voucher';
 import { ProfilePage } from '../pages/profile/profile';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
+import { MapPage } from '../pages/map/map';
+import { CheckoutPage } from '../pages/checkout/checkout';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
     MyApp,
     HomePage,
     ProfilePage,
+    MapPage,
+    CheckoutPage,
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
@@ -47,6 +51,8 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
     MyApp,
     HomePage,
     ProfilePage,
+    MapPage,
+    CheckoutPage,
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
