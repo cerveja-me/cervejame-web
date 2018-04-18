@@ -272,7 +272,7 @@ h2 {
             top: 20px;
             background-color: rgba($color-secondary, 0.8);
             border: 2px solid $color-background;
-            padding: 15px;
+            padding: 18px;
             box-shadow: 3px 3px 0 0 $color-background;
         }
 
@@ -344,7 +344,7 @@ h2 {
             color: white;
             font-size: 12px;
             background: $color-blue;
-            padding: 2px 5px;
+            padding: 3px 6px;
             box-shadow: 0 5px 15px 0px rgba($color-secondary, 0.5);
         }
 
@@ -378,11 +378,11 @@ h2 {
             height: 85%;
             width: 200%;
             z-index: 2;
-            left: -75%;
-            bottom: 2%;
+            left: -50%;
+            bottom: 7%;
+            margin: 0 0 -5% -25%;
             display: block;
             position: absolute;
-            margin: 0;
             z-index: 2;
             transform: scale(0.8);
             transition: bottom 0.3s, transform 0.3s;
@@ -492,8 +492,8 @@ h2 {
 .icon-plus {
     background-image: url('../assets/icon/icon-plus-b.svg');
     background-size: cover;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     margin-left: 5px;
     display: inline-block;
     vertical-align: middle;
@@ -1129,8 +1129,8 @@ h2 {
     background: $color-success;
     border: 2px solid $color-secondary;
     color: $color-secondary;
-    font-size: 14px;
-    padding: 10px 20px;
+    font-size: 13px;
+    padding: 10px 15px;
     height: auto;
     width: initial;
     margin: 0;
