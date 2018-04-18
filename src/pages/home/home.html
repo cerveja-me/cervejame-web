@@ -130,7 +130,7 @@
   <div padding class="baldinho">
     <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
     <span class="baldinho__value">
-      <strong>R$ {{iceBoxPrice}}</strong>
+      <strong>R$ {{iceBoxPrice | number:'1.2-2'}}</strong>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">Prosseguir</button>
   </div>

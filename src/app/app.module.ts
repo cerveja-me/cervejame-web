@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 
 import { MyApp } from './app.component';
@@ -66,7 +69,6 @@ import { AddressPage } from '../pages/address/address';
     StatusBar,
     SplashScreen,
     Geolocation,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
     NetworkProvider,
     AnalyticsProvider,
     ConstantsProvider,
@@ -75,7 +77,9 @@ import { AddressPage } from '../pages/address/address';
     DeviceProvider,
     StorageProvider,
     UserProvider,
-    VoucherProvider
+    VoucherProvider,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class AppModule { }
