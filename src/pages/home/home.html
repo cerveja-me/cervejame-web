@@ -47,7 +47,7 @@
 
   <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.3 [spaceBetween]=10 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
-    <ion-slide *ngFor="let prod of products">
+    <ion-slide *ngFor="let prod of products;let i = index">
       <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
           <span class="product__labels">
@@ -84,12 +84,12 @@
         <span class="product__price-each">{{prod.volume}}ml • R$ 5,99</span>
       </div>
 
-      <button class="btn-add" [ngClass]="changingSlide ? 'dragging': '' ">
+      <button class="btn-add" (click)="addToIceBox(prod,i)">
         <label>Adicionar </label>
         <span class="icon-plus"></span>
       </button>
 
-      <!-- <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button> -->
+      <button class="btn-minus" (click)="removeFromIceBox(prod,i)" [ngClass]="changingSlide || !prod.items ? 'dragging': '' "></button>
     </ion-slide>
   </ion-slides>
 
@@ -128,11 +128,11 @@
 
 </ion-content>
 
-<ion-footer *ngIf="products && products.length " align-title="left" (click)="showTip=false">
+<ion-footer *ngIf="iceBox && iceBox.length " align-title="left" (click)="showTip=false">
   <div padding class="baldinho">
-    <span class="baldinho__itens">1 Caixa de Brahma</span>
+    <span class="baldinho__itens">{{iceBoxTotal}} Caixa de Brahma</span>
     <span class="baldinho__value">
-      <strong>R$ 50,00</strong>
+      <strong>R$ {{iceBoxPrice}}</strong>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">Prosseguir</button>
   </div>

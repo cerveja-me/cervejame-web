@@ -15,22 +15,20 @@ import { MapPage } from '../map/map';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild(Slides) slides: Slides;
   products = [];
   location = {};
-  @ViewChild(Slides) slides: Slides;
   taped = false;
   changingSlide = false;
   amount = 2;
-  selectedBeer: any;
   // ASSETS: string = this.order.c.REMOTE_ASSETS;
   showTip = false;
   current = 0;
   loadedcompleted = true;
-  err = 'PROVIDE_ADDRESS';
   discount = 0;
   updatingAmount;
   loader;
-
+  err: string;
   actions: any = {
     accepted: null,
     onWay: null,
@@ -40,6 +38,11 @@ export class HomePage {
   openSale: any;
   fulladdress = '';
   addressOptions = [];
+
+  iceBox: Array<any> = [];
+  iceBoxPrice;
+  iceBoxTotal;
+  removible: boolean = false;
   constructor(
     public navCtrl: NavController,
     private navParams: NavParams,
@@ -53,19 +56,10 @@ export class HomePage {
 
   }
 
-
-
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.getZone();
   }
 
-  // async verifyFirstTime(){
-  //   const firsttime =this.
-  // }
-
-  closeAddressEdit() {
-    console.log()
-  }
   async setAddress(a) {
     await this.loc.setAddress(a)
     this.getZone();
@@ -75,11 +69,8 @@ export class HomePage {
   async getZone() {
     try {
       const l = this.navParams.get('zone');
-      // const l = await this.order.getZone();
-      console.log('l->', l);
       this.location = l;
       this.products = l['zone']['products'];
-      console.log('prd', this.products)
       this.slideChanged();
 
     } catch (error) {
@@ -88,18 +79,10 @@ export class HomePage {
       } else {
         this.err = error;
       }
-
-      console.log(error)
     }
     this.err = null;
     this.loadedcompleted = true;
   }
-
-  tryAgain() {
-    this.navCtrl.setRoot(HomePage);
-    this.analitycs.registerEvent('try_again', {})
-  }
-
 
   slideChanged() {
     let current = this.slides.getActiveIndex();
@@ -108,75 +91,24 @@ export class HomePage {
     } else {
       this.current = current;
       this.changingSlide = false;
-      this.amount = 2;
-      this.discount = 0.05;
+      // this.amount = 2;
+      // this.discount = 0.05;
       this.zone.run(() => { });
-      // this.device.registerEvent('slide_change', this.products[current]);
-      // TODO analitycs
-      this.selectedBeer = {
-        beer: this.products[current],
-        discount: this.discount,
-        amount: this.amount
-      }
-      this.updatePriceAndDiscount();
+      this.analitycs.registerEvent('slide_change', this.products[current]);
     }
-  }
-
-  updatePriceAndDiscount() {
-    if (this.selectedBeer.beer.progressive_discount) {
-      if (this.amount > 2) {
-        this.discount = 0.1;
-      } else {
-        this.discount = (this.amount - 1) * 0.05;
-      }
-
-      this.selectedBeer.discount = this.discount;
-      this.selectedBeer.amount = this.amount;
-      let p = this.selectedBeer.beer.price * this.amount;
-      let full = p;
-      p = p - (p * this.discount);
-      p = Math.round(p);
-      this.selectedBeer.discount = 1 - (p / full);
-      this.selectedBeer.finalDiscount = this.selectedBeer.discount * 100;
-      this.selectedBeer.price = p;
-      this.selectedBeer.unitValue = p / (this.selectedBeer.beer.amount * this.amount);
+    let i = this.iceBox.findIndex((item, i) => {
+      return item.product === this.products[current]
+    })
+    if (i > -1) {
+      this.removible = false;
     } else {
-      let p = this.selectedBeer.beer.price * this.amount;
-      this.selectedBeer.discount = 0;
-      this.selectedBeer.finalDiscount = 0;
-      this.selectedBeer.price = p;
-      this.selectedBeer.unitValue = p / (this.selectedBeer.beer.amount * this.amount);
-
+      this.removible = true;
     }
-    this.zone.run(() => { });
   }
 
   onTaped(event) {
     this.taped = true;
     this.changingSlide = true;
-  }
-  increaseAmount() {
-    this.updatingAmount = true;
-    // this.device.registerEvent('increaseAmount',this.selectedBeer.beer)
-    this.amount++;
-    // this.device.registerEvent('increase_amount', this.selectedBeer.beer)
-    this.updatePriceAndDiscount();
-    setTimeout(() => {
-      this.updatingAmount = false;
-    }, 100);
-  }
-
-  decreaseAmount() {
-    this.updatingAmount = true;
-    // this.device.registerEvent('decrease_amount', this.selectedBeer.beer)
-
-    if (this.amount > 1) {
-      this.amount--;
-      this.updatePriceAndDiscount();
-    }
-    setTimeout(() => {
-      this.updatingAmount = false;
-    }, 100);
   }
 
   openProfile() {
@@ -226,5 +158,36 @@ export class HomePage {
 
   confirmSale() {
     this.navCtrl.push(MapPage)
+  }
+
+  addToIceBox(product, index) {
+    this.analitycs.registerEvent('addToIceBox', product);
+    if (this.products[index].items) {
+      this.products[index].items++;
+    } else {
+      this.products[index].items = 1;
+    }
+    this.updateIceBox();
+  }
+  removeFromIceBox(product, index) {
+    this.analitycs.registerEvent('removeFromIceBox', product);
+    if (this.products[index].items) {
+      this.products[index].items--;
+      this.updateIceBox();
+    }
+  }
+
+  updateIceBox() {
+    this.iceBox = this.products.filter(p => {
+      return p.items > 0
+    })
+    if (this.iceBox.length) {
+      this.iceBoxPrice = this.iceBox.map(e => (e.price * e.items)).reduce((b, n) => {
+        return b + n
+      }, 0)
+      this.iceBoxTotal = this.iceBox.map(e => (e.items)).reduce((b, n) => {
+        return b + n
+      }, 0)
+    }
   }
 }
