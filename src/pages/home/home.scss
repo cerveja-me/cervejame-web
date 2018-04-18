@@ -265,45 +265,53 @@ h2 {
         }
 
         &__info {
+            @include border-radius(20px);
+
             position: absolute;
-            right: 10%;
-            top: 55%;
-            margin-top: -25%;
+            right: 20px;
+            top: 20px;
+            background-color: rgba($color-secondary, 0.8);
+            border: 2px solid $color-background;
+            padding: 18px;
+            box-shadow: 3px 3px 0 0 $color-background;
         }
 
         &__amount {
             @extend .font-bold;
 
-            color: white;
+            color: $color-background;
             text-align: center;
             display: block;
-            font-size: 14px;
-            text-transform: uppercase;
-            
+            font-size: 13px;
         }
 
         &__price {
             @extend .font-bold;
 
-            color: white;
-            font-size: 22px;
+            color: $color-background;
+            font-size: 16px;
             vertical-align: middle;
             display: inline-block;
-            margin-top: -3px;
+            margin-top: 5px;
             margin-bottom: -4px;
+            letter-spacing: -0.02em;
 
             strong {
                 @extend .font-bold;
 
                 text-align: center;
                 font-size: 35px;
-                vertical-align: middle;
-                margin-left: -3px; 
+                vertical-align: top;
+                margin-right: -2px;
+                margin-top: -6px;
+                display: inline-block;
             }
 
             small {
                 font-size: 16px;
                 vertical-align: middle;
+                margin-top: -2px;
+                display: inline-block;
             }
         }
 
@@ -311,13 +319,13 @@ h2 {
             @extend .font-regular;
 
             display: block;
-            color: white;
+            color: $color-background;
             text-align: center;
             display: block;
             font-size: 12px;
             margin-top: 5px;
-            padding-top: 5px;
-            border-top: 1px solid white;
+            padding-top: 10px;
+            border-top: 1px solid $color-background;
         }
 
         &__labels {
@@ -326,7 +334,7 @@ h2 {
             opacity: 0;
             transition: all 0.3s;
             top: 20px;
-            right: 20px;
+            left: 20px;
         }
 
         &__cold {
@@ -336,7 +344,7 @@ h2 {
             color: white;
             font-size: 12px;
             background: $color-blue;
-            padding: 2px 5px;
+            padding: 3px 6px;
             box-shadow: 0 5px 15px 0px rgba($color-secondary, 0.5);
         }
 
@@ -367,14 +375,14 @@ h2 {
         }
 
         &__picture {
-            height: 95%;
+            height: 85%;
             width: 200%;
             z-index: 2;
-            left: -72%;
+            left: -50%;
+            bottom: 7%;
+            margin: 0 0 -5% -25%;
             display: block;
             position: absolute;
-            top: -2%;
-            margin: 0;
             z-index: 2;
             transform: scale(0.8);
             transition: bottom 0.3s, transform 0.3s;
@@ -398,8 +406,8 @@ h2 {
 }
 
 .choose-slider {
-    height: 60%;
-    margin-bottom: 50px;
+    height: 70%;
+    margin: 20px 0 50px;
 
     .swiper-container {
         overflow: visible;
@@ -484,8 +492,8 @@ h2 {
 .icon-plus {
     background-image: url('../assets/icon/icon-plus-b.svg');
     background-size: cover;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     margin-left: 5px;
     display: inline-block;
     vertical-align: middle;
@@ -607,7 +615,7 @@ h2 {
 .header {
 
   &.header-ios .btn-schedule {
-    bottom: 3px;
+    bottom: 10px;
   }
 
   &.header-md .btn-schedule {
@@ -616,14 +624,18 @@ h2 {
 }
 
 .button.btn-schedule {
+    @include border-radius(100px);
+
+    border: 2px solid $color-secondary;
     box-shadow: none;
-    text-transform: uppercase;
     background: none;
-    padding: 0;
+    padding: 7px 15px;
     position: absolute;
-    width: 230px;
+    width: 190px;
     left: 50%;
-    margin-left: -115px;
+    margin-left: -95px;
+    height: initial;
+    text-transform: initial;
 
     label {
         @extend .font-regular;
@@ -633,7 +645,6 @@ h2 {
         display: inline-block;
         vertical-align: middle;
         white-space: nowrap;
-        width: 64%;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -1049,7 +1060,7 @@ h2 {
 
 .other-products {
     padding: 0;
-    margin: 0;
+    margin: 0 0 70px 0;
     font-size: 0;
     text-align: left;
 
@@ -1118,8 +1129,8 @@ h2 {
     background: $color-success;
     border: 2px solid $color-secondary;
     color: $color-secondary;
-    font-size: 14px;
-    padding: 10px 20px;
+    font-size: 13px;
+    padding: 10px 15px;
     height: auto;
     width: initial;
     margin: 0;
