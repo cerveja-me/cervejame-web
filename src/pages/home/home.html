@@ -74,12 +74,12 @@
       <div class="table" [ngClass]="loadedcompleted && (err==='USER_DENIED_GEOLOCATION' || err==='NO_ZONE_AVAILABLE' || err=='GEOLOCATION_TIMEOUT') ? 'table-bottom': ''"></div>
 
       <div class="product__info">
-        <span class="product__amount">Caixa com 12</span>
+        <span class="product__amount">Caixa com {{prod.amount}}</span>
         <span class="product__price">R$
-          <strong>38</strong>
-          <small>,99</small>
+          <strong>{{prod.price | number:'1.0-0'}}</strong>
+          <small>,{{ (prod.price | number:'0.2-2').split(',')[1] }} </small>
         </span>
-        <span class="product__price-each">{{prod.volume}}ml • R$ 5,99</span>
+        <span class="product__price-each">{{prod.volume}}ml • R$ {{prod.price/prod.amount | number:'1.2-2'}}</span>
       </div>
 
       <button ion-button secondary class="btn-add" (click)="addToIceBox(prod,i)">
@@ -130,7 +130,7 @@
   <div padding class="baldinho">
     <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
     <span class="baldinho__value">
-      <strong>R$ {{iceBoxPrice}}</strong>
+      <strong>R$ {{iceBoxPrice | number:'1.2-2'}}</strong>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">Prosseguir</button>
   </div>

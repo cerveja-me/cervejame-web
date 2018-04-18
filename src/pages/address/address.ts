@@ -85,9 +85,9 @@ export class AddressPage {
       } else {
         this.err = error;
       }
+      // this.analitycs.registerEvent(this.err, this.addressOptions)
       console.log(error)
     }
-    this.err = null;
     this.loadedcompleted = true;
   }
 
@@ -110,6 +110,7 @@ export class AddressPage {
   }
 
   openPartner() {
+    this.analitycs.registerEvent('open_partner', {})
     // this.inApp.create('https://cvja.me/2y10JuH')
   }
 
