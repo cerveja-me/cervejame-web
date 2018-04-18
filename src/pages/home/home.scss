@@ -265,45 +265,53 @@ h2 {
         }
 
         &__info {
+            @include border-radius(20px);
+
             position: absolute;
-            right: 10%;
-            top: 55%;
-            margin-top: -25%;
+            right: 20px;
+            top: 20px;
+            background-color: rgba($color-secondary, 0.8);
+            border: 2px solid $color-background;
+            padding: 15px;
+            box-shadow: 3px 3px 0 0 $color-background;
         }
 
         &__amount {
             @extend .font-bold;
 
-            color: white;
+            color: $color-background;
             text-align: center;
             display: block;
-            font-size: 14px;
-            text-transform: uppercase;
-            
+            font-size: 13px;
         }
 
         &__price {
             @extend .font-bold;
 
-            color: white;
-            font-size: 22px;
+            color: $color-background;
+            font-size: 16px;
             vertical-align: middle;
             display: inline-block;
-            margin-top: -3px;
+            margin-top: 5px;
             margin-bottom: -4px;
+            letter-spacing: -0.02em;
 
             strong {
                 @extend .font-bold;
 
                 text-align: center;
                 font-size: 35px;
-                vertical-align: middle;
-                margin-left: -3px; 
+                vertical-align: top;
+                margin-right: -2px;
+                margin-top: -6px;
+                display: inline-block;
             }
 
             small {
                 font-size: 16px;
                 vertical-align: middle;
+                margin-top: -2px;
+                display: inline-block;
             }
         }
 
@@ -311,13 +319,13 @@ h2 {
             @extend .font-regular;
 
             display: block;
-            color: white;
+            color: $color-background;
             text-align: center;
             display: block;
             font-size: 12px;
             margin-top: 5px;
-            padding-top: 5px;
-            border-top: 1px solid white;
+            padding-top: 10px;
+            border-top: 1px solid $color-background;
         }
 
         &__labels {
@@ -326,7 +334,7 @@ h2 {
             opacity: 0;
             transition: all 0.3s;
             top: 20px;
-            right: 20px;
+            left: 20px;
         }
 
         &__cold {
@@ -367,13 +375,13 @@ h2 {
         }
 
         &__picture {
-            height: 95%;
+            height: 85%;
             width: 200%;
             z-index: 2;
-            left: -72%;
+            left: -75%;
+            bottom: 2%;
             display: block;
             position: absolute;
-            top: -2%;
             margin: 0;
             z-index: 2;
             transform: scale(0.8);
