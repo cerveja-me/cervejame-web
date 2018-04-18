@@ -2,7 +2,7 @@
   <ion-title>
     <button class="btn-schedule" ion-button secondary *ngIf="products && products.length > 0 && location.zone.open" (click)="openSchedule()">
       <span class="icon-opened"></span>
-      <label>Estamos atendendo</label>
+      <label>Entrega em 25min</label>
       <span class="icon-dropdown"></span>
     </button>
     <button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products.length >0 && !location.zone.open">
@@ -43,9 +43,7 @@
     </span>
   </button>
 
-  <h1>Cervejas</h1>
-
-  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.3 [spaceBetween]=10 pager class="choose-slider"
+  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.2 [spaceBetween]=8 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod && prod.cold">
