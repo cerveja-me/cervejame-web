@@ -130,7 +130,7 @@
 
 <ion-footer *ngIf="iceBox && iceBox.length " align-title="left" (click)="showTip=false">
   <div padding class="baldinho">
-    <span class="baldinho__itens">{{iceBoxTotal}} Caixa de Brahma</span>
+    <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
     <span class="baldinho__value">
       <strong>R$ {{iceBoxPrice}}</strong>
     </span>
