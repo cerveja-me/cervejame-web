@@ -25,11 +25,15 @@ export class ModalRegisterPage {
     status: 1
   }
   constructor(
-    public navCtrl: NavController, public navParams: NavParams,
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private analitycs: AnalyticsProvider,
     private user: UserProvider,
     private viewCtrl: ViewController
   ) {
+  }
+  ionViewDidEnter() {
+    this.analitycs.registerPage(this.navCtrl.getActive().component.name);
   }
 
   ionViewDidLoad() {

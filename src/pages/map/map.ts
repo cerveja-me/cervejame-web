@@ -33,18 +33,20 @@ export class MapPage {
     private location: LocationProvider,
     private order: OrderProvider,
     private zone: NgZone,
-    private ga: AnalyticsProvider
+    private analitycs: AnalyticsProvider
   ) {
   }
 
-  ionViewDidLoad() {
-    this.ga.registerPage('map');
-    this.loadMap();
 
+  ionViewDidLoad() {
+    this.analitycs.registerPage("Map");
+    this.loadMap();
   }
+
   async getaddress() {
     // console.log('ionViewDidLoad MapPage', await this.location.getAddress());
   }
+
   async loadMap() {
     try {
       const mapOpt = await this.location.getMap();
@@ -69,8 +71,8 @@ export class MapPage {
 
     }
   }
-  centerControl(controlDiv, map, geo) {
 
+  centerControl(controlDiv, map, geo) {
     // Set CSS for the control border.
     var controlUI = document.createElement('div');
     controlUI.style.backgroundColor = 'none';
@@ -119,16 +121,10 @@ export class MapPage {
     }
   }
 
-  addressChange() {
+  async addressChange() {
     if (this.address.formated.length > 3) {
-      this.location.getLocationsFromAddress(this.fulladdress, this.map.getCenter())
-        .then((listAddress) => {
-          this.addressOptions = listAddress['results'];
-        })
-        .catch(e => {
-          console.log('err', e)
-          // this.loader.dismiss();
-        });
+      let listAddress = await this.location.getLocationsFromAddress(this.fulladdress, this.map.getCenter())
+      this.addressOptions = listAddress['results'];
     }
   }
 

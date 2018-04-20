@@ -52,9 +52,13 @@ export class AddressPage {
   }
 
   ionViewDidLoad() {
+    this.analitycs.registerPage("Address");
+    // let v = this.navCtrl.getActive().component.name;
+    // console.log(v)
     // this.verifyFirstTime();
 
   }
+
 
   // async verifyFirstTime(){
   //   const firsttime =this.
@@ -69,6 +73,8 @@ export class AddressPage {
   }
 
   async addressChange() {
+    let v = this.navCtrl.getActive();
+    console.log(v)
     this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
   }
 
@@ -117,9 +123,7 @@ export class AddressPage {
   openLogin() {
     let loginModal = this.modal.create(ModalLoginPage)
     loginModal.onDidDismiss((data) => {
-      // this.analitycs.registerEvent('home', {});
-      // this.analitycs.
-
+      this.analitycs.registerPage("Address");
       if (data === 'success') {
         this.openProfile();
       }
@@ -129,10 +133,10 @@ export class AddressPage {
 
 
   openModalVoucher() {
-    // this.device.registerEvent('open_voucher', {});
     let voucherModal = this.modal.create(ModalVoucherPage);//,{}, {});
-    voucherModal.present().then(r => {
-      // this.device.camPage("home");
+    voucherModal.present();
+    voucherModal.onWillDismiss(d => {
+      this.analitycs.registerPage("Address");
     })
   }
 

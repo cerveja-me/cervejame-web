@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
+import { AnalyticsProvider } from '../../providers/analytics/analytics';
 
-/**
- * Generated class for the CheckoutPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @Component({
   selector: 'page-checkout',
@@ -21,12 +17,15 @@ export class CheckoutPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private analitycs: AnalyticsProvider,
     private order: OrderProvider) {
   }
 
   ionViewDidLoad() {
+    this.analitycs.registerPage("Checkout");
     this.loaddata();
   }
+
   loaddata() {
     this.sale = this.order.getSale();
     this.voucher = this.order.getVoucher();
@@ -38,6 +37,9 @@ export class CheckoutPage {
     this.values.total += this.locale.zone.freight_value;
     this.values.total -= this.values.discount;
     console.log('values- .', this.values);
+  }
+
+  openModalVoucher() {
 
   }
 

@@ -3,6 +3,7 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { OrderProvider } from '../../providers/order/order';
 import { VoucherProvider } from '../../providers/voucher/voucher';
+import { AnalyticsProvider } from '../../providers/analytics/analytics';
 
 
 @Component({
@@ -22,10 +23,13 @@ export class ModalVoucherPage {
     private viewCtrl: ViewController,
     private network: NetworkProvider,
     private order: OrderProvider,
-    private voucher: VoucherProvider) {
+    private voucher: VoucherProvider,
+    private analitycs: AnalyticsProvider
+  ) {
   }
 
   ionViewDidLoad() {
+    this.analitycs.registerPage("Voucher");
     this.code = this.navParams.get('voucher');
   }
 

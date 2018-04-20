@@ -23,6 +23,7 @@ export class ModalLoginPage {
 
   constructor(
     private user: UserProvider,
+    private navCtrl: NavController,
     private viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
@@ -30,8 +31,9 @@ export class ModalLoginPage {
   ) {
   }
 
+
   ionViewDidLoad() {
-    this.analitycs.registerPage('Login');
+    this.analitycs.registerPage("Login");
   }
 
   doLoginForm() {

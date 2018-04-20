@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
+import { AnalyticsProvider } from '../../providers/analytics/analytics';
 
 
 @Component({
@@ -15,15 +16,17 @@ export class ModalSchedulePage {
   weekday = this.day.getDay();
 
   constructor(
-    public navCtrl: NavController, public navParams: NavParams, private order: OrderProvider
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private order: OrderProvider,
+    private analitycs: AnalyticsProvider
   ) {
   }
 
 
 
   ionViewDidLoad() {
-    // this.order.device.camPage("schedule");
-
+    this.analitycs.registerPage("Schedule");
     this.hours = this.navParams.get('hours');
   }
 

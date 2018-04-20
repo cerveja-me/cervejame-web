@@ -57,6 +57,9 @@ export class HomePage {
   ) {
 
   }
+  ionViewDidLoad() {
+    this.analitycs.registerPage("Home");
+  }
 
   ionViewWillEnter() {
     this.getZone();
@@ -143,15 +146,16 @@ export class HomePage {
   }
 
   openSchedule() {
-    // this.device.registerEvent('open_schedule', {});
+    this.analitycs.registerEvent('open_schedule', {});
     let scheduleModal = this.modal.create(ModalSchedulePage, { hours: this['location']['zone']['schedule'] })
-    scheduleModal.present().then(r => {
-      // this.device.camPage("home");
+    scheduleModal.present();
+    scheduleModal.onWillDismiss(v => {
+      this.analitycs.registerPage('Home');
     })
   }
 
   openModalVoucher() {
-    // this.device.registerEvent('open_voucher', {});
+    this.analitycs.registerEvent('open_voucher', {});
     let voucherModal = this.modal.create(ModalVoucherPage);//,{}, {});
     voucherModal.present();
     voucherModal.onWillDismiss(v => {
