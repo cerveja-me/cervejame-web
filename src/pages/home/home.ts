@@ -9,6 +9,7 @@ import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { MapPage } from '../map/map';
+import { VoucherProvider } from '../../providers/voucher/voucher';
 
 @Component({
   selector: 'page-home',
@@ -43,6 +44,7 @@ export class HomePage {
   iceBoxPrice;
   iceBoxTotal;
   removible: boolean = false;
+  voucher: any;
   constructor(
     public navCtrl: NavController,
     private navParams: NavParams,
@@ -151,12 +153,14 @@ export class HomePage {
   openModalVoucher() {
     // this.device.registerEvent('open_voucher', {});
     let voucherModal = this.modal.create(ModalVoucherPage);//,{}, {});
-    voucherModal.present().then(r => {
-      // this.device.camPage("home");
+    voucherModal.present();
+    voucherModal.onWillDismiss(v => {
+      this.voucher = v;
     })
   }
 
   confirmSale() {
+    this.order.setItems(this.iceBox);
     this.navCtrl.push(MapPage)
   }
 

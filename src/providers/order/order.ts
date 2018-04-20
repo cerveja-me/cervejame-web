@@ -5,14 +5,15 @@ import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 import { DeviceProvider } from '../device/device';
 
-/*
-  Generated class for the OrderProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class OrderProvider {
+  locale: any;
+  voucher;
+  sale = {
+    id: '',
+    icebox: []
+  }
 
   constructor(
     private location: LocationProvider,
@@ -21,13 +22,7 @@ export class OrderProvider {
     private device: DeviceProvider
   ) { }
 
-  locale;
-  voucher;
-  sale = {
-    id: '',
-    product: {},
-    amount: 0
-  }
+
 
   async getZone() {
     try {
@@ -54,7 +49,25 @@ export class OrderProvider {
       throw error;
     }
   }
+  async updateLocationAddress(loc, address, number, complement) {
+    const up = {
+      position_maps: loc[0] + "," + loc[1],
+      street: address,
+      num: number,
+      complement: complement
+    }
+    this.locale['number'] = number;
+    this.locale['complement'] = complement;
 
+    try {
+      this.locale = await this.net.put(this.net.c.LOCATION + this.locale['id'], up)
+    } catch (error) {
+      console.log('erro no put -> ', error);
+    }
+  }
+  getLocale() {
+    return this.locale;
+  }
   setVoucher(voucher) {
     this.voucher = voucher;
   }
@@ -63,5 +76,12 @@ export class OrderProvider {
   }
   removeVoucher() {
     this.voucher = null;
+  }
+
+  setItems(icebox) {
+    this.sale.icebox = icebox
+  }
+  getSale() {
+    return this.sale;
   }
 }

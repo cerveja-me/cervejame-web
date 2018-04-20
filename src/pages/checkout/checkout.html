@@ -7,15 +7,16 @@
 </ion-header>
 
 <ion-content class="background-light">
-
-  <div class="order">
-    <figure class="order__image">
-      <img src="http://cerveja.me/img/mobile/brahma.png" alt="">
-    </figure>
-    <span class="order__price">
-      <label class="order__label">3 Caixas de Braham</label>
-      R$ 33,00
-    </span>
+  <div *ngIf="sale">
+    <div class="order" *ngFor="let item of sale.icebox">
+      <figure class="order__image">
+        <img src="http://cerveja.me/img/mobile/{{item.img}}" alt="">
+      </figure>
+      <span class="order__price">
+        <label class="order__label">{{item.items}} Caixa{{item.items>1?'s':''}} de {{item.name}}</label>
+        R$ {{item.items * item.price}}
+      </span>
+    </div>
   </div>
 
   <div class="payment">
@@ -45,12 +46,12 @@
     </button>
   </div>
 
-  <div class="checkout__total">
+  <div class="checkout__total" *ngIf="locale">
     <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
-      <span class="checkout__total__title" *ngIf="!false">Entrega</span>
-      <span class="checkout__total__title" *ngIf="false">Entrega grátis</span>
+      <span class="checkout__total__title" *ngIf="!locale.zone.free_shipping">Entrega</span>
+      <span class="checkout__total__title" *ngIf="locale.zone.free_shipping">Entrega grátis</span>
       <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ {{5 |number:'1.2-2'}}</span>
+        <span class="checkout__total__price">R$ {{locale.zone.freight_value |number:'1.2-2'}}</span>
       </span>
     </div>
     <div class="checkout__total__shipping" *ngIf="voucher">
@@ -69,7 +70,7 @@
     <span class="checkout__total__title">Total a pagar</span>
     <span class="checkout__total__pricebox">
       <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{30 |number:'1.2-2'}}</span>
-      <small class="checkout__total__pricebox--currency">R$</small>{{30 |number:'1.2-2'}}
+      <small class="checkout__total__pricebox--currency">R$</small>{{values.total | number:'1.2-2'}}
     </span>
   </div>
 

@@ -126,11 +126,13 @@
 
 </ion-content>
 
-<ion-footer *ngIf="iceBox && iceBox.length " align-title="left" (click)="showTip=false">
+<ion-footer *ngIf="(iceBox && iceBox.length) || (voucher && voucher.value)" align-title="left" (click)="showTip=false">
   <div padding class="baldinho">
     <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
     <span class="baldinho__value">
-      <strong>R$ {{iceBoxPrice | number:'1.2-2'}}</strong>
+      <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
+      <br>
+      <strong *ngIf="voucher && voucher.value">{{voucher.code}} R$ {{voucher.value | number:'1.2-2'}}</strong>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">Prosseguir</button>
   </div>

@@ -32,7 +32,7 @@ export class ModalVoucherPage {
   dismiss() {
     this.closing = true;
     setTimeout(() => {
-      this.viewCtrl.dismiss();
+      this.viewCtrl.dismiss(this.vouch);
     }, 300);
   }
 
@@ -41,11 +41,16 @@ export class ModalVoucherPage {
     if (this.code.length == 9) {
       try {
         const v = await this.voucher.getVoucher(this.code.replace('#', '$'))
-        this.vouch = v
-        this.voucher_active = true;
-        setTimeout(a => {
-          this.dismiss()
-        }, 750);
+        if (v) {
+          this.vouch = v
+          this.voucher_active = true;
+          setTimeout(a => {
+            this.dismiss()
+          }, 750);
+        } else {
+          this.error_active = true
+          this.voucher_active = false;
+        }
       } catch (error) {
         this.error_active = true
         this.voucher_active = false;
