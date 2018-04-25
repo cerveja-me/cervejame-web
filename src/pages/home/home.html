@@ -46,12 +46,10 @@
   <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.2 [spaceBetween]=8 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
     <ion-slide *ngFor="let prod of products;let i = index">
+     
       <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
-          <span class="product__labels">
-            <span class="product__cold" *ngIf="prod.cold">
-              <span class="icon-cold"></span>Gelada!</span>
-          </span>
+         
           <figure class="product__picture">
             <img src="https://cerveja.me/img/mobile/{{prod.img}}" alt="">
           </figure>
@@ -74,6 +72,10 @@
       <div class="table" [ngClass]="loadedcompleted && (err==='USER_DENIED_GEOLOCATION' || err==='NO_ZONE_AVAILABLE' || err=='GEOLOCATION_TIMEOUT') ? 'table-bottom': ''"></div>
 
       <div class="product__info">
+        <span class="product__labels">
+          <span class="product__cold" *ngIf="prod.cold">
+            <span class="icon-cold"></span></span>
+        </span>
         <span class="product__amount">Caixa com {{prod.amount}}</span>
         <span class="product__price">R$
           <strong>{{prod.price | number:'1.0-0'}}</strong>
@@ -122,18 +124,26 @@
       <button class="btn-plus"></button>
       <!-- <button class="btn-minus"></button> -->
     </li>
+    <li class="other-products__item suggest">
+      <div class="other-products__info">
+        <span class="other-products__name">Quer outros produtos?</span>
+        <span class="other-products__price">Conte pra gente</span>
+      </div>
+      <button class="btn-plus"></button>
+      <button class="btn-minus"></button>
+    </li>
   </ul>
 
 </ion-content>
 
 <ion-footer *ngIf="(iceBox && iceBox.length) || (voucher && voucher.value)" align-title="left" (click)="showTip=false">
-  <div padding class="baldinho">
+  <div class="baldinho">
     <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
     <span class="baldinho__value">
       <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
       <br>
       <strong *ngIf="voucher && voucher.value">{{voucher.code}} R$ {{voucher.value | number:'1.2-2'}}</strong>
     </span>
-    <button ion-button class="btn-next" (click)="confirmSale()">Prosseguir</button>
+    <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR</button>
   </div>
 </ion-footer>
