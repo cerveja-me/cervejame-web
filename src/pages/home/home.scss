@@ -272,7 +272,7 @@ h2 {
             top: 20px;
             background-color: rgba($color-secondary, 0.8);
             border: 2px solid $color-background;
-            padding: 18px;
+            padding: 16px;
             box-shadow: 3px 3px 0 0 $color-background;
         }
 
@@ -333,8 +333,8 @@ h2 {
             z-index: 4;
             opacity: 0;
             transition: all 0.3s;
-            top: 20px;
-            left: 20px;
+            top: -9px;
+            left: -14px;
         }
 
         &__cold {
@@ -344,8 +344,9 @@ h2 {
             color: white;
             font-size: 12px;
             background: $color-blue;
-            padding: 3px 6px;
-            box-shadow: 0 5px 15px 0px rgba($color-secondary, 0.5);
+            padding: 4px 6px 5px;
+            border: 1px solid $color-background;
+           // box-shadow: 0 5px 15px 0px rgba($color-secondary, 0.5);
         }
 
         // &__size {
@@ -379,8 +380,8 @@ h2 {
             width: 200%;
             z-index: 2;
             left: -50%;
-            bottom: 7%;
-            margin: 0 0 -5% -25%;
+            bottom: 15%;
+            margin: 0 0 -10% -25%;
             display: block;
             position: absolute;
             z-index: 2;
@@ -406,7 +407,7 @@ h2 {
 }
 
 .choose-slider {
-    height: 70%;
+    height: 65%;
     margin: 20px 0 50px;
 
     .swiper-container {
@@ -416,7 +417,7 @@ h2 {
     .swiper-slide {
         @include border-radius(30px);
 
-        box-shadow: 0 5px 15px 0px rgba($color-secondary, 0.5);
+        box-shadow: 7px 7px 0 0px rgba($color-secondary, 0.2);
         border: 2px solid $color-secondary;
         background-image: url(../assets/imgs/bkg-choose.jpg);
         background-size: cover;
@@ -442,7 +443,7 @@ h2 {
 
     &.on-slide {
         .swiper-slide.swiper-slide-active {
-            margin-left: 25%;
+            margin-left: 8.5%;
         }
     }
 
@@ -507,8 +508,6 @@ h2 {
     height: 15px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px;
-    margin-bottom: 2px;
 }
 
 .icon-termo {
@@ -1087,6 +1086,14 @@ h2 {
         .btn-minus {
             bottom: 20px;
         }
+
+        &.suggest {
+            background: white;
+
+            .btn-minus, .btn-plus {
+                display: none;
+            }
+        }
     }
 
     &__info {
@@ -1099,8 +1106,9 @@ h2 {
     &__name {
         @extend .font-bold;
 
-        font-size: 18px;
+        font-size: 16px;
         color: $color-secondary;
+        text-transform: uppercase;
     }
 
     &__price {
@@ -1109,6 +1117,7 @@ h2 {
         font-size: 12px;
         color: $color-secondary;
         display: block;
+        margin-top: 5px;
 
         strong {
             @extend .font-regular;
@@ -1156,9 +1165,9 @@ h2 {
     @extend .font-bold;
 
     text-transform: uppercase;
-    font-size: 16px;
-    background: white;
-    color: $color-primary;
+    font-size: 18px;
+    background: none;
+    color: white;
     padding: 0px 15px;
     // border: 2px solid $color-secondary;
 }
@@ -1174,11 +1183,17 @@ h2 {
 }
 
 .baldinho {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
     background: $color-primary;
-    border-top: 2px solid $color-secondary;
+    border: solid $color-secondary;
+    border-width: 2px 2px 0;
     position: relative;
     animation: baldinho-animate 0.2s ease-out 0.3s 1 normal;
     animation-fill-mode: both;
+    margin: 0 2%;
+    padding: 10px 15px;
 
     .btn-next {
         position: absolute;
