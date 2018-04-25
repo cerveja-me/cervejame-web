@@ -261,7 +261,8 @@ h2 {
         .btn-minus {
             position: absolute;
             bottom: 20px;
-            left: 20px;
+            right: 160px;
+            left: initial;
         }
 
         &__info {
@@ -408,6 +409,7 @@ h2 {
 
 .choose-slider {
     height: 65%;
+    max-height: 350px;
     margin: 20px 0 50px;
 
     .swiper-container {
@@ -1004,18 +1006,19 @@ h2 {
 .btn-minus {
     background-image: url('../assets/icon/minus.svg');
     background-size: cover;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     display: inline-block;
     vertical-align: middle;
     background-color: transparent;
-    transition: opacity 0.2s;
+    transition: opacity 0.3s;
     position: absolute;
     bottom: 24px;
-    left: 20px;
+    right: 160px;
+    z-index: 3;
 
     &.dragging {
-      opacity: 0.2;
+      opacity: 0;
     }
 }
 
@@ -1028,6 +1031,7 @@ h2 {
     vertical-align: middle;
     background-color: transparent;
     transition: opacity 0.2s;
+    z-index: 3;
 
     &.dragging {
       opacity: 0.2;
@@ -1085,6 +1089,7 @@ h2 {
 
         .btn-minus {
             bottom: 20px;
+            left: 20px;
         }
 
         &.suggest {
@@ -1193,7 +1198,7 @@ h2 {
     animation: baldinho-animate 0.2s ease-out 0.3s 1 normal;
     animation-fill-mode: both;
     margin: 0 2%;
-    padding: 10px 15px;
+    padding: 12px 15px;
 
     .btn-next {
         position: absolute;
