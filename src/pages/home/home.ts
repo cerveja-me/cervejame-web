@@ -58,7 +58,7 @@ export class HomePage {
 
   }
   ionViewDidLoad() {
-    this.analitycs.registerPage("Home");
+    this.analitycs.registerPage('Home');
   }
 
   ionViewWillEnter() {
@@ -96,10 +96,8 @@ export class HomePage {
     } else {
       this.current = current;
       this.changingSlide = false;
-      // this.amount = 2;
-      // this.discount = 0.05;
       this.zone.run(() => { });
-      this.analitycs.registerEvent('slide_change', this.products[current]);
+      this.analitycs.registerEvent('slide_change', { product: this.products[current], pos: current + 1, slides: this.products.length, slide: (current + 1) + ' of ' + this.products.length });
     }
     let i = this.iceBox.findIndex((item, i) => {
       return item.product === this.products[current]
@@ -135,9 +133,7 @@ export class HomePage {
   openLogin() {
     let loginModal = this.modal.create(ModalLoginPage)
     loginModal.onDidDismiss((data) => {
-      // this.analitycs.registerEvent('home', {});
-      // this.analitycs.
-
+      this.analitycs.registerPage('Home');
       if (data === 'success') {
         this.openProfile();
       }
@@ -160,6 +156,7 @@ export class HomePage {
     voucherModal.present();
     voucherModal.onWillDismiss(v => {
       this.voucher = v;
+      this.analitycs.registerPage('Home');
     })
   }
 

@@ -61,7 +61,7 @@ export class MapPage {
       this.map.addListener('dragend', () => {
         this.movingPin = false;
         this.updateAddress({ 0: this.map.getCenter().lat(), 1: this.map.getCenter().lng() });
-        this.ga.registerEvent('moved_pin', {});
+        this.analitycs.registerEvent('moved_pin', {});
       }, err => {
         console.log(err);
       });
@@ -162,6 +162,6 @@ export class MapPage {
     // this.device.registerEvent('confirm_address', {});
   }
   async registerChanges(ev) {
-    this.ga.registerEvent(ev, {});
+    this.analitycs.registerEvent(ev, {});
   }
 }

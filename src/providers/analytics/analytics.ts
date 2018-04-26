@@ -18,7 +18,7 @@ export class AnalyticsProvider {
   }
 
   registerEvent(event, o) {
-
+    console.log('event ->', event, o)
   }
 
 

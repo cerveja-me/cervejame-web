@@ -32,9 +32,6 @@ export class ModalRegisterPage {
     private viewCtrl: ViewController
   ) {
   }
-  ionViewDidEnter() {
-    this.analitycs.registerPage(this.navCtrl.getActive().component.name);
-  }
 
   ionViewDidLoad() {
     this.analitycs.registerPage('Register');
