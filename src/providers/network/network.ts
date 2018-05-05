@@ -58,11 +58,14 @@ export class NetworkProvider {
     try {
       const token = await this.storage.get(this.c.AUTH)
       h = new HttpHeaders()
+        .append('Content-Type', 'application/json')
         .append('Authorization', 'Bearer ' + token)
     } catch (error) {
-      h = new HttpHeaders();
+      h = new HttpHeaders().append('Content-Type', 'application/json')
+;
     }
     return new Promise((resolve, reject) => {
+      console.log('put -> ',data);
       this.http.put(this.c.API + endpoint, JSON.stringify(data), {
         headers: h
       })

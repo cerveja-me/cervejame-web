@@ -9,10 +9,14 @@ import { DeviceProvider } from '../device/device';
 @Injectable()
 export class OrderProvider {
   locale: any;
+
   voucher;
   sale = {
+    location:'',
+    payment: 1,
     id: '',
-    icebox: []
+    icebox: [],
+    freight_value: 0
   }
 
   constructor(
@@ -35,9 +39,12 @@ export class OrderProvider {
         time: day
       }
       const locality = await this.net.post(this.c.LOCATION, p)
+      this.locale = locality;
       if (locality['zone']) {
         if (locality['zone']['products']) {
-          this.locale = locality;
+          if (!locality['zone']['free_shipping']){
+            this.sale.freight_value = locality['zone']['freight_value']
+          }
           return this.locale
         } else {
           throw 'NO_PRODUCTS'
@@ -93,7 +100,11 @@ export class OrderProvider {
 
   async createOrder() {
     try {
-      let sale = await this.net.post('', '')
+      this.sale.location=this.locale.id
+      console.log('gravar venda -> ',this.sale)
+      let sale = await this.net.post(this.c.SALE, this.sale)
+      console.log(sale);
+
     } catch (error) {
 
     }

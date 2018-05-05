@@ -162,6 +162,7 @@ export class HomePage {
 
   confirmSale() {
     this.order.setItems(this.iceBox);
+    this.order.createOrder();
     this.navCtrl.push(MapPage)
   }
 
