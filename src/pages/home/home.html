@@ -43,7 +43,7 @@
     </span>
   </button>
 
-  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.2 [spaceBetween]=8 pager class="choose-slider"
+  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.15 [spaceBetween]=3 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
     <ion-slide *ngFor="let prod of products;let i = index">
      
