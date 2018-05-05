@@ -122,14 +122,15 @@ export class MapPage {
   }
 
   async addressChange() {
-    if (this.address.formated.length > 3) {
-      let listAddress = await this.location.getLocationsFromAddress(this.fulladdress, this.map.getCenter())
-      this.addressOptions = listAddress['results'];
+    if (this.fulladdress.length > 3) {
+      let v = this.navCtrl.getActive();
+      this.addressOptions = await this.location.getLocationsFromAddress(this.fulladdress, null)
     }
   }
 
-  setAddress(address) {
-    let add = this.location.convertAddress(address);
+
+  async setAddress(address) {
+    let add = await this.location.convertAddress(address);
     this.address.route = add['route'];
     this.fulladdress = add['route'];
     this.number = add['street_number'];
@@ -153,11 +154,7 @@ export class MapPage {
   }
 
   finishOrder() {
-    // if()
     this.order.updateLocationAddress({ 0: this.map.getCenter().lat(), 1: this.map.getCenter().lng() }, this.fulladdress, this.number, this.complement);
-    // this.closeEdit();
-    //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-    // this.address.street_number = this.number;
     this.navCtrl.push(CheckoutPage);
     this.analitycs.registerEvent('confirm_address', {});
   }

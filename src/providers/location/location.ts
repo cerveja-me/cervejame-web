@@ -20,8 +20,6 @@ export class LocationProvider {
   async getPosition() {
     try {
       if (this.address) {
-
-        console.log('aaa -> ', this.address)
         let l = this.address.geometry.location;
         return { latitude: l.lat, longitude: l.lng }
       } else {

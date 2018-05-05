@@ -45,6 +45,10 @@ export class CheckoutPage {
     this.analitycs.registerEvent('payment_selected',type)
   }
 
+  close(){
+    this.navCtrl.pop();
+  }
+
   openModalVoucher() {
 
   }

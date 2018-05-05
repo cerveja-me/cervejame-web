@@ -58,11 +58,13 @@ export class OrderProvider {
   }
 
   async updateLocationAddress(loc, address, number, complement) {
+    const day = new Date();
     const up = {
       position_maps: loc[0] + "," + loc[1],
       street: address,
       num: number,
-      complement: complement
+      complement: complement,
+      time:day
     }
     this.locale['number'] = number;
     this.locale['complement'] = complement;
@@ -101,12 +103,10 @@ export class OrderProvider {
   async createOrder() {
     try {
       this.sale.location=this.locale.id
-      console.log('gravar venda -> ',this.sale)
       let sale = await this.net.post(this.c.SALE, this.sale)
-      console.log(sale);
-
+      console.log('sale -> ',sale)
     } catch (error) {
-
+      console.log('erroc crair venda 0> ',error)
     }
   }
 }
