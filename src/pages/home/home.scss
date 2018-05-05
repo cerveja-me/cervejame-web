@@ -261,7 +261,7 @@ h2 {
         .btn-minus {
             position: absolute;
             bottom: 20px;
-            right: 160px;
+            right: 170px;
             left: initial;
         }
 
@@ -1006,15 +1006,15 @@ h2 {
 .btn-minus {
     background-image: url('../assets/icon/minus.svg');
     background-size: cover;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     display: inline-block;
     vertical-align: middle;
     background-color: transparent;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
     position: absolute;
     bottom: 24px;
-    right: 160px;
+    right: 170px;
     z-index: 3;
 
     &.dragging {

@@ -117,7 +117,7 @@ page-checkout {
     color: $color-secondary;
     margin: 0;
     margin: 0 15px;
-    padding: 25px 0 25px 70px;
+    padding: 25px 0 25px 60px;
     border-top: 1px solid $color-secondary;
 
     &__icon {
@@ -125,8 +125,9 @@ page-checkout {
       top: 50%;
       left: 20px;
       margin-top: -15px;
-      width: 31px;
+      width: 27px;
       height: 31px;
+      margin-right: 0;
     }
   }
 
@@ -435,9 +436,20 @@ page-checkout {
 }
 
 .order {
+     @include border-radius(20px);
+
     background: #573317;
-    padding: 20px;
+    padding: 15px;
     position: relative;
+    margin: 0 15px 15px 15px;
+
+    &:first-of-type {
+      margin-top: 15px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     &__image {
         @include border-radius(10px);
@@ -466,7 +478,7 @@ page-checkout {
     }
 
     &__price {
-      @extend .font-regular;
+      @extend .font-bold;
 
       color: $color-background;
       font-size: 20px;
@@ -479,7 +491,7 @@ page-checkout {
       @extend .font-regular;
 
       color: $color-background;
-      font-size: 12px;
+      font-size: 14px;
       display: inline-block;
       vertical-align: middle;
       width: 70%;
@@ -488,7 +500,7 @@ page-checkout {
     }
 
     &__label {
-        @extend .font-bold;
+        @extend .font-regular;
 
         color: $color-background;
         font-size: 14px;
