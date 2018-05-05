@@ -49,6 +49,7 @@ export class OrderProvider {
       throw error;
     }
   }
+
   async updateLocationAddress(loc, address, number, complement) {
     const up = {
       position_maps: loc[0] + "," + loc[1],
@@ -65,15 +66,19 @@ export class OrderProvider {
       console.log('erro no put -> ', error);
     }
   }
+
   getLocale() {
     return this.locale;
   }
+
   setVoucher(voucher) {
     this.voucher = voucher;
   }
+
   getVoucher() {
     return this.voucher;
   }
+
   removeVoucher() {
     this.voucher = null;
   }
@@ -81,7 +86,24 @@ export class OrderProvider {
   setItems(icebox) {
     this.sale.icebox = icebox
   }
+
   getSale() {
     return this.sale;
   }
+
+  async createOrder() {
+    try {
+      let sale = await this.net.post('', '')
+    } catch (error) {
+
+    }
+  }
 }
+// async  completeOrder(){
+//     try {
+//       let sale = await this.net.post()
+//     } catch (error) {
+
+//     }
+//   }
+// }
