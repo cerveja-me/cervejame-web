@@ -33,7 +33,7 @@
 </ion-content>
 
 <ion-footer align-title="left" class="bar-assertive">
-  <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
-  <button ion-button secondary class="map__btn" (click)="finishOrder()" [ngClass]="texting?'disabled':''" *ngIf="!texting">ENTREGAR AQUI</button>
+  <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button> -->
+  <button ion-button secondary class="map__btn" (click)="finishOrder()">ENTREGAR AQUI</button>
 
 </ion-footer>

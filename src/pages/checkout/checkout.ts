@@ -14,6 +14,7 @@ export class CheckoutPage {
   voucher: any;
   locale: any;
   values: any = {};
+  payment;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,6 +38,11 @@ export class CheckoutPage {
     this.values.total += this.locale.zone.freight_value;
     this.values.total -= this.values.discount;
     console.log('values- .', this.values);
+  }
+  setPayment(type){
+    this.payment = type;
+    this.order.sale.payment= type;
+    this.analitycs.registerEvent('payment_selected',type)
   }
 
   openModalVoucher() {

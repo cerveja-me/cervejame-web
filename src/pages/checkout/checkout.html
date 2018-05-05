@@ -40,7 +40,7 @@
         <span class="icon-beercoin"></span>
         <label class="payment__option__label"><small>1500</small>Beercoins</label>
       </button> -->
-    <button class="payment__option" [ngClass]="payment=='3'?'active':''" (click)="openCard()">
+    <button class="payment__option" [ngClass]="payment=='3'?'active':''" >
       <span class="icon-card"></span>
       <label class="payment__option__label">Via app</label>
     </button>
@@ -74,7 +74,7 @@
     </span>
   </div>
 
-  <div class="receipt__address">{{'Rua Venancio Aires 204'}}
+  <div class="receipt__address" *ngIf="locale">{{locale.street +', '+ locale.num +' '+ locale.complement}}
     <span class="icon-arrow-fw"></span>
     <span class="icon-pin-min receipt__address__icon" (click)="close()"></span>
   </div>
