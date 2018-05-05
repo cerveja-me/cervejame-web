@@ -30,6 +30,7 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { MapPage } from '../pages/map/map';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { AddressPage } from '../pages/address/address';
+import { StatusPage } from '../pages/status/status';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AddressPage } from '../pages/address/address';
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    StatusPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { AddressPage } from '../pages/address/address';
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    StatusPage
 
   ],
   providers: [

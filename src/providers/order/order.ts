@@ -112,9 +112,19 @@ export class OrderProvider {
 
   async completeOrder(){
     try {
-      let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale)
+      let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale);
+      return sale;
     } catch (error) {
       throw error.error
     }
   }
+
+  async getOrders() {
+    try {
+      return await this.net.get(this.c.SALE)
+    } catch (error) {
+      console.log('err -> ',error)
+    }
+  }
+
 }

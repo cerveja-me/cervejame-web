@@ -9,6 +9,7 @@ import { ProfilePage } from '../profile/profile';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
+import { StatusPage } from '../status/status';
 
 
 @Component({
@@ -140,4 +141,7 @@ export class AddressPage {
     })
   }
 
+  openStatus(){
+    this.navCtrl.setRoot(StatusPage)
+  }
 }

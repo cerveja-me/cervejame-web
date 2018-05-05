@@ -3,6 +3,8 @@ import { NavController, NavParams, ModalController, AlertController } from 'ioni
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { ModalLoginPage } from '../modal-login/modal-login';
+import { HomePage } from '../home/home';
+import { StatusPage } from '../status/status';
 
 @Component({
   selector: 'page-checkout',
@@ -94,7 +96,9 @@ export class CheckoutPage {
  async finishOrder() {
     try {
       console.log('finaliza')
-      await this.order.completeOrder();
+      let o  = await this.order.completeOrder();
+      this.navCtrl.setRoot(StatusPage)
+
     } catch (error) {
       switch (error.code) {
         case 1000:
@@ -113,5 +117,4 @@ export class CheckoutPage {
     }
 
   }
-
 }

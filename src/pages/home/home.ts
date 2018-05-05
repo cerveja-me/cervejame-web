@@ -73,7 +73,10 @@ export class HomePage {
 
   async getZone() {
     try {
-      const l = this.navParams.get('zone');
+      let l = this.navParams.get('zone');
+      if(!l){
+        l = this.order.getLocale()
+      }
       this.location = l;
       this.products = l['zone']['products'];
       this.slideChanged();
