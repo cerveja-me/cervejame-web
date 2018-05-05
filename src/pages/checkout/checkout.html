@@ -20,7 +20,7 @@
   </div>
 
   <div class="payment">
-    <button class="payment__option" [ngClass]="payment=='2'?'active':''" (click)="setPayment('2')">
+    <button class="payment__option" [ngClass]="payment==2?'active':''" (click)="setPayment(2)">
       <span class="icon-maquina"></span>
       <label class="payment__option__label">Máquina</label>
       <!-- <span class="payment__add-beercoin">
@@ -28,7 +28,7 @@
           <label>+ 50</label>
         </span> -->
     </button>
-    <button class="payment__option" [ngClass]="payment=='1'?'active':''" (click)="setPayment('1')">
+    <button class="payment__option" [ngClass]="payment==1?'active':''" (click)="setPayment(1)">
       <span class="icon-money"></span>
       <label class="payment__option__label">Dinheiro</label>
       <!-- <span class="payment__add-beercoin">

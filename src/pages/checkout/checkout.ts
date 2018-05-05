@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
-
-
+import { ModalLoginPage } from '../modal-login/modal-login';
 
 @Component({
   selector: 'page-checkout',
@@ -17,6 +16,8 @@ export class CheckoutPage {
   payment;
   constructor(
     public navCtrl: NavController,
+    private modal: ModalController,
+    private alertCtrl: AlertController,
     public navParams: NavParams,
     private analitycs: AnalyticsProvider,
     private order: OrderProvider) {
@@ -37,6 +38,7 @@ export class CheckoutPage {
     this.values.discount = this.voucher ? this.voucher.value : 0;
     this.values.total += this.locale.zone.freight_value;
     this.values.total -= this.values.discount;
+    this.payment = this.sale.payment;
     console.log('values- .', this.values);
   }
   setPayment(type){
@@ -53,7 +55,62 @@ export class CheckoutPage {
 
   }
 
-  finishOrder() {
+  openLogin() {
+    let loginModal = this.modal.create(ModalLoginPage)
+    loginModal.onDidDismiss((data) => {
+      this.analitycs.registerPage('Checkout');
+      if (data === 'success') {
+        this.finishOrder();
+      }
+    })
+    loginModal.present();
+  }
+
+ async selectPayment(){
+  this.alertCtrl.create({
+     title: 'Como quer Pagar?',
+     message: 'Selecione um meio de pagamento!',
+     buttons: [
+       {
+         text: 'Cartão',
+         handler: data => {
+           this.analitycs.registerEvent('modal_select_payment', { payment: 'cartao' });
+           this.setPayment(2);
+           this.finishOrder();
+         }
+       },
+       {
+         text: 'Dinheiro',
+         handler: data => {
+           this.analitycs.registerEvent('modal_select_payment', { payment: 'dinheiro' });
+           this.setPayment(1);
+           this.finishOrder();
+         }
+       }
+     ]
+   }).present();
+ }
+
+ async finishOrder() {
+    try {
+      console.log('finaliza')
+      await this.order.completeOrder();
+    } catch (error) {
+      switch (error.code) {
+        case 1000:
+          this.openLogin();
+          break;
+        case 1001:
+          this.openLogin();
+          break;
+        case 1002:
+          this.selectPayment()
+          break;
+        default:
+          console.log('error', error)
+          break;
+      }
+    }
 
   }
 

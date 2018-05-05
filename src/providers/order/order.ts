@@ -13,10 +13,10 @@ export class OrderProvider {
   voucher;
   sale = {
     location:'',
-    payment: 1,
     id: '',
     icebox: [],
-    freight_value: 0
+    freight_value: 0,
+    payment:null
   }
 
   constructor(
@@ -103,18 +103,18 @@ export class OrderProvider {
   async createOrder() {
     try {
       this.sale.location=this.locale.id
-      let sale = await this.net.post(this.c.SALE, this.sale)
-      console.log('sale -> ',sale)
+      let sale:any = await this.net.post(this.c.SALE, this.sale)
+      this.sale.id = sale.id;
     } catch (error) {
       console.log('erroc crair venda 0> ',error)
     }
   }
-}
-// async  completeOrder(){
-//     try {
-//       let sale = await this.net.post()
-//     } catch (error) {
 
-//     }
-//   }
-// }
+  async completeOrder(){
+    try {
+      let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale)
+    } catch (error) {
+      throw error.error
+    }
+  }
+}

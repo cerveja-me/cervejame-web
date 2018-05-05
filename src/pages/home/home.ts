@@ -123,7 +123,6 @@ export class HomePage {
       .catch(e => {
         this.openLogin();
       })
-
   }
 
   openPartner() {
