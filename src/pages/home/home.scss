@@ -417,7 +417,7 @@ h2 {
     }
 
     .swiper-slide {
-        @include border-radius(30px);
+        @include border-radius(20px);
 
         border: 2px solid $color-secondary;
         background-image: url(../assets/imgs/bkg-choose.jpg);
@@ -431,7 +431,7 @@ h2 {
             margin-left: auto;
             z-index: 3;
             transform: scale(1);
-            box-shadow: 0px 0px 20px 0 rgba($color-secondary, 0.2);
+            box-shadow: 0px 5px 30px 0 rgba($color-secondary, 0.4);
         
             .product__labels {
                 opacity: 1;
@@ -1063,7 +1063,7 @@ h2 {
 
 .other-products {
     padding: 0;
-    margin: 0 0 70px 0;
+    margin: 0 0 60px 0;
     font-size: 0;
     text-align: left;
 
@@ -1093,7 +1093,7 @@ h2 {
         }
 
         &.suggest {
-            background: white;
+            width: 100%;
 
             .btn-minus, .btn-plus {
                 display: none;
@@ -1190,7 +1190,6 @@ h2 {
 .baldinho {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-
     background: $color-primary;
     border: solid $color-secondary;
     border-width: 2px 2px 0;
@@ -1198,18 +1197,43 @@ h2 {
     animation: baldinho-animate 0.2s ease-out 0.3s 1 normal;
     animation-fill-mode: both;
     margin: 0 2%;
-    padding: 12px 15px;
+    padding: 10px 12px;
 
     .btn-next {
         position: absolute;
-        bottom: 15px;
-        right: 20px;
+        bottom: 0px;
+        right: 0px;
+        color: $color-background;
+    }
+
+    .icon-baldinho {
+        background-image: url(../assets/icon/icon-baldinho.svg);
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__box {
+        @include border-radius(100px);
+        position: relative;
+
+        background: #B83030;
+        display: inline-block;
+        padding: 3px 20px 3px 45px;
+
+        .icon-baldinho {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     }
 
     &__title {
         @extend .font-bold;
         
-        color: white;
+        color:  $color-background;
         font-size: 12px;
         text-transform: uppercase;
     }
@@ -1217,8 +1241,8 @@ h2 {
     &__itens {
         @extend .font-regular;
 
-        color: white;
-        font-size: 14px;
+        color:  $color-background;
+        font-size: 12px;
         animation: baldinho-text-animate 0.1s ease-out 0.4s 1 normal;
         animation-fill-mode: both;
     }
@@ -1226,11 +1250,22 @@ h2 {
     &__value{
         @extend .font-bold;
         
-        color: white;
-        font-size: 18px;
+        color: $color-background;
+        font-size: 14px;
         text-transform: uppercase;
         display: block;
         animation: baldinho-text-animate 0.1s ease-out 0.4s 1 normal;
         animation-fill-mode: both;
+        margin-top: -2px;
     }
+}
+
+.icon-arrow-next {
+    background-image: url(../assets/icon/icon-arrow-next.svg);
+    background-size: cover;
+    width: 10px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
 }

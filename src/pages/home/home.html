@@ -97,7 +97,7 @@
   <h2>Outros Produtos</h2>
 
   <ul padding class="other-products">
-    <li class="other-products__item">
+    <!-- <li class="other-products__item">
       <div class="other-products__info">
         <span class="other-products__name">Carvão</span>
         <span class="other-products__price">R$
@@ -114,16 +114,16 @@
       </div>
       <button class="btn-plus"></button>
       <!-- <button class="btn-minus"></button> -->
-    </li>
+    <!-- </li>
     <li class="other-products__item">
       <div class="other-products__info">
         <span class="other-products__name">Gelo</span>
         <span class="other-products__price">R$
           <strong>12</strong>,00</span>
       </div>
-      <button class="btn-plus"></button>
-      <!-- <button class="btn-minus"></button> -->
-    </li>
+      <button class="btn-plus"></button> -->
+      <!-- <button class="btn-minus"></button> 
+    </li> -->
     <li class="other-products__item suggest">
       <div class="other-products__info">
         <span class="other-products__name">Quer outros produtos?</span>
@@ -138,12 +138,15 @@
 
 <ion-footer *ngIf="(iceBox && iceBox.length) || (voucher && voucher.value)" align-title="left" (click)="showTip=false">
   <div class="baldinho">
-    <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
-    <span class="baldinho__value">
-      <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
-      <br>
-      <strong *ngIf="voucher && voucher.value">{{voucher.code}} R$ {{voucher.value | number:'1.2-2'}}</strong>
+    <span class="baldinho__box">
+      <span class="icon-baldinho"></span> 
+        <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}}</span>
+        <span class="baldinho__value">
+          <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
+          <br>
+          <strong *ngIf="voucher && voucher.value">{{voucher.code}} R$ {{voucher.value | number:'1.2-2'}}</strong>
+        </span>
     </span>
-    <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR</button>
+    <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR <span class="icon-arrow-next"></span></button>
   </div>
 </ion-footer>
