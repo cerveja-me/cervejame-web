@@ -1,17 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the AnalyticsProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class AnalyticsProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello AnalyticsProvider Provider');
   }
+
+  registerPage(page) {
+    console.log('page -> ', page);
+    //TODO:
+    // google analitycs
+    // facebook pixel
+    // hotjar
+
+  }
+
+  registerEvent(event, o) {
+    console.log('event ->', event, o)
+  }
+
+
 
 }

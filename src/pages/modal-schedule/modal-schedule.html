@@ -1,0 +1,21 @@
+<ion-header class="header-dark">
+  <ion-navbar>
+    <h1 class="logo-white"></h1>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background-dark">
+
+  <div class="msg transparent" *ngIf="hours">
+    <span class="msg__text white">Entregamos às:</span>
+    <ul class="schedule__list">
+      <li *ngFor="let h of hours" class="schedule__list__item" [ngClass]="h.active?'today':h.day?'today closed':''">
+        <span class="schedule__day ">{{h.leg}}</span>
+        <span class="schedule__hour">{{h.open | date : 'HH:mm'}} - {{h.close | date : 'HH:mm'}}</span>
+      </li>
+
+    </ul>
+    <p class="msg-schedule">Os horários podem alterar em feriados.</p>
+  </div>
+
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header class="header-light">
+  <ion-navbar></ion-navbar>
+  <h1 class="logo-dark"></h1>
+</ion-header>
+
+<ion-content class="background-light">
+  <div class="profile__balance" *ngIf="user_data && user_data.available_value > 0" (click)="openReferrals()">
+    <h2>Você ganhou da galera</h2>
+    <p class="profile__balance__value">
+      <span class="icon-galera-w"></span>
+      R$ {{user_data.available_value |number:'1.2-2'}}
+    </p>
+    <small>O valor será descontado na sua próxima compra.</small>
+    <p>
+      <small>Meus indicados
+        <strong>></strong>
+      </small>
+    </p>
+  </div>
+
+  <div class="profile__voucher">
+    <span (click)="openTerms()" class="profile__voucher__background"></span>
+    <h1>Para cada amigo que usar o seu cupom, você ganhará
+      <strong>R$ 10,00</strong>.</h1>
+    <h5 style="font-size: 1.3rem; color:#583318" (click)="openTerms()">termos de uso ></h5>
+
+    <h1 class="profile__voucher__input">{{code}}</h1>
+    <h2>Compartilhe com seus amigos</h2>
+    <button (click)="shareViaWhatsApp()" class="btn-share">
+      <span class="btn-share__whats"></span>
+    </button>
+    <button (click)="shareViaFacebook()" class="btn-share">
+      <span class="btn-share__facebook"></span>
+    </button>
+    <button (click)="shareVia()" class="btn-share">
+      <span class="btn-share__other"></span>
+    </button>
+  </div>
+
+</ion-content>

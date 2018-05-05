@@ -1,0 +1,108 @@
+page-modal-schedule {
+      .schedule {
+          &__list {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+
+              &__item {
+                  &.today {
+                      position: relative;
+
+                      &:after {
+                          content: '';
+                          background: $color-success;
+                          width: 100%;
+                          position: absolute;
+                          left: 0;
+                          bottom: 0;
+                          display: block;
+                          z-index: -2;
+                          height: 38px;
+                      }
+
+                      .schedule__day {
+                          border: none;
+                          background: none;
+                          padding: 10px 0 !important;
+
+                      }
+
+                      .schedule__hour {
+                          color: $color-secondary;
+                      }
+                  }
+
+                  &.today.closed {
+                      background: $color-secondary;
+                      border: solid white;
+                      border-width: 2px 0;
+
+                      .schedule__day {
+                          color: white;
+
+                      }
+
+                      .schedule__hour {
+                          color: white;
+                      }
+                  }
+
+                  &:first-of-type {
+                      .schedule__day {
+                          border-top-right-radius: 100px;
+                          border-top-left-radius: 100px;
+                          border-width: 2px 2px 0;
+                          padding: 15px 0 7px;
+                      }
+                  }
+
+                  &:last-of-type {
+                      .schedule__day {
+                          border-bottom-right-radius: 100px;
+                          border-bottom-left-radius: 100px;
+                          border-width: 0 2px 2px 2px;
+                          padding: 7px 0 15px;
+                      }
+                  }
+              }
+          }
+
+          &__day {
+              @extend .font-bold;
+
+              background: $color-secondary-light;
+              border: solid white;
+              border-width: 0 2px;
+              color: $color-secondary;
+              display: inline-block;
+              width: 58px;
+              padding: 10px 0;
+              text-align: center;
+              font-size: 14px;
+              width: 60px;
+          }
+
+          &__hour {
+              @extend .font-regular;
+
+              color: white;
+              display: inline-block;
+              padding: 0 10px;
+              text-align: left;
+              font-size: 14px;
+              width: 115px;
+          }
+      }
+  }
+
+  .msg-schedule {
+      @extend .font-regular;
+
+      color: white;
+      font-size: 12px;
+      width: 100%;
+      text-align: center;
+      padding: 0 35px;
+      margin-top: 20px;
+  }

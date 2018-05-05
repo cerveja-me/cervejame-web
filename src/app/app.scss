@@ -343,6 +343,10 @@ ion-spinner {
       }
     }
 
+    &.header-home {
+
+    }
+
     &.header-dark {
 
       .back-button-icon {
@@ -446,7 +450,7 @@ ion-backdrop {
 
       &.tip-down {
         right: 34px;
-        top: 57px;
+        top: 50px;
         animation: tip-down 0.3s ease .3s 1 normal;
         animation-fill-mode: both;
 

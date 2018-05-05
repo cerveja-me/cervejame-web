@@ -1,0 +1,108 @@
+page-modal-voucher {
+
+      @keyframes bounce {
+          0% { margin-left: -163px; }
+          25% { margin-left: -147px; }
+          50% { margin-left: -163px; }
+          75% { margin-left: -147px; }
+          100% { margin-left: -155px; }
+      }
+
+       @keyframes opacity {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+      }
+
+      .voucher {
+          background: none;
+
+          &__ticket {
+              height: 241px;
+              width: 309px;
+              background: url(../assets/icon/bkg-voucher.svg);
+              z-index: 2;
+              position: absolute;
+              top: 30%;
+              left: 50%;
+              margin-top: -107.5px;
+              margin-left: -155px;
+              padding: 20px;
+              transform: scale(0.95);
+              transition: all 0.3s;
+
+              &.active {
+                  background: url(../assets/icon/bkg-voucher-active.svg);
+                  transform: scale(1);
+              }
+
+              &.fail {
+                  animation: bounce 0.3s linear 0s 1 normal;
+                  animation-fill-mode: both;
+              }
+          }
+
+          &__text {
+              @extend .font-bold;
+
+              font-size: 14px;
+              color: $color-secondary;
+              margin: 0;
+              position: relative;
+              animation: opacity 0.2s linear 0s 1 normal;
+              animation-fill-mode: both;
+          }
+
+          &__ticket.active .voucher__value small,
+          &__ticket.active .voucher__value label
+          {
+              opacity: 1;
+          }
+
+          &__value {
+              @extend .font-bold;
+
+              font-size: 50px;
+              color: $color-secondary;
+              margin: 15px 0 18px;
+              position: relative;
+              display: block;
+              text-align: right;
+              letter-spacing: -0.05em;
+              padding-bottom: 10px;
+              border-bottom: 2px dashed $color-secondary;
+
+              small, label {
+                  opacity: 0.2;
+              }
+
+              small {
+                  @extend .font-regular;
+
+                  font-size: 24px;
+                  top: -17px;
+                  display: inline-block;
+                  position: relative;
+                  letter-spacing: 0em;
+
+              }
+          }
+
+          .text-input {
+              @extend .font-regular;
+
+              border-radius: 10px;
+              box-sizing: border-box;
+              display: block;
+              background: white;
+              color: $color-secondary;
+              border: 2px solid $color-secondary;
+              height: 60px;
+              width: 100%;
+              padding: 15px;
+              position: relative;
+              text-transform: uppercase;
+              text-align: center;
+              margin: 0;
+          }
+      }
+  }
