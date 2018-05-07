@@ -126,5 +126,21 @@ export class OrderProvider {
       console.log('err -> ',error)
     }
   }
+  async rateOrder(r) {
+    try {
+
+
+      let rate = {
+        id_sale: r.id_sale,
+        who: 2,
+        rate: r.rate,
+        comment: r.comment
+      };
+    return await this.net.post(this.c.RATE, rate)
+    } catch (error) {
+
+    }
+  }
+
 
 }

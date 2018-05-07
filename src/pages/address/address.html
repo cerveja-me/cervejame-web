@@ -23,6 +23,7 @@
       <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
         style="background:beige; color:#583318">
       </ion-input>
+      <button class="btn-white" (click)="getBrowserLocation()">Pegar Localização automaticamente</button>
 
       <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
         <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">

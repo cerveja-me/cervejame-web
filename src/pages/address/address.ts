@@ -144,4 +144,8 @@ export class AddressPage {
   openStatus(){
     this.navCtrl.setRoot(StatusPage)
   }
+
+  async getBrowserLocation(){
+    await this.getZone()
+  }
 }

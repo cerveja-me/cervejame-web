@@ -1,3 +1,68 @@
 page-feedback {
+  .feedback {
+    &__star {
+      background-image: url(../assets/icon/icon-star.svg);
+      background-size: cover;
+      width: 36px;
+      height: 35px;
+      display: inline-block;
+      margin: 20px 5px 35px;
+      background-color: transparent;
 
+      &.active {
+        background-image: url(../assets/icon/icon-star-vote.svg);
+        background-size: cover;
+        width: 36px;
+        height: 35px;
+        display: inline-block;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .btn-finish {
+    @include border-radius(50px);
+    @extend .font-bold;
+    position: absolute;
+    background: #573317;
+    border: 2px solid $color-background;
+    font-size: 17px;
+    padding: 15px 30px;
+    height: auto;
+    left: 50%;
+    width: 250px;
+    margin-left: -125px;
+    transition: all .5s;
+    color: white;
+    text-transform: uppercase;
+
+    &.activated {
+      background: #573317;
+    }
+  }
+
+  .comment {
+    &__box {
+      margin-bottom: 20px;
+      padding: 0 10px;
+      width: 100%;
+      position: relative;
+
+      &__input {
+        @extend .font-regular;
+        border-radius: 10px;
+        display: block;
+        background: white;
+        color: $color-secondary;
+        border: 2px solid $color-secondary;
+        height: 60px;
+        width: 100%;
+        padding: 18px 15px 18px 15px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .5);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }

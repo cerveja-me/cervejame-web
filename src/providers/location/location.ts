@@ -23,7 +23,13 @@ export class LocationProvider {
         let l = this.address.geometry.location;
         return { latitude: l.lat, longitude: l.lng }
       } else {
-        return await this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 });
+        return new Promise((resolve, reject) => {
+          this.geolocation.watchPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 })
+          .subscribe(position=>{
+            resolve(position.coords)
+          })
+      })
+
       }
       // throw new Error('USER_DENIED_GEOLOCATION')
       // return await this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 });
