@@ -6,6 +6,7 @@ import 'rxjs/add/observable/interval';
 
 import { Observable } from 'rxjs/Observable';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
+import { FeedbackPage } from '../feedback/feedback';
 
 @Component({
   selector: 'page-status',
@@ -20,6 +21,7 @@ export class StatusPage {
     finishedAt: null
   }
   sub:any;
+  actionClose:string='Fechar';
 
   constructor(
     public navCtrl: NavController,
@@ -44,16 +46,42 @@ export class StatusPage {
 
   async verifyOpenSale(){
     try {
-      this.sales = await this.order.getOrders();
-      console.log('vendas abertas -> ',this.sales)
-    } catch (error) {
+      this.sale = await this.order.getOrders();
+      if (this.sale.complement) {
+        this.sale.complement = ' compl.:' + this.sale.complement;
+      }
+      if (this.sale.actions) {
+        for (let i = 0; i < this.sale.actions.length; i++) {
+          switch (this.sale.actions[i].action) {
+            case 1:
+              this.actions.accepted = this.sale.actions[i];
+              break;
+            case 2:
+              this.actions.onWay = this.sale.actions[i];
+              // this.zone.run(() => { });
+              break;
+            case 4:
+              this.actions.finishedAt = this.sale.actions[i];
+              this.actionClose = 'Avaliar Entrega'
+              // this.zone.run(() => { });
+              break;
+          }
 
+        }
+
+      }
+      console.log('vendas abertas -> ',this.sale)
+    } catch (error) {
+      console.log('erro ->',error);
     }
 
   }
 
-  backHome() {
-    this.navCtrl.setRoot(HomePage);
+  close() {
+    if(this.actionClose==='Fechar'){
+      this.navCtrl.setRoot(HomePage)
+    }else{
+      this.navCtrl.setRoot(FeedbackPage, { sale: this.sale });
+    }
   }
-
 }

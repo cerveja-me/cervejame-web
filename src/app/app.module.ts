@@ -31,6 +31,7 @@ import { MapPage } from '../pages/map/map';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { AddressPage } from '../pages/address/address';
 import { StatusPage } from '../pages/status/status';
+import { FeedbackPage } from '../pages/feedback/feedback';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { StatusPage } from '../pages/status/status';
     ModalLoginPage,
     ModalVoucherPage,
     ModalRegisterPage,
-    StatusPage
+    StatusPage,
+    FeedbackPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { StatusPage } from '../pages/status/status';
     ModalLoginPage,
     ModalVoucherPage,
     ModalRegisterPage,
-    StatusPage
+    StatusPage,
+    FeedbackPage
 
   ],
   providers: [
