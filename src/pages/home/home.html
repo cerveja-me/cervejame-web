@@ -45,7 +45,7 @@
 
   <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.15 [spaceBetween]=3 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
-    <ion-slide *ngFor="let prod of products;let i = index">
+    <ion-slide class="product" *ngFor="let prod of products;let i = index">
      
       <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
@@ -82,6 +82,10 @@
           <small>,{{ (prod.price | number:'0.2-2').split(',')[1] }} </small>
         </span>
         <span class="product__price-each">{{prod.volume}}ml • R$ {{prod.price/prod.amount | number:'1.2-2'}}</span>
+      
+        <!-- <span class="free-shipping__text">Entrega Grátis!</span>
+        <span class="with-discount__text">5% OFF</span> -->
+
       </div>
 
       <button ion-button secondary class="btn-add disabled" (click)="addToIceBox(prod,i)">
@@ -126,8 +130,8 @@
     </li> -->
     <li class="other-products__item suggest">
       <div class="other-products__info">
-        <span class="other-products__name">Quer outros produtos?</span>
-        <span class="other-products__price">Conte pra gente</span>
+        <span class="other-products__name">Quer outra coisa?</span>
+        <span class="other-products__price">Conte pra gente o que gostaria de ver aqui</span>
       </div>
       <button class="btn-plus"></button>
       <button class="btn-minus"></button>
