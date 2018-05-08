@@ -22,6 +22,10 @@ page-status {
   .order {
     margin-bottom: 25px;
 
+    &:first-of-type {
+      margin-top: 0;
+    }
+
     &:after {
       content: '';
       background-image: url(../assets/icon/trigger-brown.svg);
@@ -30,7 +34,7 @@ page-status {
       height: 23px;
       position: absolute;
       top: 100%;
-      left: 37px;
+      left: 32px;
       display: block;
       margin-top: -12px;
     }
@@ -38,7 +42,8 @@ page-status {
 
   .order-status {
     list-style-image: none;
-    padding-left: 34px;
+    padding-left: 44px;
+    padding-top: 15px;
 
     &__item {
       display: block;

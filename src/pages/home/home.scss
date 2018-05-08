@@ -424,7 +424,7 @@ h2 {
         background-size: cover;
         background-position: center;
         transform: scale(0.9);
-        transition: all 0.2s;
+        transition: transform 0.2s;
         overflow: hidden;
 
         &-active {
