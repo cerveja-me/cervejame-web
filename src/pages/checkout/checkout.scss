@@ -113,7 +113,7 @@ page-checkout {
     @extend .font-regular;
 
     position: relative;
-    font-size: 12px;
+    font-size: 14px;
     color: $color-secondary;
     margin: 0;
     margin: 0 15px;
@@ -436,19 +436,23 @@ page-checkout {
 }
 
 .order {
-     @include border-radius(20px);
+ //    @include border-radius(20px);
 
     background: #573317;
     padding: 15px;
     position: relative;
-    margin: 0 15px 15px 15px;
+    margin: 0 15px 2px 15px;
 
     &:first-of-type {
       margin-top: 15px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
     }
 
     &:last-of-type {
       margin-bottom: 0;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
     }
 
     &__image {
