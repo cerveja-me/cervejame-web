@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConstantsProvider {
-public API: string = 'https://api.hom.cerveja.me/api/';
+  public API: string = 'https://api.hom.cerveja.me/api/';
   public DEVICE: string = 'device/';
   public LOCATION: string = 'location/';
   public PROFILE: string = 'profile/';

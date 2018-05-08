@@ -36,7 +36,7 @@ export class FeedbackPage {
       });
       this.navCtrl.setRoot(HomePage);
     } catch (error) {
-     //TODO
+     //TODO erro ao enviar avaliação do atendimento
     }
   }
 

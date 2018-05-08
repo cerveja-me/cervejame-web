@@ -128,14 +128,12 @@ export class OrderProvider {
   }
   async rateOrder(r) {
     try {
-
-
-      let rate = {
-        id_sale: r.id_sale,
-        who: 2,
-        rate: r.rate,
-        comment: r.comment
-      };
+    let rate = {
+      id_sale: r.id_sale,
+      who: 2,
+      rate: r.rate,
+      comment: r.comment
+    };
     return await this.net.post(this.c.RATE, rate)
     } catch (error) {
 
