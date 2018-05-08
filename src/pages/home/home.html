@@ -84,7 +84,7 @@
         <span class="product__price-each">{{prod.volume}}ml • R$ {{prod.price/prod.amount | number:'1.2-2'}}</span>
       </div>
 
-      <button ion-button secondary class="btn-add" (click)="addToIceBox(prod,i)">
+      <button ion-button secondary class="btn-add disabled" (click)="addToIceBox(prod,i)">
         <label>Adicionar </label>
         <span class="icon-plus"></span>
       </button>
@@ -148,5 +148,11 @@
         </span>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR <span class="icon-arrow-next"></span></button>
+  </div>
+</ion-footer>
+
+<ion-footer *ngIf="products.length >0 && !location.zone.open">
+  <div class="message">
+    <label class="message__text">Não estamos entregando agora.</label>
   </div>
 </ion-footer>
