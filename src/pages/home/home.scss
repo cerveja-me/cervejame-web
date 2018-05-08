@@ -454,10 +454,7 @@ h2 {
             height: 100%;
             margin: 0;
         }
-
-       
     }
-
 }
 
 .choose-slider {
@@ -484,7 +481,7 @@ h2 {
             margin-left: auto;
             z-index: 3;
             transform: scale(1);
-            box-shadow: 0px 5px 30px 0 rgba($color-secondary, 0.4);
+            box-shadow: 0px 5px 20px 0 rgba($color-secondary, 0.5);
         
             .product__labels {
                 opacity: 1;
@@ -1095,12 +1092,11 @@ h2 {
     @include border-radius(0);
 
     background: $color-secondary;
-    border-top: 2px solid white;
     padding: 24px 15px;
     height: auto;
     width: 100%;
-    margin: 0;
     text-align: center;
+    border-top: 2px solid $color-background;
 
     &__text {
         @extend .font-regular;
@@ -1285,7 +1281,7 @@ h2 {
 
         background: #B83030;
         display: inline-block;
-        padding: 3px 20px 3px 45px;
+        padding: 3.5px 20px 3.5px 45px;
 
         .icon-baldinho {
             position: absolute;

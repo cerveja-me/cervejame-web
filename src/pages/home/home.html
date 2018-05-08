@@ -155,8 +155,8 @@
   </div>
 </ion-footer>
 
-<ion-footer *ngIf="products.length >0 && !location.zone.open">
-  <div class="message">
+<ion-footer>
+  <div class="message" *ngIf="products.length >0 && !location.zone.open">
     <label class="message__text">Não estamos entregando agora.</label>
   </div>
 </ion-footer>
