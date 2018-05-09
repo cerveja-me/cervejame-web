@@ -17,7 +17,8 @@ export class OrderProvider {
     icebox: [],
     freight_value: 0,
     payment:null,
-    voucher:null
+    voucher:null,
+    friendRef:null
   }
 
   constructor(
@@ -91,6 +92,10 @@ export class OrderProvider {
 
   removeVoucher() {
     this.voucher = null;
+  }
+
+  setFriendRef(fr){
+    this.sale.friendRef = fr;
   }
 
   setItems(icebox) {

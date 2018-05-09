@@ -6,6 +6,7 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { HomePage } from '../home/home';
 import { StatusPage } from '../status/status';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-checkout',
@@ -17,12 +18,14 @@ export class CheckoutPage {
   locale: any;
   values: any = {};
   payment;
+  friendRef:any;
   constructor(
     public navCtrl: NavController,
     private modal: ModalController,
     private alertCtrl: AlertController,
     public navParams: NavParams,
     private analitycs: AnalyticsProvider,
+    private user: UserProvider,
     private order: OrderProvider) {
   }
 
@@ -31,19 +34,25 @@ export class CheckoutPage {
     this.loaddata();
   }
 
-  loaddata() {
+  async loaddata() {
     this.sale = this.order.getSale();
     this.voucher = this.order.getVoucher();
     this.locale = this.order.getLocale();
+    this.friendRef = await this.user.getCostumerData(false);
+    if(this.friendRef){
+      this.order.setFriendRef(this.friendRef);
+    }
     this.values.total = this.sale.icebox.map(e => (e.price * e.items)).reduce((b, n) => {
       return b + n
     }, 0);
+    this.values.itens = this.values.total;
     this.values.discount = this.voucher ? this.voucher.value : 0;
     this.values.total += this.locale.zone.freight_value;
-    this.values.total -= this.values.discount;
+    this.values.total -= this.voucher ? this.voucher.value : 0;
+    this.values.total -= this.friendRef ? this.friendRef.available_value : 0
     this.payment = this.sale.payment;
-    console.log('values- .', this.values);
   }
+
   setPayment(type){
     this.payment = type;
     this.order.sale.payment= type;
