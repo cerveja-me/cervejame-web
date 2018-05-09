@@ -6,7 +6,7 @@
   </button>
 </ion-header>
 
-<ion-content class="background-light">
+<ion-content padding class="background-light">
   <div *ngIf="sale">
     <div class="order" *ngFor="let item of sale.icebox">
       <figure class="order__image">
@@ -17,33 +17,6 @@
         R$ {{item.items * item.price}}
       </span>
     </div>
-  </div>
-
-  <div class="payment">
-    <button class="payment__option" [ngClass]="payment==2?'active':''" (click)="setPayment(2)">
-      <span class="icon-maquina"></span>
-      <label class="payment__option__label">Máquina</label>
-      <!-- <span class="payment__add-beercoin">
-          <span class="icon-beercoin-min"></span>
-          <label>+ 50</label>
-        </span> -->
-    </button>
-    <button class="payment__option" [ngClass]="payment==1?'active':''" (click)="setPayment(1)">
-      <span class="icon-money"></span>
-      <label class="payment__option__label">Dinheiro</label>
-      <!-- <span class="payment__add-beercoin">
-          <span class="icon-beercoin-min"></span>
-          <label>+ 50</label>
-        </span> -->
-    </button>
-    <!-- <button class="payment__option">
-        <span class="icon-beercoin"></span>
-        <label class="payment__option__label"><small>1500</small>Beercoins</label>
-      </button> -->
-    <button class="payment__option" [ngClass]="payment=='3'?'active':''" >
-      <span class="icon-card"></span>
-      <label class="payment__option__label">Via app</label>
-    </button>
   </div>
 
   <div class="checkout__total" *ngIf="locale">
@@ -83,6 +56,33 @@
       <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{30 |number:'1.2-2'}}</span>
       <small class="checkout__total__pricebox--currency">R$</small>{{values.total | number:'1.2-2'}}
     </span>
+  </div>
+  
+  <div class="payment">
+    <button class="payment__option" [ngClass]="payment==2?'active':''" (click)="setPayment(2)">
+      <span class="icon-maquina"></span>
+      <label class="payment__option__label">Máquina</label>
+      <!-- <span class="payment__add-beercoin">
+          <span class="icon-beercoin-min"></span>
+          <label>+ 50</label>
+        </span> -->
+    </button>
+    <button class="payment__option" [ngClass]="payment==1?'active':''" (click)="setPayment(1)">
+      <span class="icon-money"></span>
+      <label class="payment__option__label">Dinheiro</label>
+      <!-- <span class="payment__add-beercoin">
+          <span class="icon-beercoin-min"></span>
+          <label>+ 50</label>
+        </span> -->
+    </button>
+    <!-- <button class="payment__option">
+        <span class="icon-beercoin"></span>
+        <label class="payment__option__label"><small>1500</small>Beercoins</label>
+      </button> -->
+    <button class="payment__option soon" [ngClass]="payment=='3'?'active':''" >
+      <span class="icon-card"></span>
+      <label class="payment__option__label">Via app</label>
+    </button>
   </div>
 
   <div class="receipt__address" *ngIf="locale">{{locale.street +', '+ locale.num +' '+ locale.complement}}

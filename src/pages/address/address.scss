@@ -27,6 +27,27 @@ page-address {
             text-transform: uppercase;
             margin: 40px auto 0;
         }
+
+        &__label {
+            @extend .font-regular;
+
+            font-size: 20px;
+            margin-right: 30px;
+            color: $color-secondary;
+            margin-bottom: 20px;
+            display: block;
+        }
+    }
+
+    .input-autocomplete {
+        @include border-radius(10px);
+        @extend .font-regular;
+
+        color: $color-secondary;
+        background: white;
+        border: 2px solid $color-secondary;
+        font-size: 18px;
+        padding: 5px 15px;
     }
 
     .icon-dropdown {

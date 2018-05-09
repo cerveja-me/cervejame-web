@@ -2,18 +2,12 @@
 
   <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
 
-    <h1 class="onboarding__title">Vou encontrar a cerveja gelada mais próxima.</h1>
+    <h1 class="onboarding__title">Vou encontrar a cerveja gelada mais próxima</h1>
 
     <button class="onboarding__button" (click)="getBrowserLocation()">Usar localização</button>
 
-    <p class="msg-empty location-error">
-
-      
-   
       <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
-      <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
-        style="background:beige; color:#583318">
-      </ion-input>
+    
     
       <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
         <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
@@ -106,8 +100,9 @@
 
 
 </ion-content>
-<ion-footer align-title="left" class="bar-assertive">
+<ion-footer padding class="background-light">
   <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
   <button ion-button secondary class="map__btn" (click)="openStatus()">Pedido Aberto</button> -->
-
+  <label class="onboarding__label">Se preferir, use seu endereço ou referência</label>
+  <ion-input class="input-autocomplete" #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"></ion-input>
 </ion-footer>

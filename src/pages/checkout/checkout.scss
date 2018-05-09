@@ -116,7 +116,6 @@ page-checkout {
     font-size: 14px;
     color: $color-secondary;
     margin: 0;
-    margin: 0 15px;
     padding: 25px 0 25px 60px;
     border-top: 1px solid $color-secondary;
 
@@ -189,13 +188,11 @@ page-checkout {
     margin-top: -11px;
   }
   .payment {
-    padding-top: 15px;
     overflow: hidden;
     padding: 15px;
     box-sizing: border-box;
     font-size: 0;
-    // width: 1000%;
-    padding: 25px 15px;
+    padding: 20px 0;
 
     &__add-beercoin {
       @include border-radius(100px);
@@ -366,8 +363,8 @@ page-checkout {
 
   &__total {
     padding: 20px 0;
-    margin: 0 15px;
-    border-top: 1px solid $color-secondary;
+    margin: 0;
+    border-bottom: 1px solid $color-secondary;
     font-size: 0;
 
     &__shipping {
@@ -441,10 +438,9 @@ page-checkout {
     background: #573317;
     padding: 15px;
     position: relative;
-    margin: 0 15px 2px 15px;
+    margin-bottom: 2px;
 
     &:first-of-type {
-      margin-top: 15px;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
     }
