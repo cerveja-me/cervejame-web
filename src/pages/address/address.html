@@ -1,6 +1,6 @@
-<ion-content padding class="background-red" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
+<ion-content  padding class="background-red" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
 
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
+  <div class="onboarding" center *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
 
     <h1 class="onboarding__title">Vou encontrar a cerveja gelada mais próxima</h1>
 
