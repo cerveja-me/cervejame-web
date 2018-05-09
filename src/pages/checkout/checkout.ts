@@ -5,6 +5,7 @@ import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { HomePage } from '../home/home';
 import { StatusPage } from '../status/status';
+import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 
 @Component({
   selector: 'page-checkout',
@@ -54,7 +55,14 @@ export class CheckoutPage {
   }
 
   openModalVoucher() {
-
+    this.analitycs.registerEvent('open_voucher_checkout', {});
+    let voucherModal = this.modal.create(ModalVoucherPage);//,{}, {});
+    voucherModal.present();
+    voucherModal.onWillDismiss(v => {
+      this.voucher = v;
+      this.analitycs.registerPage('Checkout');
+      this.loaddata()
+    })
   }
 
   openLogin() {
