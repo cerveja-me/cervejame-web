@@ -18,7 +18,8 @@ export class ProfileReferralsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-  private analitycs: AnalyticsProvider) {
+    private analitycs: AnalyticsProvider
+  ) {
   }
 
   ionViewDidLoad() {
