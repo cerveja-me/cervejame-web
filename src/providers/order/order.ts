@@ -60,6 +60,9 @@ export class OrderProvider {
   }
 
   async updateLocationAddress(loc, address, number, complement) {
+    this.locale.number = number;
+    this.locale.complement = complement;
+
     const day = new Date();
     const up = {
       position_maps: loc[0] + "," + loc[1],
@@ -68,11 +71,11 @@ export class OrderProvider {
       complement: complement,
       time:day
     }
-    this.locale['number'] = number;
-    this.locale['complement'] = complement;
+
 
     try {
       this.locale = await this.net.put(this.net.c.LOCATION + this.locale['id'], up)
+      return
     } catch (error) {
       console.log('erro no put -> ', error);
     }

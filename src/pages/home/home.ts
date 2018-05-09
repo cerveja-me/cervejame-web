@@ -10,6 +10,7 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { MapPage } from '../map/map';
 import { VoucherProvider } from '../../providers/voucher/voucher';
+import { StatusPage } from '../status/status';
 
 @Component({
   selector: 'page-home',
@@ -90,6 +91,10 @@ export class HomePage {
     }
     this.err = null;
     this.loadedcompleted = true;
+  }
+
+  openStatus(){
+    this.navCtrl.setRoot(StatusPage)
   }
 
   slideChanged() {

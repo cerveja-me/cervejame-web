@@ -153,8 +153,8 @@ export class MapPage {
     this.editingAddress = false;
   }
 
-  finishOrder() {
-    this.order.updateLocationAddress({ 0: this.map.getCenter().lat(), 1: this.map.getCenter().lng() }, this.fulladdress, this.number, this.complement);
+  async finishOrder() {
+    await this.order.updateLocationAddress({ 0: this.map.getCenter().lat(), 1: this.map.getCenter().lng() }, this.fulladdress, this.number, this.complement);
     this.navCtrl.push(CheckoutPage);
     this.analitycs.registerEvent('confirm_address', {});
   }

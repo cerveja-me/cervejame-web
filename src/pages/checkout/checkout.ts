@@ -42,10 +42,10 @@ export class CheckoutPage {
     if(this.friendRef){
       this.order.setFriendRef(this.friendRef);
     }
-    this.values.total = this.sale.icebox.map(e => (e.price * e.items)).reduce((b, n) => {
+    this.values.itens = this.sale.icebox.map(e => (e.price * e.items)).reduce((b, n) => {
       return b + n
     }, 0);
-    this.values.itens = this.values.total;
+    this.values.total = this.values.itens;
     this.values.discount = this.voucher ? this.voucher.value : 0;
     this.values.total += this.locale.zone.freight_value;
     this.values.total -= this.voucher ? this.voucher.value : 0;

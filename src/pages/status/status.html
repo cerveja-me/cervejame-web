@@ -3,16 +3,27 @@
 </ion-header>
 
 <ion-content padding class="background-light">
-  <div class="order" *ngIf="sale">
-    <figure class="order__image">
-      <img class="order__image__img" src="https://cerveja.me/img/mobile/{{sale.img}}" alt="">
-    </figure>
-    <span class="order__address">
-      <label class="order__label">{{sale.amount}} {{sale.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.product}}</label>
-      <label class="order__label">R$ {{sale.payment_value |number:'1.2-2'}}</label>
-    </span>
-    <label class="order__label"></label>
+  <div *ngIf="sale">
+    <div class="order" *ngFor="let item of sale.products">
+      <figure class="order__image">
+        <img class="order__image__img" src="https://cerveja.me/img/mobile/{{item.img}}" alt="">
+      </figure>
+      <span class="order__address" >
+        <label class="order__label">{{item.amount}} {{item.cold?'Caixa':'Garrafa'}}{{item.amount>1?'s de':' de'}} {{item.name}}</label>
+        <label class="order__label">R$ {{item.price |number:'1.2-2'}}</label>
+      </span>
+      <label class="order__label"></label>
+    </div>
+    <div class="order">
+      entrega: 3
+      desconto -10
+ total: {{sale.payment_value}}
+
+    </div>
   </div>
+
+
+
   <ul class="order-status" *ngIf="sale">
     <li class="order-status__item item-first" [ngClass]="actions && actions.accepted?'active':'loading'">
       <span class="order-status__icon"></span>
