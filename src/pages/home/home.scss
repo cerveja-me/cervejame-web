@@ -257,7 +257,7 @@ h2 {
 
     .product {
         position: relative;
-
+      
         .btn-minus {
             position: absolute;
             bottom: 20px;
@@ -275,6 +275,59 @@ h2 {
             border: 2px solid $color-background;
             padding: 16px;
             box-shadow: 3px 3px 0 0 $color-background;
+        }
+
+        &.free-shipping {
+            .product__info {
+                border-bottom-left-radius: 3px;
+            }
+        }
+
+        &.with-discount {
+            .product__info {
+                border-bottom-left-radius: 3px;
+                background-color: $color-primary;
+                color: $color-background;
+            }
+        }
+
+        .free-shipping {
+            &__text {
+                @extend .font-bold;
+                @include border-radius(50px);
+
+                border-top-left-radius: 3px;
+                display: block;
+                background: $color-primary;
+                border: 2px solid $color-background;
+                color: $color-background;
+                padding: 2px 7px;
+                font-size: 14px;
+                position: absolute;
+                top: 108%;
+                left: 0;
+                box-shadow: 3px 3px 0 0 #FFFFDD;
+            }
+
+        }
+
+        .with-discount {
+            &__text {
+                @extend .font-bold;
+                @include border-radius(50px);
+
+                border-top-left-radius: 3px;
+                display: block;
+                background: $color-background;
+                color: $color-primary;
+                padding: 4px 7px;
+                font-size: 15px;
+                line-height: 1.1;
+                width: 60px;
+                position: absolute;
+                top: 108%;
+                left: 0;
+            }
         }
 
         &__amount {
@@ -401,10 +454,7 @@ h2 {
             height: 100%;
             margin: 0;
         }
-
-       
     }
-
 }
 
 .choose-slider {
@@ -417,7 +467,7 @@ h2 {
     }
 
     .swiper-slide {
-        @include border-radius(20px);
+        @include border-radius(30px);
 
         border: 2px solid $color-secondary;
         background-image: url(../assets/imgs/bkg-choose.jpg);
@@ -431,7 +481,7 @@ h2 {
             margin-left: auto;
             z-index: 3;
             transform: scale(1);
-            box-shadow: 0px 5px 30px 0 rgba($color-secondary, 0.4);
+            box-shadow: 0px 5px 20px 0 rgba($color-secondary, 0.5);
         
             .product__labels {
                 opacity: 1;
@@ -1042,12 +1092,11 @@ h2 {
     @include border-radius(0);
 
     background: $color-secondary;
-    border-top: 2px solid white;
     padding: 24px 15px;
     height: auto;
     width: 100%;
-    margin: 0;
     text-align: center;
+    border-top: 2px solid $color-background;
 
     &__text {
         @extend .font-regular;
@@ -1094,9 +1143,20 @@ h2 {
 
         &.suggest {
             width: 100%;
+            text-align: center;
+            background-image: url(../assets/imgs/other-products.png);
+            background-size: cover;
 
             .btn-minus, .btn-plus {
                 display: none;
+            }
+
+            .other-products__info {
+                font-size: 18px;
+                margin: 33px 0;
+                text-align: center;
+                width: 100%;
+                right: 0;
             }
         }
     }
@@ -1221,7 +1281,7 @@ h2 {
 
         background: #B83030;
         display: inline-block;
-        padding: 3px 20px 3px 45px;
+        padding: 3.5px 20px 3.5px 45px;
 
         .icon-baldinho {
             position: absolute;

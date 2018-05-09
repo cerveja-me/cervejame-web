@@ -45,7 +45,7 @@
 
   <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.15 [spaceBetween]=3 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
-    <ion-slide *ngFor="let prod of products;let i = index">
+    <ion-slide class="product" *ngFor="let prod of products;let i = index">
      
       <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
@@ -82,9 +82,13 @@
           <small>,{{ (prod.price | number:'0.2-2').split(',')[1] }} </small>
         </span>
         <span class="product__price-each">{{prod.volume}}ml • R$ {{prod.price/prod.amount | number:'1.2-2'}}</span>
+      
+        <!-- <span class="free-shipping__text">Entrega Grátis!</span>
+        <span class="with-discount__text">5% OFF</span> -->
+
       </div>
 
-      <button ion-button secondary class="btn-add" (click)="addToIceBox(prod,i)">
+      <button ion-button secondary class="btn-add disabled" (click)="addToIceBox(prod,i)">
         <label>Adicionar </label>
         <span class="icon-plus"></span>
       </button>
@@ -126,8 +130,8 @@
     </li> -->
     <li class="other-products__item suggest">
       <div class="other-products__info">
-        <span class="other-products__name">Quer outros produtos?</span>
-        <span class="other-products__price">Conte pra gente</span>
+        <span class="other-products__name">Quer outra coisa?</span>
+        <span class="other-products__price">Conte pra gente o que gostaria de ver aqui</span>
       </div>
       <button class="btn-plus"></button>
       <button class="btn-minus"></button>
@@ -148,5 +152,11 @@
         </span>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR <span class="icon-arrow-next"></span></button>
+  </div>
+</ion-footer>
+
+<ion-footer>
+  <div class="message" *ngIf="products.length >0 && !location.zone.open">
+    <label class="message__text">Não estamos entregando agora.</label>
   </div>
 </ion-footer>
