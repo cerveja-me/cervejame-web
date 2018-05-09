@@ -18,6 +18,14 @@
 // @import "../../node_modules/compass-sass-mixins/lib/compass";
 @import "../theme/variables";
 
+ion-app.ios [padding], ion-app.ios [padding] .scroll-content {
+    padding: 20px;
+}
+
+ion-app.md [padding], ion-app.md [padding] .scroll-content {
+    padding: 20px;
+}
+
 .logo-full {
     background-image: url(../assets/icon/logo-full.svg);
     background-size: contain;
@@ -415,7 +423,7 @@ ion-backdrop {
 }
 
 .button.activated {
-    background: #583318;
+    background: $color-primary;
 }
 
 @keyframes tip-up {
@@ -435,7 +443,7 @@ ion-backdrop {
       @include border-radius(10px);
       @extend .font-regular;
 
-      color: white;
+      color: $color-background;
       font-size: 14px;
       text-align: center;
       border: 2px solid $color-secondary;

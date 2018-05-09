@@ -260,8 +260,8 @@ h2 {
       
         .btn-minus {
             position: absolute;
-            bottom: 20px;
-            right: 170px;
+            bottom: 23px;
+            right: 165px;
             left: initial;
         }
 
@@ -1033,6 +1033,7 @@ h2 {
     width: 100%;
     margin: 0;
     text-transform: uppercase;
+    color: $color-background;
 
     &.button-md {
       font-weight: 900 !important;

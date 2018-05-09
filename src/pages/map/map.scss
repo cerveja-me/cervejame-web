@@ -64,6 +64,7 @@ page-map {
             width: 100%;
             margin: 0;
             text-transform: uppercase;
+            color: $color-background;
 
             &.disabled {
               opacity: 0.5;
