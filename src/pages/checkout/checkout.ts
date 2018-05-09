@@ -56,7 +56,7 @@ export class CheckoutPage {
 
   openModalVoucher() {
     this.analitycs.registerEvent('open_voucher_checkout', {});
-    let voucherModal = this.modal.create(ModalVoucherPage);//,{}, {});
+    let voucherModal = this.modal.create(ModalVoucherPage);
     voucherModal.present();
     voucherModal.onWillDismiss(v => {
       this.voucher = v;
@@ -101,6 +101,17 @@ export class CheckoutPage {
    }).present();
  }
 
+ async voucherError(m){
+   this.order.removeVoucher();
+   this.loaddata();
+   let alert = this.alertCtrl.create({
+     title: 'Opa!!!!',
+     message: m,
+     buttons: ['Ok']
+   });
+   alert.present();
+  }
+
  async finishOrder() {
     try {
       console.log('finaliza')
@@ -118,6 +129,8 @@ export class CheckoutPage {
         case 1002:
           this.selectPayment()
           break;
+        case 1003:
+          this.voucherError(error.text_message)
         default:
           console.log('error', error)
           break;

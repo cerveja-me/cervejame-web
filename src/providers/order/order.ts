@@ -114,6 +114,8 @@ export class OrderProvider {
   async completeOrder(){
     try {
       this.sale.voucher = this.voucher;
+      console.log('sale', this.sale)
+
       let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale);
       return sale;
     } catch (error) {

@@ -46,10 +46,10 @@
   <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.15 [spaceBetween]=3 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
     <ion-slide class="product" *ngFor="let prod of products;let i = index">
-     
+
       <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
-         
+
           <figure class="product__picture">
             <img src="https://cerveja.me/img/mobile/{{prod.img}}" alt="">
           </figure>
@@ -82,7 +82,7 @@
           <small>,{{ (prod.price | number:'0.2-2').split(',')[1] }} </small>
         </span>
         <span class="product__price-each">{{prod.volume}}ml • R$ {{prod.price/prod.amount | number:'1.2-2'}}</span>
-      
+
         <!-- <span class="free-shipping__text">Entrega Grátis!</span>
         <span class="with-discount__text">5% OFF</span> -->
 
@@ -126,7 +126,7 @@
           <strong>12</strong>,00</span>
       </div>
       <button class="btn-plus"></button> -->
-      <!-- <button class="btn-minus"></button> 
+      <!-- <button class="btn-minus"></button>
     </li> -->
     <li class="other-products__item suggest">
       <div class="other-products__info">
@@ -143,7 +143,7 @@
 <ion-footer *ngIf="(iceBox && iceBox.length) || (voucher && voucher.value)" align-title="left" (click)="showTip=false">
   <div class="baldinho">
     <span class="baldinho__box">
-      <span class="icon-baldinho"></span> 
+      <span class="icon-baldinho"></span>
         <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}}</span>
         <span class="baldinho__value">
           <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
@@ -155,8 +155,8 @@
   </div>
 </ion-footer>
 
-<ion-footer>
+<!-- <ion-footer>
   <div class="message" *ngIf="products.length >0 && !location.zone.open">
     <label class="message__text">Não estamos entregando agora.</label>
   </div>
-</ion-footer>
+</ion-footer> -->
