@@ -17,7 +17,8 @@ export class OrderProvider {
     icebox: [],
     freight_value: 0,
     payment:null,
-    voucher:null
+    voucher:null,
+    friendRef:null
   }
 
   constructor(
@@ -93,6 +94,10 @@ export class OrderProvider {
     this.voucher = null;
   }
 
+  setFriendRef(fr){
+    this.sale.friendRef = fr;
+  }
+
   setItems(icebox) {
     this.sale.icebox = icebox
   }
@@ -114,6 +119,8 @@ export class OrderProvider {
   async completeOrder(){
     try {
       this.sale.voucher = this.voucher;
+      console.log('sale', this.sale)
+
       let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale);
       return sale;
     } catch (error) {

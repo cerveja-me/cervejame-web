@@ -21,22 +21,33 @@
 
   <div class="checkout__total" *ngIf="locale">
     <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
+      <span class="checkout__total__title">Itens Balde</span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ {{this.values.itens |number:'1.2-2'}}</span>
+      </span>
+    </div>
+
+    <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
       <span class="checkout__total__title" *ngIf="!locale.zone.free_shipping">Entrega</span>
       <span class="checkout__total__title" *ngIf="locale.zone.free_shipping">Entrega grátis</span>
       <span class="checkout__total__pricebox">
         <span class="checkout__total__price">R$ {{locale.zone.freight_value |number:'1.2-2'}}</span>
       </span>
     </div>
+
     <div class="checkout__total__shipping" *ngIf="voucher">
       <span class="checkout__total__title">Cupom ({{voucher.code}}) </span>
       <span class="checkout__total__pricebox">
         <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
       </span>
     </div>
-    <div class="checkout__total__shipping" *ngIf="friend_ref && false">
+
+<div class="checkout__total__shipping" *ngIf="friendRef && friendRef.available_value >0">
+
+
       <span class="checkout__total__title">DA GALERA </span>
       <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ -{{0 |number:'1.2-2'}}</span>
+      <span class="checkout__total__price">R$ -{{friendRef.available_value |number:'1.2-2'}}</span>
       </span>
     </div>
 

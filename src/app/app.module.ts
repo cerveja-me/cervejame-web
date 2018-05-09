@@ -32,6 +32,8 @@ import { CheckoutPage } from '../pages/checkout/checkout';
 import { AddressPage } from '../pages/address/address';
 import { StatusPage } from '../pages/status/status';
 import { FeedbackPage } from '../pages/feedback/feedback';
+import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
+import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referrals';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
     ModalVoucherPage,
     ModalRegisterPage,
     StatusPage,
-    FeedbackPage
+    FeedbackPage,
+    ProfileTermsPage,
+    ProfileReferralsPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
     ModalVoucherPage,
     ModalRegisterPage,
     StatusPage,
-    FeedbackPage
+    FeedbackPage,
+    ProfileTermsPage,
+    ProfileReferralsPage
 
   ],
   providers: [
