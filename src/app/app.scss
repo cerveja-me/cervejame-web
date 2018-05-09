@@ -83,7 +83,27 @@
 }
 
 .background-light {
-    background: #FFFFDD;
+    background: $color-background;
+}
+
+.background-red {
+    background: $color-primary;
+}
+
+.btn-white {
+    @include border-radius(50px);
+    @extend .font-bold !optional;
+
+    background: $color-secondary-light;
+    border: 2px solid white;
+    font-size: 17px;
+    padding: 15px 30px;
+    height: auto;
+    width: 100%;
+    transition: all .5s;
+    color: $color-secondary;
+    text-transform: uppercase;
+    margin: 15px auto 0;
 }
 
 .msg {

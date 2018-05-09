@@ -1,11 +1,11 @@
 <ion-header (click)="showTip=false" class="header-home">
   <ion-title>
-    <button class="btn-schedule" ion-button secondary *ngIf="products && products.length > 0 && location.zone.open" (click)="openSchedule()">
+    <button class="btn-schedule" ion-button secondary *ngIf="products && products.length > 0 && !location.zone.open" (click)="openSchedule()">
       <span class="icon-opened"></span>
       <label>Entrega em 25min</label>
       <span class="icon-dropdown"></span>
     </button>
-    <button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products.length >0 && !location.zone.open">
+    <button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products.length >0 && location.zone.open">
       <label>Ver Horários</label>
       <span class="icon-dropdown"></span>
     </button>
@@ -155,8 +155,8 @@
   </div>
 </ion-footer>
 
-<!-- <ion-footer>
+<ion-footer>
   <div class="message" *ngIf="products.length >0 && !location.zone.open">
     <label class="message__text">Não estamos entregando agora.</label>
   </div>
-</ion-footer> -->
+</ion-footer>

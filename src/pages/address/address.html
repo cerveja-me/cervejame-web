@@ -1,34 +1,25 @@
-<ion-header (click)="showTip=false" class="header-home">
-
-</ion-header>
-
-<ion-content class="background-light center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
-
+<ion-content padding class="background-red" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
 
   <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
 
+    <h1 class="onboarding__title">Vou encontrar a cerveja gelada mais próxima.</h1>
+
+    <button class="onboarding__button" (click)="getBrowserLocation()">Usar localização</button>
+
     <p class="msg-empty location-error">
 
-      <span class="msg-empty__title">Endereço!</span>
-
-      informe seu endereço para produtos disponiveis
+      
+   
       <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
       <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
         style="background:beige; color:#583318">
       </ion-input>
-      <button class="btn-white" (click)="getBrowserLocation()">Pegar Localização automaticamente</button>
-
+    
       <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
         <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
           <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
       </ul>
-
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
+    
   </div>
   <!-- nao atendido -->
   <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
@@ -116,7 +107,7 @@
 
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
-  <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button> -->
-  <button ion-button secondary class="map__btn" (click)="openStatus()">Pedido Aberto</button>
+  <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
+  <button ion-button secondary class="map__btn" (click)="openStatus()">Pedido Aberto</button> -->
 
 </ion-footer>

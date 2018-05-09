@@ -1,4 +1,34 @@
 page-address {
+
+    .onboarding {
+        &__title {
+            @extend .font-regular;
+
+            letter-spacing: 0.025em;
+            font-size: 32px;
+            color: $color-background;
+            margin: 0;
+            margin-left: -20px;
+            border-left: 10px solid $color-background;
+            padding-left: 30px;
+        }
+
+        &__button {
+            @include border-radius(50px);
+            @extend .font-bold;
+        
+            background: $color-background;
+            font-size: 20px;
+            padding: 20px 30px;
+            height: auto;
+            width: 100%;
+            transition: all .5s;
+            color: $color-primary;
+            text-transform: uppercase;
+            margin: 40px auto 0;
+        }
+    }
+
     .icon-dropdown {
       background: url(../assets/icon/icon-dropdown.svg);
       width: 10px;
