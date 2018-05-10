@@ -20,7 +20,7 @@
 </ion-header>
 
 <ion-content class="background-light center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
-  <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="loadedcompleted  && !err">
+  <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="loadedcompleted  && !err && sale">
 
     <span class="order-status-bar__label" *ngIf="!actions.review && !actions.accepted && !actions.finishedAt && !actions.onWay">
       <span class="icon-loading"></span>
