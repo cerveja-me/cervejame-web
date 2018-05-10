@@ -145,24 +145,26 @@ export class HomePage {
   async verifyOpenSale() {
     try {
       this.sale = await this.order.getOrders();
-      if (this.sale.complement) {
-        this.sale.complement = ' compl.:' + this.sale.complement;
-      }
-      if (this.sale.actions) {
-        for (let i = 0; i < this.sale.actions.length; i++) {
-          switch (this.sale.actions[i].action) {
-            case 1:
-              this.actions.accepted = this.sale.actions[i];
-              break;
-            case 2:
-              this.actions.onWay = this.sale.actions[i];
-              // this.zone.run(() => { });
-              break;
-            case 4:
-              this.actions.finishedAt = this.sale.actions[i];
-              // this.actionClose = 'Avaliar Entrega'
-              // this.zone.run(() => { });
-              break;
+      if (this.sale){
+        if (this.sale.complement) {
+          this.sale.complement = ' compl.:' + this.sale.complement;
+        }
+        if (this.sale.actions) {
+          for (let i = 0; i < this.sale.actions.length; i++) {
+            switch (this.sale.actions[i].action) {
+              case 1:
+                this.actions.accepted = this.sale.actions[i];
+                break;
+              case 2:
+                this.actions.onWay = this.sale.actions[i];
+                // this.zone.run(() => { });
+                break;
+              case 4:
+                this.actions.finishedAt = this.sale.actions[i];
+                // this.actionClose = 'Avaliar Entrega'
+                // this.zone.run(() => { });
+                break;
+            }
           }
         }
       }
