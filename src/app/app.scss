@@ -103,6 +103,17 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
     background: $color-primary;
 }
 
+.background-modal-red {
+    background: $color-background;
+
+    .scroll-content {
+        @include border-radius(20px);
+        
+        background: $color-primary;
+        margin: 20px;
+    }
+}
+
 .btn-white {
     @include border-radius(50px);
     @extend .font-bold !optional;

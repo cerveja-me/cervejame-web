@@ -1,3 +1,11 @@
 page-first-time {
+    .header.header-dark {
+        .toolbar .toolbar-background {
+            background: transparent;
+        }
 
+        &:after {
+            display: none;
+        }
+    }
 }
