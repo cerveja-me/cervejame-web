@@ -22,7 +22,7 @@
    </div>
   <!-- nao atendido -->
 
-  <div *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'" class="msg-empty">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
 
       <span class="msg-empty__title">Não atendemos essa região. Ainda.</span>
 
@@ -34,71 +34,39 @@
   </div>
 
   <!-- erro na localização automatica -->
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
-    <p class="msg-empty location-error">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
 
-      <span class="msg-empty__title">Oops!</span>
+      <span class="msg-empty__title">Deu ruim!</span>
 
       Não conseguimos identificar sua localização automaticamente.
-      <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+      <button class="onboarding__button" (click)="tryAgain()">Tentar novamente</button>
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
   </div>
 
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
-    <p class="msg-empty location-error">
+  <div  class="msg-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
 
       <span class="msg-empty__title">Alta demanda!</span>
 
-      Por causa da alta demanda, não estamos recebendo pedidos por agora.
-      <button class="btn-white" (click)="tryAgain()">Verificar novamente</button>
+      Por causa da alta demanda, não estamos recebendo pedidos.
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
+      <button class="onboarding__button" (click)="tryAgain()">Verificar novamente</button>
 
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
   </div>
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
-    <p class="msg-empty location-error">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
 
-      <span class="msg-empty__title">Onde você está?</span>
+      <span class="msg-empty__title">Não te localizei.</span>
 
       Ative o uso da Localização nas configurações do seu aparelho.
-      <button class="btn-white" (click)="tryAgain()">Já ativei</button>
+      <button  class="onboarding__button" (click)="tryAgain()">Já ativei</button>
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
   </div>
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
-    <p class="msg-empty location-error">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
 
-      <span class="msg-empty__title">Internet?</span>
+      <span class="msg-empty__title">Internet Offline.</span>
 
       Tivemos algum problema com a conexão.
-      <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
-
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
+      <button class="onboarding__button" (click)="tryAgain()">Tentar novamente</button>
+    
   </div>
 
 </ion-content>
-<ion-footer>
-  <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
-  <button ion-button secondary class="map__btn" (click)="openStatus()">Pedido Aberto</button> -->
- 
-</ion-footer>
