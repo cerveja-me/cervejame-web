@@ -10,17 +10,17 @@
 
     <div class="autocomplete-box">
       <ion-input class="input-autocomplete" #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"></ion-input>
-       
+
       <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
         <li class="map__address__autocomplete__item address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
           <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
       </ul>
-  
+
     </div>
-   
+
       <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
-   
-    
+
+
   </div>
   <!-- nao atendido -->
   <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
@@ -31,7 +31,8 @@
       Quer levar para sua cidade?
       <br/> Saiba como:
       <strong>
-        <a href="https://cerveja.me/mini-franquia" target="_blank">Cerveja.me</a>
+<a href="https://cerveja.me/mini-franquia" target="_blank" (click)="openPartner()">Cerveja.me</a>
+
       </strong>
     </p>
     <p class="choose__bottom">
@@ -109,5 +110,5 @@
 <ion-footer>
   <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
   <button ion-button secondary class="map__btn" (click)="openStatus()">Pedido Aberto</button> -->
- 
+
 </ion-footer>

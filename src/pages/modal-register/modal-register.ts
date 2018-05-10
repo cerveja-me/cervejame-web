@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { UserProvider } from '../../providers/user/user';
 
@@ -29,7 +29,8 @@ export class ModalRegisterPage {
     public navParams: NavParams,
     private analitycs: AnalyticsProvider,
     private user: UserProvider,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private alertCtrl: AlertController
   ) {
   }
 
@@ -37,15 +38,29 @@ export class ModalRegisterPage {
     this.analitycs.registerPage('Register');
   }
 
-  createUser() {
-    this.profile['email'] = this.profile['login'];
-    this.user.profileSignUp(this.profile)
-      .then(r => {
-        this.viewCtrl.dismiss('success');
-      })
-      .catch(e => {
-        console.log('erro cadastro ->', e);
-      })
+  showCreateError(){
+    this.alertCtrl.create({
+      title:'Erro ao Cadastrar!',
+      message:'O email informado já esta sendo utilizado, se achar que isso é um erro por favor nos comunique contato@cerveja.me',
+      buttons:['ok']
+    }).present()
+  }
+  async createUser() {
+    try {
+      this.profile['email'] = this.profile['login'];
+      await this.user.profileSignUp(this.profile)
+      this.viewCtrl.dismiss('success');
+    } catch (error) {
+      console.log('error -> ',error)
+      switch(error.error.code){
+        case 1005:
+        this.showCreateError();
+        default:
+
+      }
+    }
+
+
   }
 
 }

@@ -118,6 +118,7 @@ export class AddressPage {
   openPartner() {
     this.analitycs.registerEvent('open_partner', {})
     // this.inApp.create('https://cvja.me/2y10JuH')
+    window.open('https://cerveja.me/mini-franquia', '_system');
   }
 
   openLogin() {
