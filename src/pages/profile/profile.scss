@@ -34,11 +34,14 @@ page-profile {
     }
 
     &__voucher {
+      @include border-radius(20px);
+
       background-color: $color-success;
       padding: 20px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      margin: 20px;
 
       &__background {
         background-image: url(../assets/icon/icon-galera-w.svg);
@@ -78,7 +81,7 @@ page-profile {
       }
 
       &__input {
-        @include border-radius(10px);
+        @include border-radius(15px);
         @extend .font-regular;
 
         font-size: 26px;

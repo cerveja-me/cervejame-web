@@ -435,7 +435,7 @@ h2 {
             z-index: 2;
             left: -50%;
             bottom: 15%;
-            margin: 0 0 -10% -22.5%;
+            margin: 0 0 -10% -20%;
             display: block;
             position: absolute;
             z-index: 2;
@@ -470,7 +470,7 @@ h2 {
         @include border-radius(30px);
 
         border: 2px solid $color-secondary;
-        background-image: url(../assets/imgs/bkg-choose.jpg);
+        background-image: url(../assets/imgs/bkg-brazil.jpg);
         background-size: cover;
         background-position: center;
         transform: scale(0.9);
@@ -781,6 +781,7 @@ h2 {
     margin: 0;
     position: relative;
     z-index: 3;
+    box-shadow: none;
 
     &.activated {
         background: $color-secondary;
@@ -1205,6 +1206,11 @@ h2 {
     text-transform: uppercase;
     z-index: 3;
     transition: opacity 0.2s;
+    box-shadow: none;
+
+    &.activated {
+        background: $color-success;
+    }
 
     &.dragging {
         opacity: 0.2;
@@ -1227,8 +1233,9 @@ h2 {
     font-size: 18px;
     background: none;
     color: white;
-    padding: 0px 15px;
-    // border: 2px solid $color-secondary;
+    padding: 17px 15px;
+    box-shadow: none;
+    height: initial;
 }
 
 @keyframes baldinho-animate {

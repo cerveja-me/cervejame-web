@@ -209,8 +209,9 @@ page-status {
   .btn-finish {
     @include border-radius(50px);
     @extend .font-bold;
+
     border-radius: 0;
-    background: white;
+    background: $color-background;
     border-top: 2px solid $color-secondary;
     font-size: 18px;
     padding: 20px;
@@ -219,5 +220,9 @@ page-status {
     margin: 10px 0 0 0;
     text-transform: uppercase;
     color: $color-secondary;
+    
+    &.activated {
+      background:  $color-background;
+  }
   }
 }
