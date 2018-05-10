@@ -19,6 +19,7 @@ export class CheckoutPage {
   values: any = {};
   payment;
   friendRef:any;
+  phone:string;
   constructor(
     public navCtrl: NavController,
     private modal: ModalController,
@@ -121,6 +122,38 @@ export class CheckoutPage {
    alert.present();
   }
 
+  async askPhoneAndComplement(){
+    let prompt = this.alertCtrl.create({
+      title: 'Telefone',
+      message: "Para melhorar sua entrega, informe seu telefone.",
+      inputs: [
+        {
+          name: 'phone',
+          placeholder: 'Seu Telefone ex. :(11)99123-1234',
+          type: 'tel',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            this.analitycs.registerEvent('order_canceled',{});
+          }
+        },
+        {
+          text: 'Continuar',
+          handler:   async data => {
+            if (data.phone) {
+              await this.user.costumerUpdate(data.phone)
+              this.finishOrder()
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
  async finishOrder() {
     try {
       console.log('finaliza')
@@ -140,6 +173,8 @@ export class CheckoutPage {
           break;
         case 1003:
           this.voucherError(error.text_message)
+        case 1004:
+          this.askPhoneAndComplement()
         default:
           console.log('error', error)
           break;

@@ -100,13 +100,13 @@ export class UserProvider {
     }
   }
 
-  async  costumerUpdate(phone) {
+  async costumerUpdate(phone) {
     let u = {
       phone: phone
     }
     try {
       let data = await this.network.post(this.network.c.USER, u)
-      this.updateCostumerData();
+      await this.updateCostumerData();
       return data;
     } catch (error) {
       throw error
