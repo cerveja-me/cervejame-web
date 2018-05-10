@@ -11,6 +11,8 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { MapPage } from '../map/map';
 import { VoucherProvider } from '../../providers/voucher/voucher';
 import { StatusPage } from '../status/status';
+import 'rxjs/add/observable/interval';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -31,6 +33,8 @@ export class HomePage {
   updatingAmount;
   loader;
   err: string;
+  sale:any;
+  sub:any;
   actions: any = {
     accepted: null,
     onWay: null,
@@ -64,6 +68,11 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.getZone();
+    this.verifyOpenSale();
+    this.sub = Observable.interval(10000)
+      .subscribe((val) => {
+        this.verifyOpenSale();
+      });
   }
 
   async setAddress(a) {
@@ -133,9 +142,36 @@ export class HomePage {
       })
   }
 
-  openPartner() {
-    // this.inApp.create('https://cvja.me/2y10JuH')
+  async verifyOpenSale() {
+    try {
+      this.sale = await this.order.getOrders();
+      if (this.sale.complement) {
+        this.sale.complement = ' compl.:' + this.sale.complement;
+      }
+      if (this.sale.actions) {
+        for (let i = 0; i < this.sale.actions.length; i++) {
+          switch (this.sale.actions[i].action) {
+            case 1:
+              this.actions.accepted = this.sale.actions[i];
+              break;
+            case 2:
+              this.actions.onWay = this.sale.actions[i];
+              // this.zone.run(() => { });
+              break;
+            case 4:
+              this.actions.finishedAt = this.sale.actions[i];
+              // this.actionClose = 'Avaliar Entrega'
+              // this.zone.run(() => { });
+              break;
+          }
+        }
+      }
+    } catch (error) {
+      console.log('erro ->', error);
+    }
+
   }
+
 
   openLogin() {
     let loginModal = this.modal.create(ModalLoginPage)

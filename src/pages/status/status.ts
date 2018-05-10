@@ -39,6 +39,10 @@ export class StatusPage {
       });
   }
 
+  ionViewDidLeave(){
+    this.sub.unsubscribe();
+  }
+
   ionViewDidLoad() {
     this.analitycs.registerPage('status');
     this.verifyOpenSale();
