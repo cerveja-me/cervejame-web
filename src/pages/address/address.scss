@@ -145,6 +145,14 @@ page-address {
                       margin: 0;
                   }
 
+                  input::placeholder {
+                    color: $color-background;
+                  }
+
+                  input::-webkit-input-placeholder {
+                    color: $color-background;
+                  }
+
                   &:first-child {
                       border-top-left-radius: 10px;
                       border-top-right-radius: 10px;

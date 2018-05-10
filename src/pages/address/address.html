@@ -19,27 +19,18 @@
     </div>
    
       <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
-   
-    
-  </div>
+   </div>
   <!-- nao atendido -->
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
-    <p class="msg-empty">
 
-      <span class="msg-empty__title">Não atendemos sua região.</span>
+  <div *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'" class="msg-empty">
 
-      Quer levar para sua cidade?
-      <br/> Saiba como:
+      <span class="msg-empty__title">Não atendemos essa região. Ainda.</span>
+
       <strong>
-        <a href="https://cerveja.me/mini-franquia" target="_blank">Cerveja.me</a>
+          Quer ser parceiro?
+        <a href="https://cerveja.me/mini-franquia" target="_blank">Saiba Mais</a>
       </strong>
-    </p>
-    <p class="choose__bottom">
-      <figure class="choose__picture" style="bottom: 5%;">
-
-        <img style="margin-top: 45%" src="assets/imgs/empty.png">
-      </figure>
-    </p>
+   
   </div>
 
   <!-- erro na localização automatica -->
