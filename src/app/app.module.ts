@@ -34,6 +34,7 @@ import { StatusPage } from '../pages/status/status';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referrals';
+import { FirstTimePage } from '../pages/first-time/first-time';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referra
     StatusPage,
     FeedbackPage,
     ProfileTermsPage,
-    ProfileReferralsPage
+    ProfileReferralsPage,
+    FirstTimePage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referra
     StatusPage,
     FeedbackPage,
     ProfileTermsPage,
-    ProfileReferralsPage
+    ProfileReferralsPage,
+    FirstTimePage
 
   ],
   providers: [

@@ -10,6 +10,7 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { StatusPage } from '../status/status';
+import { FirstTimePage } from '../first-time/first-time';
 
 
 @Component({
@@ -119,6 +120,11 @@ export class AddressPage {
     this.analitycs.registerEvent('open_partner', {})
     // this.inApp.create('https://cvja.me/2y10JuH')
     window.open('https://cerveja.me/mini-franquia', '_system');
+  }
+
+  openFirstTime(){
+    let firsttimeModal = this.modal.create(FirstTimePage)
+    firsttimeModal.present();
   }
 
   openLogin() {
