@@ -1,11 +1,16 @@
 page-address {
 
+    .address__autocomplete {
+        margin: -12px 10px 0;
+        background: white;
+    }
+
     .onboarding {
         &__title {
             @extend .font-regular;
 
             letter-spacing: 0.025em;
-            font-size: 32px;
+            font-size: 28px;
             color: $color-background;
             margin: 0;
             margin-left: -20px;

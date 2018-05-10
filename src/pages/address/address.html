@@ -1,4 +1,4 @@
-<ion-content  padding class="background-red" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
+<ion-content padding class="background-red align-center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
 
   <div class="onboarding" center *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
 
@@ -7,12 +7,7 @@
     <button class="onboarding__button" (click)="getBrowserLocation()">Usar localização</button>
 
       <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
-    
-    
-      <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
-        <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
-          <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
-      </ul>
+   
     
   </div>
   <!-- nao atendido -->
@@ -98,11 +93,15 @@
       </p>
   </div>
 
-
 </ion-content>
 <ion-footer padding class="background-light">
   <!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
   <button ion-button secondary class="map__btn" (click)="openStatus()">Pedido Aberto</button> -->
   <label class="onboarding__label">Se preferir, use seu endereço ou referência</label>
   <ion-input class="input-autocomplete" #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"></ion-input>
+     
+  <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
+    <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
+      <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
+  </ul>
 </ion-footer>

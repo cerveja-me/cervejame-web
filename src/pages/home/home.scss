@@ -766,6 +766,10 @@ h2 {
     position: relative;
     z-index: 3;
 
+    &.activated {
+        background: $color-secondary;
+    }
+
     .icon-loading {
         background-image: url(../assets/icon/icon-loading-light.svg);
         background-size: cover;
@@ -824,19 +828,6 @@ h2 {
             height: 100%;
             width: auto;
         }
-    }
-
-    &:after {
-        content: '';
-        width: 22px;
-        height: 22px;
-        background-image: url(../assets/icon/icon-up-brown.svg);
-        display: block;
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        margin-top: -11px;
-        transform: rotate(180deg);
     }
 }
 
@@ -1079,7 +1070,7 @@ h2 {
     @include border-radius(0);
 
     background: $color-secondary;
-    padding: 24px 15px;
+    padding: 20px 15px;
     height: auto;
     width: 100%;
     text-align: center;
