@@ -401,7 +401,7 @@ page-checkout {
       @extend .font-bold;
       @include border-radius(10px);
       box-sizing: border-box;
-      font-size: 26px;
+      font-size: 24px;
       color: $color-secondary;
       display: inline-block;
       width: 60%;
@@ -424,6 +424,7 @@ page-checkout {
       text-align: right;
       display: block;
       margin-bottom: 0;
+      text-transform: initial;
 
       &.discount {
         text-decoration: line-through;
@@ -433,12 +434,11 @@ page-checkout {
 }
 
 .order {
- //    @include border-radius(20px);
 
     background: #573317;
     padding: 15px;
     position: relative;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 
     &:first-of-type {
       border-top-left-radius: 20px;
@@ -478,11 +478,11 @@ page-checkout {
     }
 
     &__price {
-      @extend .font-bold;
+      @extend .font-regular;
 
       color: $color-background;
-      font-size: 20px;
-      text-transform: uppercase;
+      font-size: 16px;
+      text-transform: initial;
       display: inline-block;
       vertical-align: middle;
     }
@@ -504,7 +504,7 @@ page-checkout {
 
         color: $color-background;
         font-size: 14px;
-        text-transform: uppercase;
+        text-transform: initial;
         display: block;
         margin-bottom: 2px;
         white-space: nowrap;

@@ -8,14 +8,13 @@
       <figure class="order__image">
         <img class="order__image__img" src="https://cerveja.me/img/mobile/{{item.img}}" alt="">
       </figure>
-      <span class="order__address" >
+      <span class="order__price" >
         <label class="order__label">{{item.amount}} {{item.cold?'Caixa':'Garrafa'}}{{item.amount>1?'s de':' de'}} {{item.name}}</label>
       </span>
-      <label class="order__label"></label>
     </div>
 
     <div class="order">
-      <label class="order__label">R$ {{sale.payment_value |number:'1.2-2'}}</label>
+      <label class="order__label">Total a pagar: R$ {{sale.payment_value |number:'1.2-2'}}</label>
     </div>
   </div>
 

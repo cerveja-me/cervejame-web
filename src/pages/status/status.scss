@@ -20,13 +20,18 @@ page-status {
   }
 
   .order {
-    margin-bottom: 25px;
+    margin-bottom: 1px;
 
     &:first-of-type {
       margin-top: 0;
     }
 
-    &:after {
+    &__image {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:last-of-type:after {
       content: '';
       background-image: url(../assets/icon/trigger-brown.svg);
       background-size: cover;
@@ -34,7 +39,7 @@ page-status {
       height: 23px;
       position: absolute;
       top: 100%;
-      left: 32px;
+      left: 24px;
       display: block;
       margin-top: -12px;
     }
@@ -42,8 +47,8 @@ page-status {
 
   .order-status {
     list-style-image: none;
-    padding-left: 30px;
-    padding-top: 15px;
+    padding-left: 20px;
+    padding-top: 10px;
 
     &__item {
       display: block;
