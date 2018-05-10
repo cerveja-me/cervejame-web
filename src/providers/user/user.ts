@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { NetworkProvider } from '../network/network';
 import { DeviceProvider } from '../device/device';
 import { StorageProvider } from '../storage/storage';
+import { FacebookProvider } from '../facebook/facebook';
 
 @Injectable()
 export class UserProvider {
@@ -10,7 +11,8 @@ export class UserProvider {
   constructor(
     private network: NetworkProvider,
     public device: DeviceProvider,
-    private storage: StorageProvider) {
+    private storage: StorageProvider,
+    private fb:FacebookProvider) {
 
   }
 
