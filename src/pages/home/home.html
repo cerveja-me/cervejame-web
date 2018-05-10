@@ -99,8 +99,6 @@
         <label>Adicionar </label>
         <span class="icon-plus"></span>
       </button>
-
-
       <button class="btn-minus" (click)="removeFromIceBox(prod,i)" [ngClass]="changingSlide || !prod.items ? 'dragging': '' "></button>
     </ion-slide>
   </ion-slides>
@@ -156,7 +154,6 @@
         <span class="baldinho__value">
           <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
           <br>
-          <strong *ngIf="voucher && voucher.value">{{voucher.code}} R$ {{voucher.value | number:'1.2-2'}}</strong>
         </span>
     </span>
     <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR <span class="icon-arrow-next"></span></button>
