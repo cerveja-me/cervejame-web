@@ -574,7 +574,23 @@ h2 {
     margin-bottom: 1px;
 }
 
+@keyframes pop-alert {
+    0% {
+        transform: scale(0);
+    }
 
+    50% {
+        transform: scale(1.1);
+    }
+
+    75% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 
 .msg-empty {
     @extend .font-regular;
@@ -591,6 +607,8 @@ h2 {
     display: flex;
     align-items: center;
     position: relative;
+    animation: pop-alert 0.5s ease 0.2s 1 normal;
+    animation-fill-mode: both;
 
     &__title {
         @extend .font-bold;
