@@ -4,6 +4,7 @@ import { LocationProvider } from '../location/location';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 import { DeviceProvider } from '../device/device';
+import { UserProvider } from '../user/user';
 
 
 @Injectable()
@@ -25,7 +26,8 @@ export class OrderProvider {
     private location: LocationProvider,
     private net: NetworkProvider,
     private c: ConstantsProvider,
-    private device: DeviceProvider
+    private device: DeviceProvider,
+    private user: UserProvider
   ) { }
 
 
@@ -71,8 +73,6 @@ export class OrderProvider {
       complement: complement,
       time:day
     }
-
-
     try {
       this.locale = await this.net.put(this.net.c.LOCATION + this.locale['id'], up)
       return
@@ -122,8 +122,6 @@ export class OrderProvider {
   async completeOrder(){
     try {
       this.sale.voucher = this.voucher;
-      console.log('sale', this.sale)
-
       let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale);
       return sale;
     } catch (error) {
@@ -133,9 +131,10 @@ export class OrderProvider {
 
   async getOrders() {
     try {
+      await this.user.isAuth()
       return await this.net.get(this.c.SALE)
     } catch (error) {
-      console.log('err -> ',error)
+      //não
     }
   }
   async rateOrder(r) {

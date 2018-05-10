@@ -125,6 +125,11 @@ export class UserProvider {
   }
   async getCostumerData(fromcache) {
     try {
+      await this.isAuth()
+    } catch (error) {
+      return null
+    }
+    try {
       const c = await this.storage.get(this.network.c.USER)
       if (c && c['code'] && c['time'] && fromcache) {
         return c;
@@ -134,6 +139,7 @@ export class UserProvider {
     } catch (error) {
       return this.retrieveCostumerData();
     }
+
   }
 
   async updateCostumerData() {

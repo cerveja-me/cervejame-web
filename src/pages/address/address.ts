@@ -75,7 +75,6 @@ export class AddressPage {
 
   async addressChange() {
     let v = this.navCtrl.getActive();
-    console.log(v)
     this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
   }
 
