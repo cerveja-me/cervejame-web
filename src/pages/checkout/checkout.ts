@@ -129,7 +129,7 @@ export class CheckoutPage {
       inputs: [
         {
           name: 'phone',
-          placeholder: 'Seu Telefone ex. :(11)99123-1234',
+          placeholder: '(XX) 99999-9999',
           type: 'tel',
         }
       ],
