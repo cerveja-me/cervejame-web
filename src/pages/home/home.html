@@ -90,10 +90,16 @@
 
       </div>
 
-      <button ion-button secondary class="btn-add" (click)="addToIceBox(prod,i)">
+      <button ion-button secondary class="btn-add" *ngIf="location.zone.open" (click)="addToIceBox(prod,i)">
+
         <label>Adicionar </label>
         <span class="icon-plus"></span>
       </button>
+      <button ion-button secondary class="btn-add" disabled *ngIf="!location.zone.open" >
+        <label>Adicionar </label>
+        <span class="icon-plus"></span>
+      </button>
+
 
       <button class="btn-minus" (click)="removeFromIceBox(prod,i)" [ngClass]="changingSlide || !prod.items ? 'dragging': '' "></button>
     </ion-slide>
