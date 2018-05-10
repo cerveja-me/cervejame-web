@@ -10,14 +10,14 @@
 
     <div class="autocomplete-box">
       <ion-input class="input-autocomplete" #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"></ion-input>
-       
+
       <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
         <li class="map__address__autocomplete__item address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
           <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
       </ul>
-  
+
     </div>
-   
+
       <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
    </div>
   <!-- nao atendido -->
@@ -28,9 +28,10 @@
 
       <strong>
           Quer ser parceiro?
-        <a href="https://cerveja.me/mini-franquia" target="_blank">Saiba Mais</a>
+<a href="https://cerveja.me/mini-franquia" target="_blank" (click)="openPartner()">Saiba Mais</a>
+
       </strong>
-   
+
   </div>
 
   <!-- erro na localização automatica -->
@@ -70,3 +71,10 @@
   </div>
 
 </ion-content>
+<ion-footer>
+<!-- <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>-->
+
+<button ion-button secondary class="map__btn" (click)="openFirstTime()">IDADE</button>
+
+
+</ion-footer>
