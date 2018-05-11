@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ConstantsProvider } from '../constants/constants';
+
 import 'rxjs/add/operator/map';
 
 declare var FB;
@@ -7,9 +9,9 @@ declare var FB;
 @Injectable()
 export class FacebookProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient,private c:ConstantsProvider) {
     FB.init({
-      appId: '339667689763204',
+      appId: c.FB_APP_ID,
       cookie: true,
       xfbml: true,
       version: 'v3.0'
