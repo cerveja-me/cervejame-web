@@ -37,60 +37,52 @@ export class UserProvider {
     }
   }
 
-  facebookData() {
+  async facebookData() {
     return new Promise((resolve, reject) => {
       let permissions = new Array();
       permissions = ["public_profile", "email"];
-      // this.fb.login(permissions)
-      //   .then(data => {
-      //     let params = new Array();
-      //     this.fb.api("/me?fields=id,name,email,first_name,last_name,gender", params)
-      //       .then(user => {
-      //         user.auth = data.authResponse;
-      //         resolve(user);
-      //       })
-      //       .catch(e => {
-      //         reject(e);
-      //       });
-      //   })
-      //   .catch(reject);
+
+        this.fb.fbLogin()
+          .then(data => {
+            let params = new Array();
+            //   this.fb.api("/me?fields=id,name,email,first_name,last_name,gender", params)
+            //     .then(user => {
+            //       user.auth = data.authResponse;
+            //       resolve(user);
+            //     })
+            //     .catch(e => {
+            //       reject(e);
+            //     });
+            // })
+
+          }).catch(reject);
     })
   }
 
-  facebookRegister() {
-    return new Promise((resolve, reject) => {
-      this.facebookData()
-        .then(fu => {
-          let u = {
-            name: fu['name'],
-            email: fu['email'],
-            password: fu['id'],
-            facebook_id: fu['id'],
-            facebook_token: fu['auth']['accessToken'],
-            login: fu['id'],
-            photo: '',
-            phone: '',
-            type: 2,
-            status: 1
-          }
-
-          this.profileLogin({ login: fu['id'], password: fu['id'] })
-            .then(res => {
-              resolve(res);
-            })
-            .catch(e => {
-              this.profileSignUp(u)
-                .then(re => {
-                  resolve(re);
-                })
-                .catch(e => {
-                  //tratar erro com o login
-                  reject(e);
-                })
-            });
-        })
-        .catch(reject);
-    });
+  async facebookRegister() {
+    let u:any;
+    try{
+       const fu =await this.fb.fbLogin();
+        u = {
+          name: fu['name'],
+          email: fu['email'] || fu['id']+'@emaildenied.facebook.com',
+          password: fu['id'],
+          facebook_id: fu['id'],
+          facebook_token: fu['auth']['accessToken'],
+          login: fu['id'],
+          photo: '',
+          phone: '',
+          type: 2,
+          status: 1
+        }
+        return await this.profileLogin({ login: fu['id'], password: fu['id'] })
+      } catch(error){
+        try{
+          return this.profileSignUp(u)
+        } catch(e){
+          throw e;
+        }
+    }
   }
 
   async isAuth() {

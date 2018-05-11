@@ -17,23 +17,26 @@ export class FacebookProvider {
     FB.AppEvents.logPageView();
   }
 
-  fbLogin() {
+
+ async fbLogin() {
     return new Promise((resolve, reject) => {
-      FB.getLoginStatus(function (response) {
-        if (response.authResponse) {
+      FB.getLoginStatus(function (r) {
+        if (r.status && r.status ==='connected' && r.authResponse) {
           FB.api('/me?fields=id,name,email,first_name,last_name,gender', function (response) {
             response.photo = "https://graph.facebook.com/" + response.id + "/picture?type=square";
+            response.auth = r.authResponse;
             resolve(response);
           });
         } else {
-          FB.login(function (response) {
-            if (response.authResponse) {
-              FB.api('/me', function (response) {
+          FB.login(function (r) {
+            if (r.authResponse) {
+              FB.api('/me?fields=id,name,email,first_name,last_name,gender', function (response) {
                 response.photo = "https://graph.facebook.com/" + response.id + "/picture?type=square";
+                response.auth = r.authResponse;
                 resolve(response);
               });
             } else {
-              console.log('User cancelled login or did not fully authorize.');
+              reject('User cancelled login or did not fully authorize.');
             }
           });
         }
