@@ -145,4 +145,20 @@ export class UserProvider {
       console.log(error)
     }
   }
+
+  async confirmedAge(){
+    try {
+      return await this.storage.get(this.network.c.AGE_CONFIRMED)
+    } catch (e) {
+      return true
+    }
+  }
+  async confirmeAge() {
+    try {
+      await this.storage.set('false',this.network.c.AGE_CONFIRMED)
+      return false
+    } catch (e) {
+      return false
+    }
+  }
 }
