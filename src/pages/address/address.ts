@@ -118,7 +118,7 @@ export class AddressPage {
 
   async ageConfirmation(){
     let u = await this.user.confirmedAge();
-    if( u ){
+    if( u !== "false" ){
       const modalAge = this.modal.create(FirstTimePage).present();
       console.log('AGE NOT CONFIRMED');
     }else{

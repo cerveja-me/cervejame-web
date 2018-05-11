@@ -243,7 +243,7 @@ export class HomePage {
   }
 
   openPartner() {
-    this.analitycs.registerEvent('open_partner', {})
+    this.analitycs.registerEvent('other_products', {})
     // this.inApp.create('https://cvja.me/2y10JuH')
     window.open('https://cervejame.typeform.com/to/RdfToL', '_system');
   }
