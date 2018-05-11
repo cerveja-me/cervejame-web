@@ -144,6 +144,17 @@
     </li>
   </ul>
 
+  <div class="profile__voucher">
+    <span (click)="openTerms()" class="profile__voucher__background"></span>
+    <h1><strong>Ganhe R$ 50,00</strong></h1>
+    <h2>Indique 5 amigos e acumule descontos.</h2>
+      <button ion-button class="profile__button" (click)="openProfile()">Meu Código</button>
+  </div>
+
+  <div class="footer-logo">
+      <h1 class="logo-dark"></h1>
+  </div>
+
 </ion-content>
 
 <ion-footer *ngIf="(iceBox && iceBox.length) || (voucher && voucher.value)" align-title="left" (click)="showTip=false">
