@@ -135,14 +135,25 @@
       <!-- <button class="btn-minus"></button>
     </li> -->
     <li class="other-products__item suggest">
-      <div class="other-products__info">
-        <span class="other-products__name">Quer outra coisa?</span>
-        <span class="other-products__price">Conte pra gente o que gostaria de ver aqui</span>
-      </div>
-      <button class="btn-plus"></button>
-      <button class="btn-minus"></button>
+      <a href="https://cervejame.typeform.com/to/RdfToL" target="_blank" (click)="openPartner()">
+         <span class="other-products__info">
+            <span class="other-products__name">Quer outra coisa?</span>
+            <span class="other-products__price">Conte pra gente o que gostaria de ver aqui</span>
+          </span>
+      </a>
     </li>
   </ul>
+
+  <div class="profile__voucher">
+    <span (click)="openTerms()" class="profile__voucher__background"></span>
+    <h1><strong>Ganhe R$ 50,00</strong></h1>
+    <h2>Indique 5 amigos e acumule descontos.</h2>
+      <button ion-button class="profile__button" (click)="openProfile()">Meu Código</button>
+  </div>
+
+  <div class="footer-logo">
+      <h1 class="logo-dark"></h1>
+  </div>
 
 </ion-content>
 
