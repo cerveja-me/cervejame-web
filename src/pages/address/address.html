@@ -18,7 +18,6 @@
 
     </div>
 
-      <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
    </div>
   <!-- nao atendido -->
 
@@ -59,7 +58,18 @@
 
       Ative o uso da Localização nas configurações do seu aparelho.
       <button  class="onboarding__button" (click)="tryAgain()">Já ativei</button>
-<button class="onboarding__button" (click)="tryAgain()">vou digitar o endereço</button>
+      <label class="onboarding__label">Se preferir, use seu endereço ou referência</label>
+
+      <div class="autocomplete-box">
+        <ion-input class="input-autocomplete" #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''"
+          (ionBlur)="closeAddressEdit(); texting=false"></ion-input>
+
+        <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
+          <li class="map__address__autocomplete__item address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
+            <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
+        </ul>
+
+      </div>
 
 
   </div>
