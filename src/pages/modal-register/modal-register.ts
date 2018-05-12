@@ -59,8 +59,20 @@ export class ModalRegisterPage {
 
       }
     }
-
-
   }
 
+  doFacebookRegister() {
+    // this.loader=this.load.create({content: this.device.getRandonLoading()});
+    // this.loader.present();
+    this.user.facebookRegister()
+      .then(u => {
+        // this.loader.dismiss();
+        this.viewCtrl.dismiss('success');
+      })
+      .catch(e => {
+        console.log('error face-> ', e);
+        // this.user.device.logError(e);
+        // this.dismiss('success');
+      });
+  }
 }

@@ -11,6 +11,7 @@ import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { StatusPage } from '../status/status';
 import { FirstTimePage } from '../first-time/first-time';
+import { DeviceProvider } from '../../providers/device/device';
 
 
 @Component({
@@ -55,16 +56,9 @@ export class AddressPage {
 
   ionViewDidLoad() {
     this.analitycs.registerPage("Address");
-    // let v = this.navCtrl.getActive().component.name;
-    // console.log(v)
-    // this.verifyFirstTime();
-
+    this.ageConfirmation();
   }
 
-
-  // async verifyFirstTime(){
-  //   const firsttime =this.
-  // }
 
   closeAddressEdit() {
     console.log()
@@ -122,9 +116,16 @@ export class AddressPage {
     window.open('https://cerveja.me/mini-franquia', '_system');
   }
 
-  openFirstTime(){
-    let firsttimeModal = this.modal.create(FirstTimePage)
-    firsttimeModal.present();
+  async ageConfirmation(){
+    let u = await this.user.confirmedAge();
+    if( u !== "false" ){
+      const modalAge = this.modal.create(FirstTimePage).present();
+      console.log('AGE NOT CONFIRMED');
+    }else{
+      console.log('AGE  CONFIRMED');
+    }
+
+
   }
 
   openLogin() {

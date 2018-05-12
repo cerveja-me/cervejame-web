@@ -35,6 +35,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referrals';
 import { FirstTimePage } from '../pages/first-time/first-time';
+import { FacebookProvider } from '../providers/facebook/facebook';
 
 
 @NgModule({
@@ -94,7 +95,8 @@ import { FirstTimePage } from '../pages/first-time/first-time';
     UserProvider,
     VoucherProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    FacebookProvider
   ]
 })
 export class AppModule { }

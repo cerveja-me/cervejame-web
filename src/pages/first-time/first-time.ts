@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { AnalyticsProvider } from '../../providers/analytics/analytics';
+import { UserProvider } from '../../providers/user/user';
 
-/**
- * Generated class for the FirstTimePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-first-time',
@@ -14,11 +10,25 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class FirstTimePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public view:ViewController,
+    public analitycs: AnalyticsProvider,
+    private user:UserProvider
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FirstTimePage');
+    this.analitycs.registerPage('age_confirmation')
   }
 
+  todinho() {
+    this.analitycs.registerEvent('under-18', {})
+    window.open('https://www.toddynho.com.br/', '_self');
+  }
+
+  async over18(){
+    this.analitycs.registerEvent('over-18', {})
+    this.user.confirmeAge();
+    this.view.dismiss();
+  }
 }
