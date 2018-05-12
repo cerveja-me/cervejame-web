@@ -86,6 +86,7 @@ export class AddressPage {
       } else {
         this.err = error;
       }
+      this.err = error.message
       // this.analitycs.registerEvent(this.err, this.addressOptions)
       console.log(error)
     }
@@ -153,6 +154,11 @@ export class AddressPage {
   }
 
   async getBrowserLocation(){
-    await this.getZone()
+    try {
+      await this.getZone();
+    } catch (error) {
+      console.log('ERRROOOOOOO CARALHO -> ',error);
+    }
+
   }
 }

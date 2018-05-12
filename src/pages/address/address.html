@@ -59,6 +59,8 @@
 
       Ative o uso da Localização nas configurações do seu aparelho.
       <button  class="onboarding__button" (click)="tryAgain()">Já ativei</button>
+<button class="onboarding__button" (click)="tryAgain()">vou digitar o endereço</button>
+
 
   </div>
   <div class="msg-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
@@ -67,7 +69,7 @@
 
       Tivemos algum problema com a conexão.
       <button class="onboarding__button" (click)="tryAgain()">Tentar novamente</button>
-    
+
   </div>
 
 </ion-content>
