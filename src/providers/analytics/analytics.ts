@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+declare var hj;
+
+
 @Injectable()
 export class AnalyticsProvider {
 
@@ -13,7 +16,7 @@ export class AnalyticsProvider {
     //TODO:
     // google analitycs
     // facebook pixel
-    // hotjar
+    hj('stateChange', page);
 
   }
 
