@@ -18,6 +18,14 @@
 // @import "../../node_modules/compass-sass-mixins/lib/compass";
 @import "../theme/variables";
 
+ion-app.ios [padding], ion-app.ios [padding] .scroll-content {
+    padding: 20px;
+}
+
+ion-app.md [padding], ion-app.md [padding] .scroll-content {
+    padding: 20px;
+}
+
 .logo-full {
     background-image: url(../assets/icon/logo-full.svg);
     background-size: contain;
@@ -78,12 +86,48 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
+.align-center .scroll-content {
+    display: flex;
+    align-items: center;
+}
+
 .background-dark {
     background: #583318;
 }
 
 .background-light {
-    background: #FFFFDD;
+    background: $color-background;
+}
+
+.background-red {
+    background: $color-primary;
+}
+
+.background-modal-red {
+    background: $color-background;
+
+    .scroll-content {
+        @include border-radius(20px);
+        
+        background: $color-primary;
+        margin: 20px;
+    }
+}
+
+.btn-white {
+    @include border-radius(50px);
+    @extend .font-bold !optional;
+
+    background: $color-secondary-light;
+    border: 2px solid white;
+    font-size: 17px;
+    padding: 15px 30px;
+    height: auto;
+    width: 100%;
+    transition: all .5s;
+    color: $color-secondary;
+    text-transform: uppercase;
+    margin: 15px auto 0;
 }
 
 .msg {
@@ -395,7 +439,7 @@ ion-backdrop {
 }
 
 .button.activated {
-    background: #583318;
+    background: $color-primary;
 }
 
 @keyframes tip-up {
@@ -415,7 +459,7 @@ ion-backdrop {
       @include border-radius(10px);
       @extend .font-regular;
 
-      color: white;
+      color: $color-background;
       font-size: 14px;
       text-align: center;
       border: 2px solid $color-secondary;

@@ -6,11 +6,11 @@
   </button>
 </ion-header>
 
-<ion-content class="background-light">
+<ion-content padding class="background-light">
   <div *ngIf="sale">
     <div class="order" *ngFor="let item of sale.icebox">
       <figure class="order__image">
-        <img src="http://cerveja.me/img/mobile/{{item.img}}" alt="">
+        <img src="https://cerveja.me/img/mobile/{{item.img}}" alt="">
       </figure>
       <span class="order__price">
         <label class="order__label">{{item.items}} Caixa{{item.items>1?'s':''}} de {{item.name}}</label>
@@ -19,8 +19,47 @@
     </div>
   </div>
 
+  <div class="checkout__total" *ngIf="locale">
+    <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
+      <span class="checkout__total__title">Baldinho</span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ {{this.values.itens |number:'1.2-2'}}</span>
+      </span>
+    </div>
+
+    <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
+      <span class="checkout__total__title" *ngIf="!locale.zone.free_shipping">Entrega</span>
+      <span class="checkout__total__title" *ngIf="locale.zone.free_shipping">Entrega grátis</span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ {{locale.zone.freight_value |number:'1.2-2'}}</span>
+      </span>
+    </div>
+
+    <div class="checkout__total__shipping" *ngIf="voucher">
+      <span class="checkout__total__title">Cupom ({{voucher.code}}) </span>
+      <span class="checkout__total__pricebox">
+        <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
+      </span>
+    </div>
+
+<div class="checkout__total__shipping" *ngIf="friendRef && friendRef.available_value >0">
+
+
+      <span class="checkout__total__title">DA GALERA </span>
+      <span class="checkout__total__pricebox">
+      <span class="checkout__total__price">R$ -{{friendRef.available_value |number:'1.2-2'}}</span>
+      </span>
+    </div>
+
+    <span class="checkout__total__title">Total a pagar</span>
+    <span class="checkout__total__pricebox">
+      <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{30 |number:'1.2-2'}}</span>
+      <small class="checkout__total__pricebox--currency">R$</small>{{values.total | number:'1.2-2'}}
+    </span>
+  </div>
+
   <div class="payment">
-    <button class="payment__option" [ngClass]="payment=='2'?'active':''" (click)="setPayment('2')">
+    <button class="payment__option" [ngClass]="payment==2?'active':''" (click)="setPayment(2)">
       <span class="icon-maquina"></span>
       <label class="payment__option__label">Máquina</label>
       <!-- <span class="payment__add-beercoin">
@@ -28,7 +67,7 @@
           <label>+ 50</label>
         </span> -->
     </button>
-    <button class="payment__option" [ngClass]="payment=='1'?'active':''" (click)="setPayment('1')">
+    <button class="payment__option" [ngClass]="payment==1?'active':''" (click)="setPayment(1)">
       <span class="icon-money"></span>
       <label class="payment__option__label">Dinheiro</label>
       <!-- <span class="payment__add-beercoin">
@@ -40,43 +79,15 @@
         <span class="icon-beercoin"></span>
         <label class="payment__option__label"><small>1500</small>Beercoins</label>
       </button> -->
-    <button class="payment__option" [ngClass]="payment=='3'?'active':''" (click)="openCard()">
+    <button class="payment__option soon" [ngClass]="payment=='3'?'active':''" >
       <span class="icon-card"></span>
       <label class="payment__option__label">Via app</label>
     </button>
   </div>
 
-  <div class="checkout__total" *ngIf="locale">
-    <div [ngClass]="tru? 'checkout__total__shipping free' : 'checkout__total__shipping '">
-      <span class="checkout__total__title" *ngIf="!locale.zone.free_shipping">Entrega</span>
-      <span class="checkout__total__title" *ngIf="locale.zone.free_shipping">Entrega grátis</span>
-      <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ {{locale.zone.freight_value |number:'1.2-2'}}</span>
-      </span>
-    </div>
-    <div class="checkout__total__shipping" *ngIf="voucher">
-      <span class="checkout__total__title">Cupom ({{voucher.code}}) </span>
-      <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
-      </span>
-    </div>
-    <div class="checkout__total__shipping" *ngIf="friend_ref && false">
-      <span class="checkout__total__title">DA GALERA </span>
-      <span class="checkout__total__pricebox">
-        <span class="checkout__total__price">R$ -{{0 |number:'1.2-2'}}</span>
-      </span>
-    </div>
-
-    <span class="checkout__total__title">Total a pagar</span>
-    <span class="checkout__total__pricebox">
-      <span class="checkout__total__price old" *ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{30 |number:'1.2-2'}}</span>
-      <small class="checkout__total__pricebox--currency">R$</small>{{values.total | number:'1.2-2'}}
-    </span>
-  </div>
-
-  <div class="receipt__address">{{'Rua Venancio Aires 204'}}
+  <div class="receipt__address" *ngIf="locale">{{locale.street +', '+ locale.num +' '+ locale.complement}}
     <span class="icon-arrow-fw"></span>
-    <span class="icon-pin-min receipt__address__icon" (click)="close()"></span>
+    <span class="icon-pin-autocomplete receipt__address__icon" (click)="close()"></span>
   </div>
 
 </ion-content>

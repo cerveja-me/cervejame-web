@@ -1,5 +1,27 @@
 page-home {
 
+    
+.profile {
+
+    &__voucher {
+        margin: 0 20px !important;
+
+        h1 {
+            font-size: 16px !important;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            padding: 0 !important;
+        }
+
+        h2 {
+            margin: 5px 0 0 0 !important;
+            text-transform: initial !important;
+        }
+    }
+ 
+}
+
+
   .btn-primary {
     border-color: white;
   }
@@ -257,11 +279,11 @@ h2 {
 
     .product {
         position: relative;
-
+      
         .btn-minus {
             position: absolute;
-            bottom: 20px;
-            right: 160px;
+            bottom: 23px;
+            right: 165px;
             left: initial;
         }
 
@@ -275,6 +297,59 @@ h2 {
             border: 2px solid $color-background;
             padding: 16px;
             box-shadow: 3px 3px 0 0 $color-background;
+        }
+
+        &.free-shipping {
+            .product__info {
+                border-bottom-left-radius: 3px;
+            }
+        }
+
+        &.with-discount {
+            .product__info {
+                border-bottom-left-radius: 3px;
+                background-color: $color-primary;
+                color: $color-background;
+            }
+        }
+
+        .free-shipping {
+            &__text {
+                @extend .font-bold;
+                @include border-radius(50px);
+
+                border-top-left-radius: 3px;
+                display: block;
+                background: $color-primary;
+                border: 2px solid $color-background;
+                color: $color-background;
+                padding: 2px 7px;
+                font-size: 14px;
+                position: absolute;
+                top: 108%;
+                left: 0;
+                box-shadow: 3px 3px 0 0 #FFFFDD;
+            }
+
+        }
+
+        .with-discount {
+            &__text {
+                @extend .font-bold;
+                @include border-radius(50px);
+
+                border-top-left-radius: 3px;
+                display: block;
+                background: $color-background;
+                color: $color-primary;
+                padding: 4px 7px;
+                font-size: 15px;
+                line-height: 1.1;
+                width: 60px;
+                position: absolute;
+                top: 108%;
+                left: 0;
+            }
         }
 
         &__amount {
@@ -377,12 +452,12 @@ h2 {
         }
 
         &__picture {
-            height: 85%;
+            height: 95%;
             width: 200%;
             z-index: 2;
             left: -50%;
             bottom: 15%;
-            margin: 0 0 -10% -25%;
+            margin: 0 0 -10% -20%;
             display: block;
             position: absolute;
             z-index: 2;
@@ -401,15 +476,12 @@ h2 {
             height: 100%;
             margin: 0;
         }
-
-       
     }
-
 }
 
 .choose-slider {
-    height: 65%;
-    max-height: 350px;
+    height: 75%;
+    max-height: 450px;
     margin: 20px 0 50px;
 
     .swiper-container {
@@ -419,19 +491,19 @@ h2 {
     .swiper-slide {
         @include border-radius(30px);
 
-        box-shadow: 7px 7px 0 0px rgba($color-secondary, 0.2);
         border: 2px solid $color-secondary;
-        background-image: url(../assets/imgs/bkg-choose.jpg);
+        background-image: url(../assets/imgs/bkg-brazil.jpg);
         background-size: cover;
         background-position: center;
         transform: scale(0.9);
-        transition: all 0.2s;
+        transition: transform 0.2s;
         overflow: hidden;
 
         &-active {
             margin-left: auto;
             z-index: 3;
             transform: scale(1);
+            box-shadow: 0px 5px 20px 0 rgba($color-secondary, 0.5);
         
             .product__labels {
                 opacity: 1;
@@ -445,7 +517,7 @@ h2 {
 
     &.on-slide {
         .swiper-slide.swiper-slide-active {
-            margin-left: 8.5%;
+            margin-left: 6.5%;
         }
     }
 
@@ -524,65 +596,67 @@ h2 {
     margin-bottom: 1px;
 }
 
-.btn-white {
-    @include border-radius(50px);
-    @extend .font-bold !optional;
+@keyframes pop-alert {
+    0% {
+        transform: scale(0);
+    }
 
-    background: $color-secondary-light;
-    border: 2px solid white;
-    font-size: 17px;
-    padding: 15px 30px;
-    height: auto;
-    width: 100%;
-    transition: all .5s;
-    color: $color-secondary;
-    text-transform: uppercase;
-    margin: 15px auto 0;
+    50% {
+        transform: scale(1.1);
+    }
+
+    75% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .msg-empty {
-    @extend .font-regular !optional;
+    @extend .font-regular;
+    @include border-radius(20px);
 
-    top: 3%;
-    color: white;
-    position: absolute;
-    font-size: 16px;
-    width: 100%;
+    color: $color-primary;
     text-align: center;
     padding: 0 30px;
     z-index:4;
-    background: $color-secondary;
+    background: $color-background;
     margin: 0;
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
-    margin-top: -10px;
-    padding: 20px;
-//
-//    &.location-error {
-//        background: $color-secondary-light;
-//    }
-//
-//    &.location-error &__title {
-//        color: white;
-//    }
+    border: 2px solid $color-secondary;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    animation: pop-alert 0.5s ease 0.2s 1 normal;
+    animation-fill-mode: both;
 
     &__title {
-        @extend .font-bold !optional;
+        @extend .font-bold;
 
-        font-size: 25px;
-        color: $color-secondary-light;
+        font-size: 22px;
+        color: $color-primary;
         margin: 0 0 10px 0;
         display: block;
     }
 
     strong {
-        @extend .font-bold !optional;
+        @extend .font-regular;
 
-        display: inline-block;
-        padding: 5px 0;
-        a{
-            color:white;
+        position: absolute;
+        bottom: 20px;
+        display: block;
+        left: 0;
+        width: 100%;
+
+        a {
+            @extend .font-bold;
+
+            color: $color-primary;
             text-decoration:underline;
+            padding: 5px;
+            display: block;
         }
     }
 }
@@ -729,6 +803,11 @@ h2 {
     margin: 0;
     position: relative;
     z-index: 3;
+    box-shadow: none;
+
+    &.activated {
+        background: $color-secondary;
+    }
 
     .icon-loading {
         background-image: url(../assets/icon/icon-loading-light.svg);
@@ -788,19 +867,6 @@ h2 {
             height: 100%;
             width: auto;
         }
-    }
-
-    &:after {
-        content: '';
-        width: 22px;
-        height: 22px;
-        background-image: url(../assets/icon/icon-up-brown.svg);
-        display: block;
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        margin-top: -11px;
-        transform: rotate(180deg);
     }
 }
 
@@ -997,6 +1063,7 @@ h2 {
     width: 100%;
     margin: 0;
     text-transform: uppercase;
+    color: $color-background;
 
     &.button-md {
       font-weight: 900 !important;
@@ -1006,15 +1073,15 @@ h2 {
 .btn-minus {
     background-image: url('../assets/icon/minus.svg');
     background-size: cover;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     display: inline-block;
     vertical-align: middle;
     background-color: transparent;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
     position: absolute;
     bottom: 24px;
-    right: 160px;
+    right: 170px;
     z-index: 3;
 
     &.dragging {
@@ -1042,18 +1109,17 @@ h2 {
     @include border-radius(0);
 
     background: $color-secondary;
-    border-top: 2px solid white;
-    padding: 24px 15px;
+    padding: 20px 15px;
     height: auto;
     width: 100%;
-    margin: 0;
     text-align: center;
+    border-top: 2px solid $color-background;
 
     &__text {
         @extend .font-regular;
 
         font-size: 12px;
-        color: white;
+        color: $color-background;
     }
 
     &.button-md {
@@ -1063,7 +1129,7 @@ h2 {
 
 .other-products {
     padding: 0;
-    margin: 0 0 70px 0;
+    margin: 0;
     font-size: 0;
     text-align: left;
 
@@ -1093,10 +1159,21 @@ h2 {
         }
 
         &.suggest {
-            background: white;
+            width: 100%;
+            text-align: center;
+            background-image: url(../assets/imgs/other-products.png);
+            background-size: cover;
 
             .btn-minus, .btn-plus {
                 display: none;
+            }
+
+            .other-products__info {
+                font-size: 18px;
+                margin: 33px 0;
+                text-align: center;
+                width: 100%;
+                right: 0;
             }
         }
     }
@@ -1151,6 +1228,11 @@ h2 {
     text-transform: uppercase;
     z-index: 3;
     transition: opacity 0.2s;
+    box-shadow: none;
+
+    &.activated {
+        background: $color-success;
+    }
 
     &.dragging {
         opacity: 0.2;
@@ -1173,8 +1255,9 @@ h2 {
     font-size: 18px;
     background: none;
     color: white;
-    padding: 0px 15px;
-    // border: 2px solid $color-secondary;
+    padding: 17px 15px;
+    box-shadow: none;
+    height: initial;
 }
 
 @keyframes baldinho-animate {
@@ -1190,7 +1273,6 @@ h2 {
 .baldinho {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-
     background: $color-primary;
     border: solid $color-secondary;
     border-width: 2px 2px 0;
@@ -1198,18 +1280,43 @@ h2 {
     animation: baldinho-animate 0.2s ease-out 0.3s 1 normal;
     animation-fill-mode: both;
     margin: 0 2%;
-    padding: 12px 15px;
+    padding: 10px 12px;
 
     .btn-next {
         position: absolute;
-        bottom: 15px;
-        right: 20px;
+        bottom: 0px;
+        right: 0px;
+        color: $color-background;
+    }
+
+    .icon-baldinho {
+        background-image: url(../assets/icon/icon-baldinho.svg);
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__box {
+        @include border-radius(100px);
+        position: relative;
+
+        background: #B83030;
+        display: inline-block;
+        padding: 3.5px 20px 3.5px 45px;
+
+        .icon-baldinho {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     }
 
     &__title {
         @extend .font-bold;
         
-        color: white;
+        color:  $color-background;
         font-size: 12px;
         text-transform: uppercase;
     }
@@ -1217,8 +1324,8 @@ h2 {
     &__itens {
         @extend .font-regular;
 
-        color: white;
-        font-size: 14px;
+        color:  $color-background;
+        font-size: 12px;
         animation: baldinho-text-animate 0.1s ease-out 0.4s 1 normal;
         animation-fill-mode: both;
     }
@@ -1226,11 +1333,26 @@ h2 {
     &__value{
         @extend .font-bold;
         
-        color: white;
-        font-size: 18px;
+        color: $color-background;
+        font-size: 14px;
         text-transform: uppercase;
         display: block;
         animation: baldinho-text-animate 0.1s ease-out 0.4s 1 normal;
         animation-fill-mode: both;
+        margin-top: -2px;
     }
+}
+
+.icon-arrow-next {
+    background-image: url(../assets/icon/icon-arrow-next.svg);
+    background-size: cover;
+    width: 10px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.footer-logo {
+    margin: 20px 0 70px;
 }

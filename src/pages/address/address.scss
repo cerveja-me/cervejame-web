@@ -1,4 +1,17 @@
 page-address {
+
+
+    .input-autocomplete {
+        @include border-radius(10px);
+        @extend .font-regular;
+
+        color: $color-background;
+        background: transparent;
+        border: 2px solid $color-background;
+        font-size: 18px;
+        padding: 5px 15px;
+    }
+
     .icon-dropdown {
       background: url(../assets/icon/icon-dropdown.svg);
       width: 10px;
@@ -93,6 +106,14 @@ page-address {
                       margin: 0;
                   }
 
+                  input::placeholder {
+                    color: $color-background;
+                  }
+
+                  input::-webkit-input-placeholder {
+                    color: $color-background;
+                  }
+
                   &:first-child {
                       border-top-left-radius: 10px;
                       border-top-right-radius: 10px;
@@ -106,7 +127,7 @@ page-address {
                       border-bottom-left-radius: 10px;
                       border-bottom-right-radius: 10px;
                       border-top: none;
-                      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+                      box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3);
                   }
               }
 
@@ -122,7 +143,6 @@ page-address {
                   margin: 0;
                   padding: 0;
                   list-style: none;
-
 
                   &__item {
                       @extend .font-regular;
@@ -140,26 +160,31 @@ page-address {
                           border-width: 0 2px 2px;
                           border-bottom-left-radius: 10px;
                           border-bottom-right-radius: 10px;
-                          box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+                          box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3);
                       }
                   }
               }
           }
       }
+
+      .autocomplete-box {
+          position: relative;
+      }
+
   .address__autocomplete {
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
       border-top: none;
-                  top: 150px;
-
-      padding: 0 10px;
+      padding: 0;
       list-style: none;
       z-index: 999;
-      position: absolute;
-      left: 0;
-      margin: 0 0 0;
       width: 100%;
-
+      margin: -12px 0 0;
+      background: white;
+      position: absolute;
+      top: 62px;
+      left: 0;
+     
       &__item {
           @extend .font-regular;
 
@@ -170,10 +195,63 @@ page-address {
           margin: 0;
           text-align: left;
           position: relative;
+          background: $color-background;
+          border-color:  $color-background $color-background $color-primary $color-background;
 
           &:last-of-type {
               border-bottom: none;
           }
       }
   }
+}
+
+
+
+.onboarding {
+    &__title {
+        @extend .font-regular;
+
+        letter-spacing: 0.025em;
+        font-size: 28px;
+        color: $color-background;
+        margin: 0;
+        margin-left: -20px;
+        border-left: 5px solid $color-background;
+        padding-left: 30px;
+    }
+
+    &__button {
+        @include border-radius(50px);
+        @extend .font-bold;
+    
+        background: $color-background;
+        font-size: 20px;
+        padding: 20px 0;
+        height: auto;
+        width: 100%;
+        transition: all .5s;
+        color: $color-primary;
+        text-transform: uppercase;
+        margin: 40px auto;
+    }
+
+    &__button.secondary {
+        @extend .font-regular;
+
+        background: transparent;
+        color: $color-background;
+        margin: 0;
+        padding: 0;
+        text-transform: initial;
+    }
+
+    &__label {
+        @extend .font-regular;
+
+        font-size: 16px;
+        margin-right: 15%;
+        color: $color-background;
+        margin-bottom: 20px;
+        display: block;
+    }
 }

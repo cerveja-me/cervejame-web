@@ -113,11 +113,10 @@ page-checkout {
     @extend .font-regular;
 
     position: relative;
-    font-size: 12px;
+    font-size: 14px;
     color: $color-secondary;
     margin: 0;
-    margin: 0 15px;
-    padding: 25px 0 25px 70px;
+    padding: 25px 0 25px 60px;
     border-top: 1px solid $color-secondary;
 
     &__icon {
@@ -125,8 +124,9 @@ page-checkout {
       top: 50%;
       left: 20px;
       margin-top: -15px;
-      width: 31px;
+      width: 27px;
       height: 31px;
+      margin-right: 0;
     }
   }
 
@@ -142,7 +142,7 @@ page-checkout {
   .icon-maquina {
     background-image: url('../assets/icon/icon-maquina.svg');
     background-size: cover;
-    width: 35.5px;
+    width: 34.5px;
     height: 22px;
     display: inline-block;
     vertical-align: middle;
@@ -188,13 +188,11 @@ page-checkout {
     margin-top: -11px;
   }
   .payment {
-    padding-top: 15px;
     overflow: hidden;
     padding: 15px;
     box-sizing: border-box;
     font-size: 0;
-    // width: 1000%;
-    padding: 25px 15px;
+    padding: 20px 0;
 
     &__add-beercoin {
       @include border-radius(100px);
@@ -355,7 +353,7 @@ page-checkout {
 
     &__icon {
       background-image: url('../assets/icon/icon-voucher-single.svg');
-      width: 27px;
+      width: 27.5px;
       height: 14px;
       display: inline-block;
       vertical-align: middle;
@@ -365,8 +363,8 @@ page-checkout {
 
   &__total {
     padding: 20px 0;
-    margin: 0 15px;
-    border-top: 1px solid $color-secondary;
+    margin: 0;
+    border-bottom: 1px solid $color-secondary;
     font-size: 0;
 
     &__shipping {
@@ -403,7 +401,7 @@ page-checkout {
       @extend .font-bold;
       @include border-radius(10px);
       box-sizing: border-box;
-      font-size: 26px;
+      font-size: 24px;
       color: $color-secondary;
       display: inline-block;
       width: 60%;
@@ -426,6 +424,7 @@ page-checkout {
       text-align: right;
       display: block;
       margin-bottom: 0;
+      text-transform: initial;
 
       &.discount {
         text-decoration: line-through;
@@ -435,9 +434,22 @@ page-checkout {
 }
 
 .order {
+
     background: #573317;
-    padding: 20px;
+    padding: 15px;
     position: relative;
+    margin-bottom: 1px;
+
+    &:first-of-type {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
 
     &__image {
         @include border-radius(10px);
@@ -469,8 +481,8 @@ page-checkout {
       @extend .font-regular;
 
       color: $color-background;
-      font-size: 20px;
-      text-transform: uppercase;
+      font-size: 16px;
+      text-transform: initial;
       display: inline-block;
       vertical-align: middle;
     }
@@ -479,7 +491,7 @@ page-checkout {
       @extend .font-regular;
 
       color: $color-background;
-      font-size: 12px;
+      font-size: 14px;
       display: inline-block;
       vertical-align: middle;
       width: 70%;
@@ -488,11 +500,11 @@ page-checkout {
     }
 
     &__label {
-        @extend .font-bold;
+        @extend .font-regular;
 
         color: $color-background;
         font-size: 14px;
-        text-transform: uppercase;
+        text-transform: initial;
         display: block;
         margin-bottom: 2px;
         white-space: nowrap;

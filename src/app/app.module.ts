@@ -30,6 +30,12 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { MapPage } from '../pages/map/map';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { AddressPage } from '../pages/address/address';
+import { StatusPage } from '../pages/status/status';
+import { FeedbackPage } from '../pages/feedback/feedback';
+import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
+import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referrals';
+import { FirstTimePage } from '../pages/first-time/first-time';
+import { FacebookProvider } from '../providers/facebook/facebook';
 
 
 @NgModule({
@@ -43,7 +49,12 @@ import { AddressPage } from '../pages/address/address';
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    StatusPage,
+    FeedbackPage,
+    ProfileTermsPage,
+    ProfileReferralsPage,
+    FirstTimePage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +73,12 @@ import { AddressPage } from '../pages/address/address';
     ModalSchedulePage,
     ModalLoginPage,
     ModalVoucherPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    StatusPage,
+    FeedbackPage,
+    ProfileTermsPage,
+    ProfileReferralsPage,
+    FirstTimePage
 
   ],
   providers: [
@@ -79,7 +95,8 @@ import { AddressPage } from '../pages/address/address';
     UserProvider,
     VoucherProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    FacebookProvider
   ]
 })
 export class AppModule { }

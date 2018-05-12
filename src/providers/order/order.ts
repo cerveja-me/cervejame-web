@@ -4,22 +4,30 @@ import { LocationProvider } from '../location/location';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 import { DeviceProvider } from '../device/device';
+import { UserProvider } from '../user/user';
 
 
 @Injectable()
 export class OrderProvider {
   locale: any;
+
   voucher;
   sale = {
+    location:'',
     id: '',
-    icebox: []
+    icebox: [],
+    freight_value: 0,
+    payment:null,
+    voucher:null,
+    friendRef:null
   }
 
   constructor(
     private location: LocationProvider,
     private net: NetworkProvider,
     private c: ConstantsProvider,
-    private device: DeviceProvider
+    private device: DeviceProvider,
+    private user: UserProvider
   ) { }
 
 
@@ -35,9 +43,12 @@ export class OrderProvider {
         time: day
       }
       const locality = await this.net.post(this.c.LOCATION, p)
+      this.locale = locality;
       if (locality['zone']) {
         if (locality['zone']['products']) {
-          this.locale = locality;
+          if (!locality['zone']['free_shipping']){
+            this.sale.freight_value = locality['zone']['freight_value']
+          }
           return this.locale
         } else {
           throw 'NO_PRODUCTS'
@@ -51,17 +62,20 @@ export class OrderProvider {
   }
 
   async updateLocationAddress(loc, address, number, complement) {
+    this.locale.number = number;
+    this.locale.complement = complement;
+
+    const day = new Date();
     const up = {
       position_maps: loc[0] + "," + loc[1],
       street: address,
       num: number,
-      complement: complement
+      complement: complement,
+      time:day
     }
-    this.locale['number'] = number;
-    this.locale['complement'] = complement;
-
     try {
       this.locale = await this.net.put(this.net.c.LOCATION + this.locale['id'], up)
+      return
     } catch (error) {
       console.log('erro no put -> ', error);
     }
@@ -83,6 +97,10 @@ export class OrderProvider {
     this.voucher = null;
   }
 
+  setFriendRef(fr){
+    this.sale.friendRef = fr;
+  }
+
   setItems(icebox) {
     this.sale.icebox = icebox
   }
@@ -93,17 +111,45 @@ export class OrderProvider {
 
   async createOrder() {
     try {
-      let sale = await this.net.post('', '')
+      this.sale.location=this.locale.id
+      let sale:any = await this.net.post(this.c.SALE, this.sale)
+      this.sale.id = sale.id;
+    } catch (error) {
+      console.log('erroc crair venda 0> ',error)
+    }
+  }
+
+  async completeOrder(){
+    try {
+      this.sale.voucher = this.voucher;
+      let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale);
+      return sale;
+    } catch (error) {
+      throw error.error
+    }
+  }
+
+  async getOrders() {
+    try {
+      await this.user.isAuth()
+      return await this.net.get(this.c.SALE)
+    } catch (error) {
+      //não
+    }
+  }
+  async rateOrder(r) {
+    try {
+    let rate = {
+      id_sale: r.id_sale,
+      who: 2,
+      rate: r.rate,
+      comment: r.comment
+    };
+    return await this.net.post(this.c.RATE, rate)
     } catch (error) {
 
     }
   }
-}
-// async  completeOrder(){
-//     try {
-//       let sale = await this.net.post()
-//     } catch (error) {
 
-//     }
-//   }
-// }
+
+}

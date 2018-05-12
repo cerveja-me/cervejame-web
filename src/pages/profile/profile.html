@@ -11,11 +11,11 @@
       R$ {{user_data.available_value |number:'1.2-2'}}
     </p>
     <small>O valor será descontado na sua próxima compra.</small>
-    <p>
+    <!-- <p>
       <small>Meus indicados
         <strong>></strong>
       </small>
-    </p>
+    </p> -->
   </div>
 
   <div class="profile__voucher">
@@ -24,8 +24,8 @@
       <strong>R$ 10,00</strong>.</h1>
     <h5 style="font-size: 1.3rem; color:#583318" (click)="openTerms()">termos de uso ></h5>
 
-    <h1 class="profile__voucher__input">{{code}}</h1>
-    <h2>Compartilhe com seus amigos</h2>
+    <p class="profile__voucher__input">{{code}}</p>
+    <!-- <h2>Compartilhe com seus amigos</h2>
     <button (click)="shareViaWhatsApp()" class="btn-share">
       <span class="btn-share__whats"></span>
     </button>
@@ -34,7 +34,7 @@
     </button>
     <button (click)="shareVia()" class="btn-share">
       <span class="btn-share__other"></span>
-    </button>
+    </button> -->
   </div>
 
 </ion-content>

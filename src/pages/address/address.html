@@ -1,123 +1,80 @@
-<ion-header (click)="showTip=false" class="header-home">
-  <ion-title>
-    Endereço
-  </ion-title>
-  <button class="btn-login" (click)="openProfile()"></button>
-  <button class="btn-user" (click)="openProfile()"></button>
-  <button class="btn-voucher" ion-button secondary (click)="openModalVoucher()">
-    <span class="icon-voucher"></span>
-  </button>
-</ion-header>
+<ion-content padding class="background-modal-red align-center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
 
-<ion-content class="background-light center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
+  <div class="onboarding" center *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
 
+    <h1 class="onboarding__title">Encontre a cerveja gelada mais próxima.</h1>
 
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='PROVIDE_ADDRESS'">
+    <button class="onboarding__button" (click)="getBrowserLocation()">Usar localização</button>
 
-    <p class="msg-empty location-error">
+    <label class="onboarding__label">Se preferir, use seu endereço ou referência</label>
 
-      <span class="msg-empty__title">Endereço!</span>
-
-      informe seu endereço para produtos disponiveis
-      <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
-      <ion-input #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"
-        style="background:beige; color:#583318">
-      </ion-input>
+    <div class="autocomplete-box">
+      <ion-input class="input-autocomplete" #inputaddress [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (click)="fulladdress=''" (ionBlur)="closeAddressEdit(); texting=false"></ion-input>
 
       <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
-        <li class="map__address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
+        <li class="map__address__autocomplete__item address__autocomplete__item" *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">
           <span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
       </ul>
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
+    </div>
 
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
-  </div>
+      <!-- <button class="btn-white" (click)="tryAgain()">Tentar novamente</button> -->
+   </div>
   <!-- nao atendido -->
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
-    <p class="msg-empty">
 
-      <span class="msg-empty__title">Não atendemos sua região.</span>
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
 
-      Quer levar para sua cidade?
-      <br/> Saiba como:
+      <span class="msg-empty__title">Não atendemos essa região. Ainda.</span>
+
       <strong>
-        <a href="https://cerveja.me/mini-franquia" target="_blank">Cerveja.me</a>
-      </strong>
-    </p>
-    <p class="choose__bottom">
-      <figure class="choose__picture" style="bottom: 5%;">
+          Quer ser parceiro?
+        <a href="https://cerveja.me/mini-franquia" target="_blank" (click)="openPartner()">Saiba Mais</a>
 
-        <img style="margin-top: 45%" src="assets/imgs/empty.png">
-      </figure>
-    </p>
+      </strong>
+
   </div>
 
   <!-- erro na localização automatica -->
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
-    <p class="msg-empty location-error">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
 
-      <span class="msg-empty__title">Oops!</span>
+      <span class="msg-empty__title">Deu ruim!</span>
 
       Não conseguimos identificar sua localização automaticamente.
-      <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+      <button class="onboarding__button" (click)="tryAgain()">Tentar novamente</button>
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
   </div>
 
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
-    <p class="msg-empty location-error">
+  <div  class="msg-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
 
       <span class="msg-empty__title">Alta demanda!</span>
 
-      Por causa da alta demanda, não estamos recebendo pedidos por agora.
-      <button class="btn-white" (click)="tryAgain()">Verificar novamente</button>
+      Por causa da alta demanda, não estamos recebendo pedidos.
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
+      <button class="onboarding__button" (click)="tryAgain()">Verificar novamente</button>
 
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
   </div>
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
-    <p class="msg-empty location-error">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
 
-      <span class="msg-empty__title">Onde você está?</span>
+      <span class="msg-empty__title">Não te localizei.</span>
 
       Ative o uso da Localização nas configurações do seu aparelho.
-      <button class="btn-white" (click)="tryAgain()">Já ativei</button>
+      <button  class="onboarding__button" (click)="tryAgain()">Já ativei</button>
 
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
   </div>
-  <div class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
-    <p class="msg-empty location-error">
+  <div class="msg-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
 
-      <span class="msg-empty__title">Internet?</span>
+      <span class="msg-empty__title">Internet Offline.</span>
 
       Tivemos algum problema com a conexão.
-      <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
-
-      <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 45%" src="assets/imgs/empty.png">
-        </figure>
-      </p>
+      <button class="onboarding__button" (click)="tryAgain()">Tentar novamente</button>
+    
   </div>
 
-
 </ion-content>
+<!-- <ion-footer>
+<button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
+
+<button ion-button secondary class="map__btn" (click)="openFirstTime()">IDADE</button>
+
+
+</ion-footer> -->

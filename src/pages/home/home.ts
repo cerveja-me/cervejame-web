@@ -10,6 +10,9 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { MapPage } from '../map/map';
 import { VoucherProvider } from '../../providers/voucher/voucher';
+import { StatusPage } from '../status/status';
+import 'rxjs/add/observable/interval';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -30,6 +33,8 @@ export class HomePage {
   updatingAmount;
   loader;
   err: string;
+  sale:any;
+  sub:any;
   actions: any = {
     accepted: null,
     onWay: null,
@@ -63,6 +68,11 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.getZone();
+    this.verifyOpenSale();
+    this.sub = Observable.interval(10000)
+      .subscribe((val) => {
+        this.verifyOpenSale();
+      });
   }
 
   async setAddress(a) {
@@ -73,7 +83,10 @@ export class HomePage {
 
   async getZone() {
     try {
-      const l = this.navParams.get('zone');
+      let l = this.navParams.get('zone');
+      if(!l){
+        l = this.order.getLocale()
+      }
       this.location = l;
       this.products = l['zone']['products'];
       this.slideChanged();
@@ -87,6 +100,10 @@ export class HomePage {
     }
     this.err = null;
     this.loadedcompleted = true;
+  }
+
+  openStatus(){
+    this.navCtrl.setRoot(StatusPage)
   }
 
   slideChanged() {
@@ -123,12 +140,40 @@ export class HomePage {
       .catch(e => {
         this.openLogin();
       })
+  }
+
+  async verifyOpenSale() {
+    try {
+      this.sale = await this.order.getOrders();
+      if (this.sale){
+        if (this.sale.complement) {
+          this.sale.complement = ' compl.:' + this.sale.complement;
+        }
+        if (this.sale.actions) {
+          for (let i = 0; i < this.sale.actions.length; i++) {
+            switch (this.sale.actions[i].action) {
+              case 1:
+                this.actions.accepted = this.sale.actions[i];
+                break;
+              case 2:
+                this.actions.onWay = this.sale.actions[i];
+                // this.zone.run(() => { });
+                break;
+              case 4:
+                this.actions.finishedAt = this.sale.actions[i];
+                // this.actionClose = 'Avaliar Entrega'
+                // this.zone.run(() => { });
+                break;
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.log('erro ->', error);
+    }
 
   }
 
-  openPartner() {
-    // this.inApp.create('https://cvja.me/2y10JuH')
-  }
 
   openLogin() {
     let loginModal = this.modal.create(ModalLoginPage)
@@ -162,6 +207,7 @@ export class HomePage {
 
   confirmSale() {
     this.order.setItems(this.iceBox);
+    this.order.createOrder();
     this.navCtrl.push(MapPage)
   }
 
@@ -194,5 +240,11 @@ export class HomePage {
         return b + n
       }, 0)
     }
+  }
+
+  openOtherProducts() {
+    this.analitycs.registerEvent('other_products', {})
+    // this.inApp.create('https://cvja.me/2y10JuH')
+    window.open('https://cervejame.typeform.com/to/RdfToL', '_system');
   }
 }

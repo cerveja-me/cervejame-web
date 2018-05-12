@@ -4,6 +4,8 @@ import { ConstantsProvider } from '../../providers/constants/constants';
 import { UserProvider } from '../../providers/user/user';
 import { DeviceProvider } from '../../providers/device/device';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
+import { ProfileTermsPage } from '../profile-terms/profile-terms';
+import { ProfileReferralsPage } from '../profile-referrals/profile-referrals';
 
 
 @Component({
@@ -56,19 +58,13 @@ export class ProfilePage {
   }
 
   openTerms() {
-    // let modal = this.modalCtrl.create(ProfileTermsPage);
-    // modal.present().then(r => {
-    //   this.device.camPage("friend_referral_home");
-    // })
-    this.analityc.registerEvent('friend_referral_open_terms', { code: this.code });
+    let modal = this.modalCtrl.create(ProfileTermsPage).present();
 
+    this.analityc.registerEvent('friend_referral_open_terms', { code: this.code });
   }
 
   openReferrals() {
-    // let modal = this.modalCtrl.create(ProfileReferralsPage, { profile: this.user_data });
-    // modal.present().then(r => {
-    //   this.device.camPage("friend_referral_home");
-    // })
+    this.modalCtrl.create(ProfileReferralsPage, { profile: this.user_data }).present();
     this.analityc.registerEvent('friend_referral_open_referrals', { code: this.code });
   }
 

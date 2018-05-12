@@ -1,11 +1,13 @@
 <ion-header (click)="showTip=false" class="header-home">
   <ion-title>
-    <button class="btn-schedule" ion-button secondary *ngIf="products && products.length > 0 && location.zone.open" (click)="openSchedule()">
+<button class="btn-schedule" ion-button secondary *ngIf="products && location.zone && location.zone.open" (click)="openSchedule()">
+
       <span class="icon-opened"></span>
       <label>Entrega em 25min</label>
       <span class="icon-dropdown"></span>
     </button>
-    <button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products.length >0 && !location.zone.open">
+<button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products && location.zone && !location.zone.open">
+
       <label>Ver Horários</label>
       <span class="icon-dropdown"></span>
     </button>
@@ -18,7 +20,7 @@
 </ion-header>
 
 <ion-content class="background-light center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
-  <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="loadedcompleted && this.openSale && !err">
+  <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="loadedcompleted  && !err && sale">
 
     <span class="order-status-bar__label" *ngIf="!actions.review && !actions.accepted && !actions.finishedAt && !actions.onWay">
       <span class="icon-loading"></span>
@@ -37,19 +39,19 @@
       <label> {{actions.onWay.name}} saiu para entrega</label>
     </span>
 
-    <span class="order-status-bar__label active" *ngIf="actions.review">
+    <span class="order-status-bar__label active" *ngIf="actions.finishedAt">
       <span class="icon-check"></span>
       <label>Pedido entregue - Avalie</label>
     </span>
   </button>
 
-  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.2 [spaceBetween]=8 pager class="choose-slider"
+  <ion-slides [initialSlide]="0" [centeredSlides]="true" [loop]="false" [slidesPerView]=1.15 [spaceBetween]=3 pager class="choose-slider"
     (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!(products.length >0 && !err)">
-    <ion-slide *ngFor="let prod of products;let i = index">
-     
+    <ion-slide class="product" *ngFor="let prod of products;let i = index">
+
       <div *ngIf="prod && prod.cold">
         <p class="product__bottom">
-         
+
           <figure class="product__picture">
             <img src="https://cerveja.me/img/mobile/{{prod.img}}" alt="">
           </figure>
@@ -82,13 +84,21 @@
           <small>,{{ (prod.price | number:'0.2-2').split(',')[1] }} </small>
         </span>
         <span class="product__price-each">{{prod.volume}}ml • R$ {{prod.price/prod.amount | number:'1.2-2'}}</span>
+
+        <!-- <span class="free-shipping__text">Entrega Grátis!</span>
+        <span class="with-discount__text">5% OFF</span> -->
+
       </div>
 
-      <button ion-button secondary class="btn-add" (click)="addToIceBox(prod,i)">
+      <button ion-button secondary class="btn-add" *ngIf="location.zone.open" (click)="addToIceBox(prod,i)">
+
         <label>Adicionar </label>
         <span class="icon-plus"></span>
       </button>
-
+      <button ion-button secondary class="btn-add" disabled *ngIf="!location.zone.open" >
+        <label>Adicionar </label>
+        <span class="icon-plus"></span>
+      </button>
       <button class="btn-minus" (click)="removeFromIceBox(prod,i)" [ngClass]="changingSlide || !prod.items ? 'dragging': '' "></button>
     </ion-slide>
   </ion-slides>
@@ -97,7 +107,7 @@
   <h2>Outros Produtos</h2>
 
   <ul padding class="other-products">
-    <li class="other-products__item">
+    <!-- <li class="other-products__item">
       <div class="other-products__info">
         <span class="other-products__name">Carvão</span>
         <span class="other-products__price">R$
@@ -114,36 +124,55 @@
       </div>
       <button class="btn-plus"></button>
       <!-- <button class="btn-minus"></button> -->
-    </li>
+    <!-- </li>
     <li class="other-products__item">
       <div class="other-products__info">
         <span class="other-products__name">Gelo</span>
         <span class="other-products__price">R$
           <strong>12</strong>,00</span>
       </div>
-      <button class="btn-plus"></button>
-      <!-- <button class="btn-minus"></button> -->
-    </li>
+      <button class="btn-plus"></button> -->
+      <!-- <button class="btn-minus"></button>
+    </li> -->
     <li class="other-products__item suggest">
-      <div class="other-products__info">
-        <span class="other-products__name">Quer outros produtos?</span>
-        <span class="other-products__price">Conte pra gente</span>
-      </div>
-      <button class="btn-plus"></button>
-      <button class="btn-minus"></button>
+      <a (click)="openOtherProducts()">
+         <span class="other-products__info">
+            <span class="other-products__name">Quer outra coisa?</span>
+            <span class="other-products__price">Conte pra gente o que gostaria de ver aqui</span>
+          </span>
+      </a>
     </li>
   </ul>
+
+  <div class="profile__voucher">
+    <span (click)="openTerms()" class="profile__voucher__background"></span>
+    <h1><strong>Ganhe R$ 50,00</strong></h1>
+    <h2>Indique 5 amigos e acumule descontos.</h2>
+      <button ion-button class="profile__button" (click)="openProfile()">Meu Código</button>
+  </div>
+
+  <div class="footer-logo">
+      <h1 class="logo-dark"></h1>
+  </div>
 
 </ion-content>
 
 <ion-footer *ngIf="(iceBox && iceBox.length) || (voucher && voucher.value)" align-title="left" (click)="showTip=false">
   <div class="baldinho">
-    <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}} no balde</span>
-    <span class="baldinho__value">
-      <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
-      <br>
-      <strong *ngIf="voucher && voucher.value">{{voucher.code}} R$ {{voucher.value | number:'1.2-2'}}</strong>
+    <span class="baldinho__box">
+      <span class="icon-baldinho"></span>
+        <span class="baldinho__itens">{{iceBoxTotal}} ite{{iceBoxTotal>1?'ns':'m'}}</span>
+        <span class="baldinho__value">
+          <strong *ngIf="iceBoxPrice">R$ {{iceBoxPrice - (voucher?voucher.value:0) | number:'1.2-2'}}</strong>
+          <br>
+        </span>
     </span>
-    <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR</button>
+    <button ion-button class="btn-next" (click)="confirmSale()">ENTREGAR <span class="icon-arrow-next"></span></button>
+  </div>
+</ion-footer>
+
+<ion-footer>
+<div class="message" *ngIf="products && location.zone && !location.zone.open">
+    <label class="message__text">Não estamos entregando agora.</label>
   </div>
 </ion-footer>

@@ -1,0 +1,55 @@
+<ion-header>
+  <h1 class="logo-dark"></h1>
+</ion-header>
+
+<ion-content padding class="background-light">
+  <div *ngIf="sale">
+    <div class="order" *ngFor="let item of sale.products">
+      <figure class="order__image">
+        <img class="order__image__img" src="https://cerveja.me/img/mobile/{{item.img}}" alt="">
+      </figure>
+      <span class="order__price" >
+        <label class="order__label">{{item.amount}} {{item.cold?'Caixa':'Garrafa'}}{{item.amount>1?'s de':' de'}} {{item.name}}</label>
+      </span>
+    </div>
+
+    <div class="order">
+      <label class="order__label">Total a pagar: R$ {{sale.payment_value |number:'1.2-2'}}</label>
+    </div>
+  </div>
+
+  <ul class="order-status" *ngIf="sale">
+    <li class="order-status__item item-first" [ngClass]="actions && actions.accepted?'active':'loading'">
+      <span class="order-status__icon"></span>
+      <label class="order-status__label">
+        {{actions && actions.accepted?'Pedido confirmado':'Aguardando confirmação'}}
+      </label>
+    </li>
+    <li class="order-status__item item-second delivery" [ngClass]="actions && actions.onWay?'active':actions && actions.accepted?'loading':''">
+      <span class="order-status__icon"></span>
+      <label class="order-status__label"> {{actions && !actions.onWay?'Sair para entrega':'Saiu para entrega'}}
+      </label>
+      <span class="order-status__delivery" *ngIf="actions.onWay">
+        <span class="order-status__time">
+          <span class="icon-shipping-light"></span>
+          25min - 45min
+        </span>
+        <figure class="order-status__delivery__image">
+          <img src="https://cerveja.me/img/mobile/driver/{{actions.onWay.photo}}">
+        </figure>
+        <label class="order-status__delivery__label">
+          <small>Entregador</small>
+          <span>{{actions.onWay.name}}</span>
+        </label>
+      </span>
+    </li>
+    <li class="order-status__item item-third" [ngClass]="actions && actions.finishedAt?'active':actions && actions.onWay?'loading':''">
+      <span class="order-status__icon"></span>
+      <label class="order-status__label">Cerveja entregue</label>
+    </li>
+  </ul>
+</ion-content>
+
+<ion-footer>
+  <button ion-button secondary class="btn-finish" (click)="close()">{{actionClose}}</button>
+</ion-footer>

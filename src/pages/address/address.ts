@@ -9,6 +9,9 @@ import { ProfilePage } from '../profile/profile';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
+import { StatusPage } from '../status/status';
+import { FirstTimePage } from '../first-time/first-time';
+import { DeviceProvider } from '../../providers/device/device';
 
 
 @Component({
@@ -53,16 +56,9 @@ export class AddressPage {
 
   ionViewDidLoad() {
     this.analitycs.registerPage("Address");
-    // let v = this.navCtrl.getActive().component.name;
-    // console.log(v)
-    // this.verifyFirstTime();
-
+    this.ageConfirmation();
   }
 
-
-  // async verifyFirstTime(){
-  //   const firsttime =this.
-  // }
 
   closeAddressEdit() {
     console.log()
@@ -74,7 +70,6 @@ export class AddressPage {
 
   async addressChange() {
     let v = this.navCtrl.getActive();
-    console.log(v)
     this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
   }
 
@@ -118,6 +113,19 @@ export class AddressPage {
   openPartner() {
     this.analitycs.registerEvent('open_partner', {})
     // this.inApp.create('https://cvja.me/2y10JuH')
+    window.open('https://cerveja.me/mini-franquia', '_system');
+  }
+
+  async ageConfirmation(){
+    let u = await this.user.confirmedAge();
+    if( u !== "false" ){
+      const modalAge = this.modal.create(FirstTimePage).present();
+      console.log('AGE NOT CONFIRMED');
+    }else{
+      console.log('AGE  CONFIRMED');
+    }
+
+
   }
 
   openLogin() {
@@ -140,4 +148,11 @@ export class AddressPage {
     })
   }
 
+  openStatus(){
+    this.navCtrl.setRoot(StatusPage)
+  }
+
+  async getBrowserLocation(){
+    await this.getZone()
+  }
 }

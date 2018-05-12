@@ -1,0 +1,228 @@
+page-status {
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(359deg);
+    }
+  }
+
+  .order {
+    margin-bottom: 1px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &__image {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:last-of-type:after {
+      content: '';
+      background-image: url(../assets/icon/trigger-brown.svg);
+      background-size: cover;
+      width: 23px;
+      height: 23px;
+      position: absolute;
+      top: 100%;
+      left: 24px;
+      display: block;
+      margin-top: -12px;
+    }
+  }
+
+  .order-status {
+    list-style-image: none;
+    padding-left: 20px;
+    padding-top: 10px;
+
+    &__item {
+      display: block;
+      margin-bottom: 35px;
+      position: relative;
+
+      &.item-first {
+        animation: appear 0.3s linear 0.3s 1 normal;
+        animation-fill-mode: both;
+      }
+
+      &.item-second {
+        animation: appear 0.3s linear 0.9s 1 normal;
+        animation-fill-mode: both;
+      }
+
+      &.item-third {
+        animation: appear 0.3s linear 1.5s 1 normal;
+        animation-fill-mode: both;
+      }
+
+      .order-status__delivery {
+        display: none;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        width: 1px;
+        background: #573317;
+        position: absolute;
+        top: 34px;
+        margin-top: 6px;
+        left: 14px;
+        height: 18px;
+      }
+
+      &:last-child:after {
+        display: none;
+      }
+
+      &.delivery.active {
+        margin-bottom: 15px;
+
+        .order-status__delivery {
+          display: block;
+        }
+      }
+
+      &.delivery.active:after {
+        height: 94px;
+      }
+    }
+
+    &__icon {
+      @include border-radius(100px);
+      border: 2px solid #573317;
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+
+    &__item.active .order-status__icon {
+      background-image: url(../assets/icon/icon-check.svg);
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 0;
+    }
+
+    &__item.loading .order-status__icon {
+      background-image: url(../assets/icon/icon-loading.svg);
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 0;
+      animation: loading 1s linear 0s infinite normal;
+      animation-fill-mode: both;
+    }
+
+    &__label {
+      @extend .font-regular;
+      font-size: 14px;
+      color: #573317;
+    }
+
+    &__item.active .order-status__label {
+      @extend .font-bold;
+    }
+
+    &__time {
+      @extend .font-bold;
+      font-size: 12px;
+      color: $color-background;
+      background: $color-secondary;
+      display: block;
+      padding: 5px 10px;
+      margin: -10px -10px 10px -10px;
+    }
+
+    &__delivery {
+      @include border-radius(10px);
+      border: 2px solid $color-secondary;
+      padding: 10px;
+      margin-left: 48px;
+      margin-right: 15px;
+      overflow: hidden;
+      margin-top: 5px;
+
+      &__image {
+        @include border-radius(100%);
+        border: 1px solid $color-secondary;
+        display: inline-block;
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+        margin: 1px 10px 0 0;
+        overflow: hidden;
+        float: left;
+
+        img {
+          height: 100%;
+          width: auto;
+        }
+      }
+
+      &__label {
+        @extend .font-bold;
+        font-size: 16px;
+        color: $color-secondary;
+        display: block;
+        vertical-align: middle;
+        margin-top: 13px;
+
+        small {
+          @extend .font-regular;
+          font-size: 12px;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 2px;
+        }
+
+        span {
+          display: inline-block;
+          white-space: nowrap;
+          width: 70%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  .btn-finish {
+    @include border-radius(50px);
+    @extend .font-bold;
+
+    border-radius: 0;
+    background: $color-background;
+    border-top: 2px solid $color-secondary;
+    font-size: 18px;
+    padding: 20px;
+    height: auto;
+    width: 100%;
+    margin: 10px 0 0 0;
+    text-transform: uppercase;
+    color: $color-secondary;
+    
+    &.activated {
+      background:  $color-background;
+    }
+  }
+}
