@@ -79,16 +79,11 @@ export class AddressPage {
       this.location = l;
       this.products = l['zone']['products'];
       this.navCtrl.setRoot(HomePage, { 'zone': l })
-
     } catch (error) {
-      if (typeof error === 'string') {
-        this.err = error;
-      } else {
-        this.err = error;
-      }
-      this.err = error.message
+      // console.log('EROOR -> ',error);
+      this.err = error.message || error
       // this.analitycs.registerEvent(this.err, this.addressOptions)
-      console.log(error)
+      // console.log(error)
     }
     this.loadedcompleted = true;
   }
