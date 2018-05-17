@@ -80,8 +80,12 @@ export class AddressPage {
       this.products = l['zone']['products'];
       this.navCtrl.setRoot(HomePage, { 'zone': l })
     } catch (error) {
-      // console.log('EROOR -> ',error);
-      this.err = error.message || error
+      this.err = error;
+      if(error && error.message){
+        this.err = error.message || error
+      }
+      console.log('EROOR -> ',error);
+
       // this.analitycs.registerEvent(this.err, this.addressOptions)
       // console.log(error)
     }
