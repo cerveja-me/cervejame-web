@@ -79,15 +79,15 @@ export class AddressPage {
       this.location = l;
       this.products = l['zone']['products'];
       this.navCtrl.setRoot(HomePage, { 'zone': l })
-
     } catch (error) {
-      if (typeof error === 'string') {
-        this.err = error;
-      } else {
-        this.err = error;
+      this.err = error;
+      if(error && error.message){
+        this.err = error.message || error
       }
+      console.log('EROOR -> ',error);
+
       // this.analitycs.registerEvent(this.err, this.addressOptions)
-      console.log(error)
+      // console.log(error)
     }
     this.loadedcompleted = true;
   }
@@ -153,6 +153,11 @@ export class AddressPage {
   }
 
   async getBrowserLocation(){
-    await this.getZone()
+    try {
+      await this.getZone();
+    } catch (error) {
+      console.log('ERRROOOOOOO CARALHO -> ',error);
+    }
+
   }
 }

@@ -3,6 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 
+
 declare var google;
 
 
@@ -26,7 +27,13 @@ export class LocationProvider {
         return new Promise((resolve, reject) => {
           this.geolocation.watchPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 })
           .subscribe(position=>{
-            resolve(position.coords)
+            if(position['code']===1){
+              reject( new Error('USER_DENIED_GEOLOCATION'));
+            }else{
+              resolve(position.coords)
+            }
+          },e=>{
+            reject(new Error('USER_DENIED_GEOLOCATION'));
           })
       })
 

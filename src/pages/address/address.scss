@@ -245,6 +245,16 @@ page-address {
         text-transform: initial;
     }
 
+    &__text {
+        @extend .font-regular;
+
+        font-size: 14px;
+        margin-right: 15%;
+        color: $color-background;
+        margin: 20px 15px 0;
+        display: block;
+    }
+
     &__label {
         @extend .font-regular;
 
