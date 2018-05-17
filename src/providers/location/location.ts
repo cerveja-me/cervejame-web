@@ -36,13 +36,8 @@ export class LocationProvider {
             reject(new Error('USER_DENIED_GEOLOCATION'));
           })
       })
-
       }
-      // throw new Error('USER_DENIED_GEOLOCATION')
-      // return await this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 });
-      // return { latitude: 0, longitude: 0 }
     } catch (error) {
-      console.log('error -> ', error)
       throw new Error('USER_DENIED_GEOLOCATION')
     }
   }

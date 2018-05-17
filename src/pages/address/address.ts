@@ -84,10 +84,8 @@ export class AddressPage {
       if(error && error.message){
         this.err = error.message || error
       }
-      console.log('EROOR -> ',error);
-
-      // this.analitycs.registerEvent(this.err, this.addressOptions)
-      // console.log(error)
+      
+      this.analitycs.registerError(this.err, this.addressOptions)
     }
     this.loadedcompleted = true;
   }

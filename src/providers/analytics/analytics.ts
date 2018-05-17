@@ -24,6 +24,8 @@ export class AnalyticsProvider {
     console.log('event ->', event, o)
   }
 
+  registerError(event,e){
 
+  }
 
 }
