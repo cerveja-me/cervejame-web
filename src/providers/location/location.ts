@@ -20,7 +20,7 @@ export class LocationProvider {
 
   async getPosition() {
     try {
-      if (this.address) {
+      if (this.address && this.address.geometry && this.address.geometry.location) {
         let l = this.address.geometry.location;
         return { latitude: l.lat, longitude: l.lng }
       } else {
