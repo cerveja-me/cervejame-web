@@ -49,7 +49,6 @@ export class ModalLoginPage {
             {
               text: 'Tentar de novo',
               handler: data => {
-
                 this.analitycs.registerEvent('login_error_try_again', this.profile);
               }
             },
@@ -88,6 +87,7 @@ export class ModalLoginPage {
   }
 
   doFacebookRegister() {
+    this.analitycs.registerEvent('login',{method:'Facebook'})
     // this.loader=this.load.create({content: this.device.getRandonLoading()});
     // this.loader.present();
     this.user.facebookRegister()

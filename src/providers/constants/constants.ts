@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConstantsProvider {
-  public API: string = 'https://api.hom.cerveja.me/api/';
-  public FB_APP_ID:string ='339667689763204';
+public API: string = 'http://localhost:9001/api/';
+public FB_APP_ID:string ='339667689763204';
 
   public FB_VERSION:string='3.0'
   public DEVICE: string = 'device/';

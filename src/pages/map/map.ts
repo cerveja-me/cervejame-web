@@ -155,8 +155,11 @@ export class MapPage {
 
   async finishOrder() {
     await this.order.updateLocationAddress({ 0: this.map.getCenter().lat(), 1: this.map.getCenter().lng() }, this.fulladdress, this.number, this.complement);
+    this.analitycs.registerEvent('checkout_progress', {
+      "affiliation": this.order.getLocale().name,
+      checkout_step: "2"
+    })
     this.navCtrl.push(CheckoutPage);
-    this.analitycs.registerEvent('confirm_address', {});
   }
   async registerChanges(ev) {
     this.analitycs.registerEvent(ev, {});

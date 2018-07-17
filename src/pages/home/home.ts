@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Observable';
 export class HomePage {
   @ViewChild(Slides) slides: Slides;
   products = [];
-  location = {};
+  location:any = {};
   taped = false;
   changingSlide = false;
   amount = 2;
@@ -89,6 +89,20 @@ export class HomePage {
       }
       this.location = l;
       this.products = l['zone']['products'];
+      this.analitycs.registerEvent('view_item_list', {
+        items:this.products.map((p,index)=>{
+          return{
+            id: p.id,
+            name: p.name,
+            variant: p.description,
+            list_name: this.location.zone.name,
+            // brand: "Google",
+            category: "beer",
+            list_position: index,
+            price: p.price
+          }
+        })
+      })
       this.slideChanged();
 
     } catch (error) {
@@ -114,8 +128,24 @@ export class HomePage {
       this.current = current;
       this.changingSlide = false;
       this.zone.run(() => { });
-      this.analitycs.registerEvent('slide_change', { product: this.products[current], pos: current + 1, slides: this.products.length, slide: (current + 1) + ' of ' + this.products.length });
+      this.analitycs.registerEvent('view_item', {
+        items: [
+          {
+            id: this.products[current].id,
+            name: this.products[current].name,
+            list_name: this.location.zone.name,
+            // "brand": "Google",
+            category: "Beer",
+            variant: this.products[current].description,
+            list_position: current + 1,
+            quantity: 1,
+            price: this.products[current].price
+          }
+        ]}
+      )
     }
+      // { name: this.products[current].name, description: this.products[current].description,city:this.location.zone.name, pos: current + 1, slides: this.products.length, slide: (current + 1) + ' of ' + this.products.length });
+
     let i = this.iceBox.findIndex((item, i) => {
       return item.product === this.products[current]
     })
@@ -206,13 +236,31 @@ export class HomePage {
   }
 
   confirmSale() {
+    this.analitycs.registerEvent('checkout_progress', {
+      affiliation: this.location.zone.name,
+      checkout_step:"1"
+    })
     this.order.setItems(this.iceBox);
     this.order.createOrder();
     this.navCtrl.push(MapPage)
   }
 
   addToIceBox(product, index) {
-    this.analitycs.registerEvent('addToIceBox', product);
+    this.analitycs.registerEvent('add_to_cart', {
+      items: [
+        {
+          id: this.products[index].id,
+          name: this.products[index].name,
+          list_name: this.location.zone.name,
+          // "brand": "Google",
+          category: "Beer",
+          variant: this.products[index].description,
+          list_position: index + 1,
+          quantity: 1,
+          price: this.products[index].price
+        }
+      ]
+    })
     if (this.products[index].items) {
       this.products[index].items++;
     } else {
@@ -220,8 +268,24 @@ export class HomePage {
     }
     this.updateIceBox();
   }
+
   removeFromIceBox(product, index) {
-    this.analitycs.registerEvent('removeFromIceBox', product);
+    this.analitycs.registerEvent('remove_from_cart', {
+      items: [
+        {
+          id: this.products[index].id,
+          name: this.products[index].name,
+          list_name: this.location.zone.name,
+          // "brand": "Google",
+          category: "Beer",
+          variant: this.products[index].description,
+          list_position: index + 1,
+          quantity: 1,
+          price: this.products[index].price
+        }
+      ]
+    });
+
     if (this.products[index].items) {
       this.products[index].items--;
       this.updateIceBox();

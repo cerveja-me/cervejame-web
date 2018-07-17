@@ -84,7 +84,7 @@ export class AddressPage {
       if(error && error.message){
         this.err = error.message || error
       }
-      
+
       this.analitycs.registerError(this.err, this.addressOptions)
     }
     this.loadedcompleted = true;

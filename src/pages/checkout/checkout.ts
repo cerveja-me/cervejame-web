@@ -157,9 +157,30 @@ export class CheckoutPage {
  async finishOrder() {
     try {
       console.log('finaliza')
-      let o  = await this.order.completeOrder();
+      let o:any  = await this.order.completeOrder();
       this.navCtrl.setRoot(StatusPage)
-
+      this.analitycs.registerEvent('purchase', {
+        transaction_id: o.id,
+        affiliation: this.order.locale.zone.name,
+        value: o.price,
+        currency: "BRL",
+        tax: 0,
+        shipping: o.freight_value,
+        checkout_option: this.order.sale.payment==1?'money':'card',
+        items:this.order.sale.icebox.map(p=>{
+          return {
+            id: p.id,
+            name: p.name,
+            list_name: this.order.locale.zone.name,
+            category: "beer",
+            variant: p.description,
+            // list_position: 1,
+            quantity: p.items,
+            price: p.price
+          }
+        })
+      })
+      console.log('compra final')
     } catch (error) {
       switch (error.code) {
         case 1000:
