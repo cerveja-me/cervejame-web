@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import * as CTS from '../cts';
 
 @Injectable()
 export class ConstantsProvider {
-public API: string = 'http://localhost:9001/api/';
+public API: string = CTS.env.server_url;
 public FB_APP_ID:string ='339667689763204';
 
   public FB_VERSION:string='3.0'
