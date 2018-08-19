@@ -34,7 +34,7 @@ export class OrderProvider {
 
   async getZone() {
     try {
-      const pos = await this.location.getPosition()
+      const pos = await this.location.getPosition();
       const dev = await this.device.getDevice();
       const day = new Date();
       const p = {

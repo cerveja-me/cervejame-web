@@ -29,6 +29,8 @@ export class LocationProvider {
           .subscribe(position=>{
             if(position['code']===1){
               reject( new Error('USER_DENIED_GEOLOCATION'));
+            } else if (position['code'] === 3) {
+              reject(new Error('USER_DENIED_GEOLOCATION'));
             }else{
               resolve(position.coords)
             }
