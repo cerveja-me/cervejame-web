@@ -3,10 +3,10 @@ import * as CTS from '../cts';
 
 @Injectable()
 export class ConstantsProvider {
-public API: string = CTS.env.server_url;
-public FB_APP_ID:string ='339667689763204';
+  public API: string = CTS.env.server_url;
+  public FB_APP_ID: string = CTS.env.fb_id;
 
-  public FB_VERSION:string='3.0'
+  public FB_VERSION: string = '3.0'
   public DEVICE: string = 'device/';
   public LOCATION: string = 'location/';
   public PROFILE: string = 'profile/';
