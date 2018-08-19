@@ -114,7 +114,7 @@ export class LocationProvider {
         address[addressType] = val;
       }
     }
-    address['formated'] = this.formatAddress(address);
+    address['formated'] =await this.formatAddress(address);
     return (address);
   }
   async formatAddress(address) {

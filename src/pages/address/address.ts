@@ -34,6 +34,7 @@ export class AddressPage {
   discount = 0;
   updatingAmount;
   loader;
+  errorAddress:string;
 
   actions: any = {
     accepted: null,
@@ -84,6 +85,10 @@ export class AddressPage {
       if(error && error.message){
         this.err = error.message || error
       }
+      if (error && error.address){
+        this.err=error.error;
+        this.errorAddress = error.address.formated;
+      }
 
       this.analitycs.registerError(this.err, this.addressOptions)
     }
@@ -122,7 +127,6 @@ export class AddressPage {
     }else{
       console.log('AGE  CONFIRMED');
     }
-
 
   }
 
