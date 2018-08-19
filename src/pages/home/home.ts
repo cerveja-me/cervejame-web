@@ -13,12 +13,15 @@ import { VoucherProvider } from '../../providers/voucher/voucher';
 import { StatusPage } from '../status/status';
 import 'rxjs/add/observable/interval';
 import { Observable } from 'rxjs/Observable';
+import * as CTS from '../../providers/cts';
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  v = CTS.version;
   @ViewChild(Slides) slides: Slides;
   products = [];
   location:any = {};
