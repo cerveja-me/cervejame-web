@@ -9,16 +9,52 @@ declare var google;
 
 @Injectable()
 export class LocationProvider {
-
   address: any;
 
   constructor(
     private geolocation: Geolocation,
     private net: NetworkProvider,
     private c: ConstantsProvider
-  ) { }
+  ) {
+
+  }
 
   async getPosition() {
+    if (this.c.IS_MOBILE) {
+      return this.getPositionMobile();
+    } else {
+      return this.getPositionWeb();
+    }
+  }
+
+  async getPositionMobile() {
+    try {
+      if (this.address && this.address.geometry && this.address.geometry.location && this.address.geometry.location.lat) {
+        let l = this.address.geometry.location;
+        return { latitude: l.lat, longitude: l.lng }
+      } else {
+        return new Promise((resolve, reject) => {
+          this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 })
+            .then(pos => {
+              resolve(pos.coords)
+            })
+            .catch(err => {
+              let e: string = '';
+              if (err.code == 1) {
+                e = 'USER_DENIED_GEOLOCATION';
+              } else {
+                e = 'GEOLOCATION_TIMEOUT';
+              }
+              reject(e);
+            })
+        })
+      }
+    } catch (error) {
+      throw new Error('USER_DENIED_GEOLOCATION')
+    }
+  }
+
+  async getPositionWeb() {
     try {
       if (this.address && this.address.geometry && this.address.geometry.location && this.address.geometry.location.lat) {
         let l = this.address.geometry.location;
@@ -26,18 +62,18 @@ export class LocationProvider {
       } else {
         return new Promise((resolve, reject) => {
           this.geolocation.watchPosition({ enableHighAccuracy: true, timeout: 7000, maximumAge: 0 })
-          .subscribe(position=>{
-            if(position['code']===1){
-              reject( new Error('USER_DENIED_GEOLOCATION'));
-            } else if (position['code'] === 3) {
+            .subscribe(position => {
+              if (position['code'] === 1) {
+                reject(new Error('USER_DENIED_GEOLOCATION'));
+              } else if (position['code'] === 3) {
+                reject(new Error('USER_DENIED_GEOLOCATION'));
+              } else {
+                resolve(position.coords)
+              }
+            }, e => {
               reject(new Error('USER_DENIED_GEOLOCATION'));
-            }else{
-              resolve(position.coords)
-            }
-          },e=>{
-            reject(new Error('USER_DENIED_GEOLOCATION'));
-          })
-      })
+            })
+        })
       }
     } catch (error) {
       throw new Error('USER_DENIED_GEOLOCATION')
@@ -116,7 +152,7 @@ export class LocationProvider {
         address[addressType] = val;
       }
     }
-    address['formated'] =await this.formatAddress(address);
+    address['formated'] = await this.formatAddress(address);
     return (address);
   }
   async formatAddress(address) {

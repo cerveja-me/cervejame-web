@@ -4,18 +4,19 @@ import { StorageProvider } from '../storage/storage';
 import { ConstantsProvider } from '../constants/constants';
 import { UUID } from 'angular2-uuid';
 import { NetworkProvider } from '../network/network';
+import { Platform } from 'ionic-angular';
 
 
 @Injectable()
 export class DeviceProvider {
   dev: {};
+  isApp;
   constructor(
     private storage: StorageProvider,
     private c: ConstantsProvider,
-    private net: NetworkProvider
-  ) {
-    console.log('Hello DeviceProvider Provider');
-  }
+    private net: NetworkProvider,
+    public platform: Platform
+  ) { }
 
   async createDevice(push: string) {
     var d = {

@@ -5,6 +5,7 @@ import * as CTS from '../cts';
 export class ConstantsProvider {
   public API: string = CTS.env.server_url;
   public FB_APP_ID: string = CTS.env.fb_id;
+  public IS_MOBILE: boolean= CTS.mobile;
 
   public FB_VERSION: string = '3.0'
   public DEVICE: string = 'device/';

@@ -29,7 +29,9 @@
         "angular2-uuid": "^1.1.1",
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
+        "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-device": "^2.0.2",
+        "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-ionic-keyboard": "^2.1.2",
         "cordova-plugin-ionic-webview": "^2.0.3",
         "cordova-plugin-splashscreen": "^5.0.2",
@@ -54,7 +56,10 @@
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-ionic-webview": {},
             "cordova-plugin-splashscreen": {},
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": "Usamos a sua localização para identificar a sua região e mostrar os produtos disponiveis"
+            }
         },
         "platforms": [
             "android",
