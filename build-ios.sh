@@ -7,7 +7,8 @@
 #npm install
 
 #build project
-cp config.xml > config.bkp
+cp config.xml config.bkp
+cp env/env.hom.ts src/providers/cts.ts
 
 VERSION=`python -c "import json; j=json.loads(open('./package.json').read()); print('%s' %(j['version']))"`;
 CMT=`git rev-parse HEAD`;
@@ -21,7 +22,7 @@ mv config.xml.b config.xml
 
 ionic cordova  build ios --prod  --aot --minifyjs --minifycss --optimizejs;
 
-cp config.bkp > config.xml
+cp config.bkp config.xml
 
 #
 
