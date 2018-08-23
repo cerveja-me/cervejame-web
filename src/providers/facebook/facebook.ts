@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstantsProvider } from '../constants/constants';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 import 'rxjs/add/operator/map';
 
@@ -9,9 +10,25 @@ declare var FB;
 @Injectable()
 export class FacebookProvider {
 
-  constructor(public http: HttpClient,private c:ConstantsProvider) {
+  constructor(
+    public http: HttpClient,
+    private c: ConstantsProvider,
+    private fb: Facebook
+  ) {
+    if (c.IS_MOBILE) {
+
+    } else {
+      this.initWeb();
+    }
+  }
+
+  initMobile() {
+
+  }
+
+  initWeb() {
     FB.init({
-      appId: c.FB_APP_ID,
+      appId: this.c.FB_APP_ID,
       cookie: true,
       xfbml: true,
       version: 'v3.0'
@@ -19,11 +36,18 @@ export class FacebookProvider {
     FB.AppEvents.logPageView();
   }
 
+  async fbLogin() {
+    if (this.c.IS_MOBILE) {
+      return this.fbLoginMobile();
+    } else {
+      return this.fbLoginWeb();
+    }
+  }
 
- async fbLogin() {
+  async fbLoginWeb(): Promise<any> {
     return new Promise((resolve, reject) => {
       FB.getLoginStatus(function (r) {
-        if (r.status && r.status ==='connected' && r.authResponse) {
+        if (r.status && r.status === 'connected' && r.authResponse) {
           FB.api('/me?fields=id,name,email,first_name,last_name,gender', function (response) {
             response.photo = "https://graph.facebook.com/" + response.id + "/picture?type=square";
             response.auth = r.authResponse;
@@ -44,5 +68,22 @@ export class FacebookProvider {
         }
       });
     });
+  }
+
+  fbLoginMobile(): Promise<any> {
+    let permissions = ["public_profile", "email"];
+    let d: any;
+    return this.fb.login(permissions)
+      .then(data => {
+        d = data;
+        return this.fb.api("/me?fields=id,name,email,first_name,last_name,gender", new Array());
+      })
+      .then(user => {
+        user.auth = d.authResponse;
+        return user;
+      })
+      .catch(e => {
+        throw e;
+      });
   }
 }

@@ -23,6 +23,7 @@ mv config.xml.b config.xml
 ionic cordova  build ios --prod  --aot --minifyjs --minifycss --optimizejs;
 
 cp config.bkp config.xml
+cp env/env.dev.ts src/providers/cts.ts
 
 #
 

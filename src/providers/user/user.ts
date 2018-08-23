@@ -41,20 +41,9 @@ export class UserProvider {
     return new Promise((resolve, reject) => {
       let permissions = new Array();
       permissions = ["public_profile", "email"];
-
         this.fb.fbLogin()
           .then(data => {
             let params = new Array();
-            //   this.fb.api("/me?fields=id,name,email,first_name,last_name,gender", params)
-            //     .then(user => {
-            //       user.auth = data.authResponse;
-            //       resolve(user);
-            //     })
-            //     .catch(e => {
-            //       reject(e);
-            //     });
-            // })
-
           }).catch(reject);
     })
   }
