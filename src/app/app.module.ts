@@ -42,7 +42,7 @@ import { Pro } from '@ionic/pro';
 import * as CTS from '../providers/cts';
 
 Pro.init(CTS.env.ionicAppID, {
-  appVersion: CTS.env.appVersion
+  appVersion: CTS.version
 })
 
 @Injectable()
