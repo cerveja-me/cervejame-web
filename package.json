@@ -36,6 +36,7 @@
         "cordova-plugin-device": "^2.0.2",
         "cordova-plugin-facebook4": "^2.3.0",
         "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-ionic": "^5.1.2",
         "cordova-plugin-ionic-keyboard": "^2.1.2",
         "cordova-plugin-ionic-webview": "^2.0.3",
         "cordova-plugin-splashscreen": "^5.0.2",
@@ -48,7 +49,7 @@
         "zone.js": "0.8.20"
     },
     "devDependencies": {
-        "@ionic/app-scripts": "3.1.8",
+        "@ionic/app-scripts": "^3.2.0",
         "typescript": "~2.6.2"
     },
     "engines": {
