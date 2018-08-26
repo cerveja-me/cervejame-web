@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.cerveja.me" ios-CFBundleIdentifier="com.cerveja.me.app" version="3.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.cerveja.me" ios-CFBundleIdentifier="com.cerveja.me.app" version="X.P.TO" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Cerveja.me</name>
     <description>O melhor aplicativo de entrega de cervejas</description>
     <author email="contato@cerveja.me" href="https://cerveja.me/">Cerveja.me Team</author>
