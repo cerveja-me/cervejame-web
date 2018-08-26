@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
+import { ErrorHandler, NgModule, LOCALE_ID, Injectable, Injector } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -38,7 +38,33 @@ import { FirstTimePage } from '../pages/first-time/first-time';
 import { FacebookProvider } from '../providers/facebook/facebook';
 import { TourPage } from '../pages/tour/tour';
 import { Facebook } from '@ionic-native/facebook';
+import { Pro } from '@ionic/pro';
+import * as CTS from '../cts';
 
+Pro.init(CTS.env.ionicAppID, {
+  appVersion: CTS.env.appVersion
+})
+
+@Injectable()
+export class IonicProErrorHandler implements ErrorHandler {
+  ionicErrorHandler: IonicErrorHandler;
+
+  constructor(injector: Injector) {
+    try {
+      this.ionicErrorHandler = injector.get(IonicErrorHandler);
+    } catch (e) {
+      // Unable to get the IonicErrorHandler provider, ensure
+      // IonicErrorHandler has been added to the providers list below
+    }
+  }
+
+  handleError(err: any): void {
+    Pro.monitoring.handleNewError(err);
+    // Remove this if you want to disable Ionic's auto exception handling
+    // in development mode.
+    this.ionicErrorHandler && this.ionicErrorHandler.handleError(err);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -99,7 +125,7 @@ import { Facebook } from '@ionic-native/facebook';
     VoucherProvider,
     Facebook,
     FacebookProvider,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: IonicProErrorHandler },
     { provide: LOCALE_ID, useValue: 'pt-BR' }
 
   ]
