@@ -36,6 +36,8 @@ import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referrals';
 import { FirstTimePage } from '../pages/first-time/first-time';
 import { FacebookProvider } from '../providers/facebook/facebook';
+import { TourPage } from '../pages/tour/tour';
+import { Facebook } from '@ionic-native/facebook';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { FacebookProvider } from '../providers/facebook/facebook';
     FeedbackPage,
     ProfileTermsPage,
     ProfileReferralsPage,
-    FirstTimePage
+    FirstTimePage,
+    TourPage
   ],
   imports: [
     BrowserModule,
@@ -78,8 +81,8 @@ import { FacebookProvider } from '../providers/facebook/facebook';
     FeedbackPage,
     ProfileTermsPage,
     ProfileReferralsPage,
-    FirstTimePage
-
+    FirstTimePage,
+    TourPage
   ],
   providers: [
     StatusBar,
@@ -94,9 +97,11 @@ import { FacebookProvider } from '../providers/facebook/facebook';
     StorageProvider,
     UserProvider,
     VoucherProvider,
+    Facebook,
+    FacebookProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
-    FacebookProvider
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+
   ]
 })
 export class AppModule { }

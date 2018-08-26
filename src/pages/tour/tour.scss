@@ -1,0 +1,103 @@
+page-tour {
+
+    .btn-start {
+        @include border-radius(50px);
+        @extend .font-bold !optional;
+
+        background: $color-primary;
+        border: 2px solid white;
+        font-size: 17px;
+        padding: 15px 30px;
+        height: auto;
+        width: 100%;
+        transition: all .5s;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .slide-zoom {
+        height: 100%;
+    }
+
+    .tour {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        &__image {
+            background: #573317;
+            height: 100px;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: auto;
+                max-height: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+        }
+
+        &__text {
+            @extend .font-regular !optional;
+
+            color: white;
+            background: #573317;
+            width: 100%;
+            padding: 45px;
+            font-size: 25px;
+            border-top: 2px solid white;
+            display: block;
+            text-align: left;
+
+            strong {
+                @extend .font-bold !optional;
+
+                color: $color-secondary-light;
+            }
+        }
+    }
+
+    .icone-tour1 {
+        background-image: url(../assets/icon/tour1.svg);
+        background-size: cover;
+        width: 106px;
+        height: 150px;
+        display: inline-block;
+    }
+
+    .icone-tour2 {
+        background-image: url(../assets/icon/tour2.svg);
+        background-size: cover;
+        width: 106px;
+        height: 145px;
+        display: inline-block;
+    }
+}
+
+.slider-nav {
+  width: 100%;
+  position: absolute;
+  bottom: 190px;
+
+  &__item {
+    @include border-radius(50px);
+
+    width: 10px;
+    height: 10px;
+    background: white;
+    display: inline-block;
+    margin: 0 2px;
+    opacity: 0.3;
+
+    &.active {
+      opacity: 1;
+  }
+}
+}

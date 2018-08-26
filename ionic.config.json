@@ -1,6 +1,8 @@
 {
   "name": "cervejame-web",
-  "app_id": "",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
-  "integrations": {}
+  "pro_id": "2554af8a"
 }

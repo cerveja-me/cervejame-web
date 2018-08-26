@@ -13,13 +13,13 @@ export class OrderProvider {
 
   voucher;
   sale = {
-    location:'',
+    location: '',
     id: '',
     icebox: [],
     freight_value: 0,
-    payment:null,
-    voucher:null,
-    friendRef:null
+    payment: null,
+    voucher: null,
+    friendRef: null
   }
 
   constructor(
@@ -34,7 +34,7 @@ export class OrderProvider {
 
   async getZone() {
     try {
-      const pos = await this.location.getPosition()
+      const pos = await this.location.getPosition();
       const dev = await this.device.getDevice();
       const day = new Date();
       const p = {
@@ -44,9 +44,10 @@ export class OrderProvider {
       }
       const locality = await this.net.post(this.c.LOCATION, p)
       this.locale = locality;
+      this.locale.address = await this.location.getAddressFromLocation({ 0: pos['latitude'], 1: pos['longitude'] });
       if (locality['zone']) {
         if (locality['zone']['products']) {
-          if (!locality['zone']['free_shipping']){
+          if (!locality['zone']['free_shipping']) {
             this.sale.freight_value = locality['zone']['freight_value']
           }
           return this.locale
@@ -54,7 +55,7 @@ export class OrderProvider {
           throw 'NO_PRODUCTS'
         }
       } else {
-        throw 'NO_ZONE_AVAILABLE'
+        throw {error:'NO_ZONE_AVAILABLE', address:this.locale.address};
       }
     } catch (error) {
       throw error;
@@ -71,7 +72,7 @@ export class OrderProvider {
       street: address,
       num: number,
       complement: complement,
-      time:day
+      time: day
     }
     try {
       this.locale = await this.net.put(this.net.c.LOCATION + this.locale['id'], up)
@@ -97,7 +98,7 @@ export class OrderProvider {
     this.voucher = null;
   }
 
-  setFriendRef(fr){
+  setFriendRef(fr) {
     this.sale.friendRef = fr;
   }
 
@@ -111,15 +112,15 @@ export class OrderProvider {
 
   async createOrder() {
     try {
-      this.sale.location=this.locale.id
-      let sale:any = await this.net.post(this.c.SALE, this.sale)
+      this.sale.location = this.locale.id
+      let sale: any = await this.net.post(this.c.SALE, this.sale)
       this.sale.id = sale.id;
     } catch (error) {
-      console.log('erroc crair venda 0> ',error)
+      console.log('erroc crair venda 0> ', error)
     }
   }
 
-  async completeOrder(){
+  async completeOrder() {
     try {
       this.sale.voucher = this.voucher;
       let sale = await this.net.put(this.c.SALE + this.sale.id, this.sale);
@@ -139,13 +140,13 @@ export class OrderProvider {
   }
   async rateOrder(r) {
     try {
-    let rate = {
-      id_sale: r.id_sale,
-      who: 2,
-      rate: r.rate,
-      comment: r.comment
-    };
-    return await this.net.post(this.c.RATE, rate)
+      let rate = {
+        id_sale: r.id_sale,
+        who: 2,
+        rate: r.rate,
+        comment: r.comment
+      };
+      return await this.net.post(this.c.RATE, rate)
     } catch (error) {
 
     }

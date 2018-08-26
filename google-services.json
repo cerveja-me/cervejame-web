@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "10339294539",
+    "firebase_url": "https://cerveja-me.firebaseio.com",
+    "project_id": "cerveja-me",
+    "storage_bucket": "cerveja-me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10339294539:android:5a0837dd5beeb5dc",
+        "android_client_info": {
+          "package_name": "com.cerveja.me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10339294539-e7iuqe5nl5k3j44v88brjg9tiiljc0mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOVZq-t-J7gINZKMnQHXnvIEcnyKwIHdA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

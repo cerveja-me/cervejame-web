@@ -1,0 +1,83 @@
+<!-- <ion-content  > -->
+
+  <ion-slides class="background-dark" #slides (ionSlideWillChange)="onSlideChangeStart($event)">
+
+    <ion-slide>
+
+     <figure class="tour__image">
+       <img src="assets/imgs/tour1.jpg"/>
+   </figure>
+   <div class="logo-full"></div>
+   <div class="tour">
+      <span class="tour__text">Escolha <strong>sua cerveja</strong>
+        preferida.</span>
+    </div>
+
+    <div class="slider-nav">
+        <span class="slider-nav__item active"></span>
+        <span class="slider-nav__item"></span>
+        <span class="slider-nav__item"></span>
+        <span class="slider-nav__item"></span>
+    </div>
+
+</ion-slide>
+
+<ion-slide>
+  <figure class="tour__image">
+   <img src="assets/imgs/tour2.jpg"/>
+</figure>
+<div class="logo-full"></div>
+<div class="tour">
+
+  <span class="tour__text">Informe <strong>o local</strong>
+    de entrega.</span>
+</div>
+
+<div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+</div>
+</ion-slide>
+<ion-slide>
+  <figure class="tour__image">
+   <img src="assets/imgs/tour3.jpg"/>
+</figure>
+<div class="logo-full"></div>
+<div class="tour">
+  <span class="tour__text">Pronto! <strong>Sua gelada</strong>
+    chegou.</span>
+</div>
+
+<div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+    <span class="slider-nav__item"></span>
+</div>
+
+</ion-slide>
+<ion-slide>
+
+  <figure class="tour__image">
+   <img src="assets/imgs/tour3.jpg"/>
+</figure>
+<div class="logo-full"></div>
+<div class="tour">
+  <span class="tour__text">
+   <button class="btn-start" (click)="startApp()">Vamos lá!</button>
+</span>
+
+</div>
+
+<div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+</div>
+
+</ion-slide>
+
+</ion-slides>
