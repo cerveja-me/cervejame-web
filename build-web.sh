@@ -14,12 +14,13 @@ VERSION=`python -c "import json; j=json.loads(open('./package.json').read()); pr
 CMT=`git rev-parse HEAD`;
 echo 'export const version={"appVersion":"'$VERSION'","commit":"'${CMT: -11}'"};' >> src/providers/cts.ts
 echo 'export const mobile = false;' >> src/providers/cts.ts
-head -n 2 config.xml > config.xml.b
-echo 'version="'$VERSION'"' >> config.xml.b
-tail -n +4 config.xml >> config.xml.b
-mv config.xml.b config.xml
+cp config.xml config.xml.b
+SS='s/X.P.TO/'$VERSION'/g'
+sed -i -e $SS config.xml
 
-cp src/index.html src/index.html.b; sed -e '28d' src/index.html.b > src/index.html; rm  src/index.html.b;
+
+sed -i '/cordova.js/d' src/index.html
+
 ionic build web --prod --release --aot --minifyjs --minifycss --optimizejs;
 
 cd www/
