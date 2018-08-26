@@ -6,7 +6,7 @@
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
-        "prepare":"./build-ios.sh",
+        "prepare":"./build-mobile.sh",
         "build": "npm run prepare;ionic-app-scripts build",
         "lint": "ionic-app-scripts lint",
         "ionic:build": "ionic-app-scripts build",
