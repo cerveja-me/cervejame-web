@@ -9,6 +9,7 @@
 
 #Configure variables
 cp config.xml config.bkp
+cp env/env.prod.ts src/providers/cts.ts
 VERSION=`python -c "import json; j=json.loads(open('./package.json').read()); print('%s' %(j['version']))"`;
 CMT=`git rev-parse HEAD`;
 echo 'export const version={"appVersion":"'$VERSION'","commit":"'${CMT: -11}'"};' >> src/providers/cts.ts
