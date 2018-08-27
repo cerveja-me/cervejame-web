@@ -18,7 +18,7 @@ SS='s/X.P.TO/'$VERSION'/g'
 sed -i -e $SS config.xml
 
 # Build ios
-# ionic cordova  build ios --prod  --aot --minifyjs --minifycss --optimizejs;
+# ionic cordova  build ios --release --prod  --aot --minifyjs --minifycss --optimizejs;
 
 # restore environment
 # cp config.bkp config.xml
