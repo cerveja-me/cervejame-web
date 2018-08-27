@@ -41,6 +41,8 @@ import { Facebook } from '@ionic-native/facebook';
 import { Pro } from '@ionic/pro';
 import * as CTS from '../providers/cts';
 import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
+import { OneSignal } from '@ionic-native/onesignal';
+import { Device } from '@ionic-native/device';
 
 Pro.init(CTS.env.ionicAppID, {
   appVersion: CTS.version.appVersion
@@ -128,6 +130,8 @@ export class IonicProErrorHandler implements ErrorHandler {
     VoucherProvider,
     Facebook,
     FacebookProvider,
+    OneSignal,
+    Device,
     { provide: ErrorHandler, useClass: IonicProErrorHandler },
     { provide: LOCALE_ID, useValue: 'pt-BR' }
 

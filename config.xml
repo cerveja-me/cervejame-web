@@ -83,6 +83,7 @@
     </platform>
     <engine name="android" spec="^7.1.1" />
     <engine name="ios" spec="^4.5.5" />
+    <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-facebook4" spec="^2.3.0">
         <variable name="APP_ID" value="289767478086559" />
         <variable name="APP_NAME" value="Cerveja.me" />
@@ -103,7 +104,7 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.1.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="onesignal-cordova-plugin" spec="^2.4.3" />
-    <plugin name="cordova-plugin-device" spec="^2.0.2" />
 </widget>

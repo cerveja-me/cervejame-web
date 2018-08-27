@@ -30,7 +30,7 @@ export class DeviceProvider {
     var d = {
       id: '',
       push_token: push || 'empty',
-      app_version: CTS.version,
+      app_version: CTS.version.appVersion,
       app_name: CTS.mobile?1:4, //web browser
       app_os: CTS.mobile?'':'browser',
       phone_model: CTS.mobile ? this.device.platform:'browser web',

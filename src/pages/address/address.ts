@@ -59,15 +59,13 @@ export class AddressPage {
   ionViewDidLoad() {
     this.analitycs.registerPage("Address");
     this.ageConfirmation();
-
+    this.confirmPush();
   }
-
-
-
 
   closeAddressEdit() {
     console.log()
   }
+
   async setAddress(a) {
     await this.loc.setAddress(a)
     this.getZone();
