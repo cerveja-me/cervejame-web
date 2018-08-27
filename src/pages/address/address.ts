@@ -12,6 +12,7 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { StatusPage } from '../status/status';
 import { FirstTimePage } from '../first-time/first-time';
 import { DeviceProvider } from '../../providers/device/device';
+import { ModalNotificationPage } from '../modal-notification/modal-notification';
 
 
 @Component({
@@ -58,7 +59,10 @@ export class AddressPage {
   ionViewDidLoad() {
     this.analitycs.registerPage("Address");
     this.ageConfirmation();
+
   }
+
+
 
 
   closeAddressEdit() {
@@ -127,6 +131,12 @@ export class AddressPage {
       console.log('AGE  CONFIRMED');
     }
 
+  }
+
+  async confirmPush(){
+    if(await this.user.firtTime()){
+      this.modal.create(ModalNotificationPage).present();
+    }
   }
 
   openLogin() {

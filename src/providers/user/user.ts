@@ -142,12 +142,21 @@ export class UserProvider {
       return true
     }
   }
+
   async confirmeAge() {
     try {
       await this.storage.set('false',this.network.c.AGE_CONFIRMED)
       return false
     } catch (e) {
       return false
+    }
+  }
+
+  async firtTime(){
+    try {
+      return await this.device.firstTime();
+    } catch (error) {
+      return true;
     }
   }
 }

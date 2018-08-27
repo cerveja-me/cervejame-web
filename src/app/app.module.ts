@@ -40,9 +40,10 @@ import { TourPage } from '../pages/tour/tour';
 import { Facebook } from '@ionic-native/facebook';
 import { Pro } from '@ionic/pro';
 import * as CTS from '../providers/cts';
+import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
 
 Pro.init(CTS.env.ionicAppID, {
-  appVersion: CTS.version
+  appVersion: CTS.version.appVersion
 })
 
 @Injectable()
@@ -83,7 +84,8 @@ export class IonicProErrorHandler implements ErrorHandler {
     ProfileTermsPage,
     ProfileReferralsPage,
     FirstTimePage,
-    TourPage
+    TourPage,
+    ModalNotificationPage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,8 @@ export class IonicProErrorHandler implements ErrorHandler {
     ProfileTermsPage,
     ProfileReferralsPage,
     FirstTimePage,
-    TourPage
+    TourPage,
+    ModalNotificationPage
   ],
   providers: [
     StatusBar,
