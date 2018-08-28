@@ -154,7 +154,8 @@ export class UserProvider {
 
   async firtTime(){
     try {
-      return await this.device.firstTime();
+      await this.storage.get(this.network.c.ASKED_NOTIFICATION);
+      return false;
     } catch (error) {
       return true;
     }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageProvider } from '../storage/storage';
 import { ConstantsProvider } from '../constants/constants';
@@ -23,7 +23,6 @@ export class DeviceProvider {
     private oneSignal: OneSignal,
     private events: Events,
     private alertCtrl: AlertController
-
   ) { }
 
   async createDevice(push: string) {
@@ -38,7 +37,7 @@ export class DeviceProvider {
       install_uuid: await this.getInstallUUID()
     }
     try {
-      this.dev = await this.net.post(this.c.DEVICE, d)
+      this.dev = await this.net.post(this.c.DEVICE, d);
       return this.dev
     } catch (error) {
       throw error
@@ -47,7 +46,7 @@ export class DeviceProvider {
 
   async getDevice() {
     if (this.dev) {
-      return this.dev
+      return this.dev;
     }
     return await this.createDevice('');
   }
@@ -69,9 +68,10 @@ export class DeviceProvider {
 
   async firstTime() {
     try {
-      return await this.storage.get(this.c.FIRST_TIME)
+      const data = await this.storage.get(this.c.FIRST_TIME)
+      return data;
     } catch (e) {
-      return true
+      return true;
     }
   }
 
@@ -112,6 +112,7 @@ export class DeviceProvider {
     this.oneSignal.endInit();
   }
   startPush() {
+    this.storage.set('false', this.c.ASKED_NOTIFICATION);
     if (this.platform.is('cordova')) {
       this.oneSignal.registerForPushNotifications();
       this.oneSignal.getIds()

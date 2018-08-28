@@ -1,5 +1,5 @@
-import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController,  ModalController } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { LocationProvider } from '../../providers/location/location';
@@ -7,11 +7,11 @@ import { UserProvider } from '../../providers/user/user';
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
 import { ModalLoginPage } from '../modal-login/modal-login';
-import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
+// import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { StatusPage } from '../status/status';
 import { FirstTimePage } from '../first-time/first-time';
-import { DeviceProvider } from '../../providers/device/device';
+// import { DeviceProvider } from '../../providers/device/device';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
 
 
@@ -50,7 +50,7 @@ export class AddressPage {
     public navCtrl: NavController,
     private order: OrderProvider,
     private analitycs: AnalyticsProvider,
-    private zone: NgZone,
+    // private zone: NgZone,
     private loc: LocationProvider,
     private user: UserProvider,
     private modal: ModalController) {
@@ -72,7 +72,7 @@ export class AddressPage {
   }
 
   async addressChange() {
-    let v = this.navCtrl.getActive();
+    // const v = this.navCtrl.getActive();
     this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
   }
 
@@ -112,7 +112,6 @@ export class AddressPage {
       .catch(e => {
         this.openLogin();
       })
-
   }
 
   openPartner() {
@@ -124,9 +123,9 @@ export class AddressPage {
   async ageConfirmation(){
     let u = await this.user.confirmedAge();
     if( u !== "false" ){
-      const modalAge = this.modal.create(FirstTimePage).present();
+      this.modal.create(FirstTimePage).present();
     }else{
-      console.log('AGE  CONFIRMED');
+      // console.log('AGE  CONFIRMED');
     }
 
   }
@@ -167,6 +166,5 @@ export class AddressPage {
     } catch (error) {
       console.log('ERRROOOOOOO CARALHO -> ',error);
     }
-
   }
 }

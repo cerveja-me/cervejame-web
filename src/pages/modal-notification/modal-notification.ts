@@ -24,6 +24,7 @@ export class ModalNotificationPage {
   accept(){
     this.device.startPush();
     setTimeout(() => {
+      // this.device.
       this.viewCtrl.dismiss();
     },300);
   }
