@@ -13,7 +13,7 @@ import { StatusPage } from '../status/status';
 import { FirstTimePage } from '../first-time/first-time';
 // import { DeviceProvider } from '../../providers/device/device';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
-
+import * as CTS from '../../providers/cts';
 
 @Component({
   selector: 'page-address',
@@ -46,6 +46,7 @@ export class AddressPage {
   openSale: any;
   fulladdress = '';
   addressOptions = [];
+  v;
   constructor(
     public navCtrl: NavController,
     private order: OrderProvider,
@@ -53,10 +54,13 @@ export class AddressPage {
     // private zone: NgZone,
     private loc: LocationProvider,
     private user: UserProvider,
-    private modal: ModalController) {
+    private modal: ModalController,
+  ) {
+    this.v= CTS.version;
   }
 
   ionViewDidLoad() {
+    this
     this.analitycs.registerPage("Address");
     this.ageConfirmation();
     this.confirmPush();

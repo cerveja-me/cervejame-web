@@ -1,4 +1,10 @@
 page-address {
+  .version{
+    margin-top: 30px;
+    font-size: 10px;
+    color: darkseagreen;
+
+  }
   .input-autocomplete {
     @include border-radius(10px);
     @extend .font-regular;
