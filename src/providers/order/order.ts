@@ -58,7 +58,8 @@ export class OrderProvider {
         throw {error:'NO_ZONE_AVAILABLE', address:this.locale.address};
       }
     } catch (error) {
-      throw error;
+      throw {
+        error:'NETWORK_ERROR'};
     }
   }
 
