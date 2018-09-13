@@ -60,7 +60,6 @@ export class AddressPage {
   }
 
   ionViewDidLoad() {
-    this
     this.analitycs.registerPage("Address");
     this.ageConfirmation();
     this.confirmPush();
@@ -90,10 +89,12 @@ export class AddressPage {
       this.err = error;
       if(error && error.message){
         this.err = error.message || error
-      }
+      }else
       if (error && error.address){
         this.err=error.error;
         this.errorAddress = error.address.formated;
+      }else{
+        this.err=error.error;
       }
 
       this.analitycs.registerError(this.err, this.addressOptions)
