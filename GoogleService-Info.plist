@@ -23,33 +23,18 @@
 	<key>STORAGE_BUCKET</key>
 	<string>cerveja-me.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:10339294539:ios:bcac1cdc32190e64</string>
 	<key>DATABASE_URL</key>
 	<string>https://cerveja-me.firebaseio.com</string>
-
-<key>CFBundleURLTypes</key>
-<array>
-  <dict>
-  <key>CFBundleURLSchemes</key>
-  <array>
-    <string>fb289767478086559</string>
-  </array>
-  </dict>
-</array>
-<key>FacebookAppID</key>
-<string>289767478086559</string>
-<key>FacebookDisplayName</key>
-<string>Cerveja.me</string>
 </dict>
 </plist>
-

@@ -1,0 +1,87 @@
+page-modal-notification {
+
+
+      .icone-tour1 {
+          background-image: url(../assets/icon/tour1.svg);
+          background-size: cover;
+          width: 106px;
+          height: 150px;
+          display: inline-block;
+      }
+
+      .icone-tour2 {
+          background-image: url(../assets/icon/tour2.svg);
+          background-size: cover;
+          width: 106px;
+          height: 145px;
+          display: inline-block;
+      }
+  }
+
+  .icone-notification {
+      background-image: url(../assets/icon/notification.svg);
+      background-size: cover;
+      width: 106px;
+      height: 94px;
+      display: inline-block;
+  }
+
+  .btn-notification {
+      @include border-radius(50px);
+      @extend .font-bold;
+      z-index:99999;
+      background: white;
+      border: 2px solid #573317;
+      font-size: 17px;
+      padding: 15px 30px;
+      height: auto;
+      width: 290px;
+      transition: all .5s;
+      color: #573317;
+      text-transform: uppercase;
+  }
+
+  .btn-skip {
+      @extend .font-bold;
+
+      font-size: 13px;
+      height: auto;
+      transition: all .5s;
+      color: white;
+      background: transparent;
+      border-bottom: 2px solid white;
+      padding: 5px 0;
+      display: block;
+      text-align: center;
+      margin: 20px auto 0;
+  }
+
+  .slider-nav {
+      width: 100%;
+      position: absolute;
+      bottom: 5%;
+
+      &__item {
+          @include border-radius(50px);
+
+          width: 10px;
+          height: 10px;
+          background: white;
+          display: inline-block;
+          margin: 0 2px;
+          opacity: 0.3;
+
+          &.active {
+              opacity: 1;
+          }
+      }
+  }
+
+  .msg.notification {
+      padding: 125px 0;
+
+      msg__text {
+          font-size: 25px;
+          padding-bottom: 50px;
+      }
+  }

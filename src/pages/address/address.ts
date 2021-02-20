@@ -1,5 +1,5 @@
-import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController,  ModalController } from 'ionic-angular';
 import { OrderProvider } from '../../providers/order/order';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { LocationProvider } from '../../providers/location/location';
@@ -7,12 +7,13 @@ import { UserProvider } from '../../providers/user/user';
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
 import { ModalLoginPage } from '../modal-login/modal-login';
-import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
+// import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { StatusPage } from '../status/status';
 import { FirstTimePage } from '../first-time/first-time';
-import { DeviceProvider } from '../../providers/device/device';
-
+// import { DeviceProvider } from '../../providers/device/device';
+import { ModalNotificationPage } from '../modal-notification/modal-notification';
+import * as CTS from '../../providers/cts';
 
 @Component({
   selector: 'page-address',
@@ -45,32 +46,36 @@ export class AddressPage {
   openSale: any;
   fulladdress = '';
   addressOptions = [];
+  v;
   constructor(
     public navCtrl: NavController,
     private order: OrderProvider,
     private analitycs: AnalyticsProvider,
-    private zone: NgZone,
+    // private zone: NgZone,
     private loc: LocationProvider,
     private user: UserProvider,
-    private modal: ModalController) {
+    private modal: ModalController,
+  ) {
+    this.v= CTS.version;
   }
 
   ionViewDidLoad() {
     this.analitycs.registerPage("Address");
     this.ageConfirmation();
+    this.confirmPush();
   }
-
 
   closeAddressEdit() {
     console.log()
   }
+
   async setAddress(a) {
     await this.loc.setAddress(a)
     this.getZone();
   }
 
   async addressChange() {
-    let v = this.navCtrl.getActive();
+    // const v = this.navCtrl.getActive();
     this.addressOptions = await this.loc.getLocationsFromAddress(this.fulladdress, null)
   }
 
@@ -84,10 +89,12 @@ export class AddressPage {
       this.err = error;
       if(error && error.message){
         this.err = error.message || error
-      }
+      }else
       if (error && error.address){
         this.err=error.error;
         this.errorAddress = error.address.formated;
+      }else{
+        this.err=error.error;
       }
 
       this.analitycs.registerError(this.err, this.addressOptions)
@@ -110,7 +117,6 @@ export class AddressPage {
       .catch(e => {
         this.openLogin();
       })
-
   }
 
   openPartner() {
@@ -122,11 +128,17 @@ export class AddressPage {
   async ageConfirmation(){
     let u = await this.user.confirmedAge();
     if( u !== "false" ){
-      const modalAge = this.modal.create(FirstTimePage).present();
+      this.modal.create(FirstTimePage).present();
     }else{
-      console.log('AGE  CONFIRMED');
+      // console.log('AGE  CONFIRMED');
     }
 
+  }
+
+  async confirmPush(){
+    if(await this.user.firtTime()){
+      this.modal.create(ModalNotificationPage).present();
+    }
   }
 
   openLogin() {
@@ -159,6 +171,5 @@ export class AddressPage {
     } catch (error) {
       console.log('ERRROOOOOOO CARALHO -> ',error);
     }
-
   }
 }
